@@ -1,0 +1,13 @@
+<div id="root">
+  <h3>React is NOT WORKING</h3>
+  <div id="quote">
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    $.getJSON("http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&callback=", function(a) {
+      $("#quote").append(a[0].content + "<p>— " + a[0].title + "</p>")
+    });
+  });
+</script>
