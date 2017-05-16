@@ -1,0 +1,36 @@
+{
+  "name": "CommuteCasts",
+  "version": "1.0.0",
+  "description": "CommuteCasts is a podcast sreaming app that is inspired by Bandcamp. It utilizes Ruby on Rails handle the data and business layers, and React/Redux for the presentation-layer.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aelzeiny/CommuteCasts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aelzeiny/CommuteCasts/issues"
+  },
+  "homepage": "https://github.com/aelzeiny/CommuteCasts#readme",
+  "dependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "lodash": "^4.17.4",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.4",
+    "react-router": "^4.1.1",
+    "redux": "^3.6.0",
+    "webpack": "^2.5.1"
+  }
+}
