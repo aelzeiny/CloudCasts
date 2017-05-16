@@ -1,8 +1,24 @@
-<div id="root">
+<script id="bootstrap-current-user" type="text/javascript">
+  <% if logged_in? %>
+  	window.currentUser = <%= render("api/users/user.json.jbuilder",
+  		user: current_user).html_safe %>
+  <% end %>
+</script>
+
+<main id="root">
   <h3>React is NOT WORKING</h3>
-  <div id="quote">
-  </div>
-</div>
+  <div id="quote" class="jumbotron"></div>
+  <ul class="list-group">
+  <li>
+    <button class="btn btn-primary">Bootstrap is Working</button>
+  </li>
+  <li>
+    <p>
+      <i class="fa fa-check"></i> Font-Awesome is working
+    </p>
+  </li>
+  </ul>
+</main>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {

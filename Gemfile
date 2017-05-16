@@ -27,6 +27,10 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 # HELPER API: https://github.com/rlivsey/itunes-search-api
 gem 'itunes-search-api';
+# font-awesome-rails
+gem "font-awesome-rails";
+# Bootstrap
+gem 'bootstrap-sass', '~> 3.3.6';
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
