@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
+import Root from './components/root';
 import * as RSS from './util/rss_utils';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,6 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
   const root = document.getElementById('root');
-  ReactDOM.render(<h1>React is kinda working</h1>, root);
+  ReactDOM.render(<Root store={store}/>, root);
   window.RSS = RSS;
 });
