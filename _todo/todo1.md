@@ -22,6 +22,10 @@
 ## Reminder: Git frequently. Branch early & Branch often
 * git commit -m [description]
 * git checkout -b [yourbranchname]
+* git branch -m [newBranchName]
+* git show-branch -a
 * git checkout master
 * git merge [branch]
+* git push heroku master
+* heroku run rake db:migrate
 * ***you shouldn't even have to look at this***

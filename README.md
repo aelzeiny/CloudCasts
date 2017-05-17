@@ -66,10 +66,14 @@ Check it out live at: [SITE URL GOES HERE]
 ~~~~
 
 ## Timeline
-* Backend, Auth, & API Endpoints, 2 days
-* Itunes API, 1 days
+* Backend, Auth, & API Endpoints, 1 day
+* Itunes API, 1 day
 * Navbar Container w/ auth, 1 day
 * Search Container & ResultsGrid, 2 days
 * Genre Component, 1 day
 * Player Bar, 2 days
 * Episode container, 1 day
+
+## Links
+[Trello](https://trello.com/b/12y48Tj8/ahmed-s-podcast-full-stack)
+[Live Site](https://commutecasts.herokuapp.com/)
