@@ -1,8 +1,6 @@
 class Api::PodcastsController < ApplicationController
   # HELPER API: https://github.com/rlivsey/itunes-search-api
   def search
-    p "WHAT?!?";
-    # render json: params
     myParam = {
       country: 'US',
       media: 'podcast',
@@ -11,6 +9,8 @@ class Api::PodcastsController < ApplicationController
     }
     render json: ITunesSearchAPI.search(search_params(myParam))
   end
+
+  def
 
   private
 

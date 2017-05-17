@@ -18,3 +18,10 @@
 * (Optional) Routing
   * Add a Route that renders the Container/Component when the url matches a specific path.
   * We'll add the Route to the end of our parent container render function.
+
+## Reminder: Git frequently. Branch early & Branch often
+* git commit -m [description]
+* git checkout -b [yourbranchname]
+* git checkout master
+* git merge [branch]
+* ***you shouldn't even have to look at this***
