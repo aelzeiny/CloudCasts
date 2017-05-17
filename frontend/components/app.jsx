@@ -1,6 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Route, Redirect, Switch, Link, HashRouter } from 'react-router-dom';
+import {LoginFormContainer} from './modals/login_form';
+import {SignupFormContainer} from './modals/signup_form';
 
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
@@ -18,6 +20,9 @@ const App = () => (
       <Route path="/benches/:benchId" component={BenchShowContainer} />
       <Route exact path="/" component={SearchContainer} />
     </Switch> */}
+
+    <LoginFormContainer />
+    <SignupFormContainer />
   </div>
 );
 

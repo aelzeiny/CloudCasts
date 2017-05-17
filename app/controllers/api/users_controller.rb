@@ -1,6 +1,9 @@
 class Api::UsersController < ApplicationController
 
 	def create
+		if params[:password] != params[:confirm_password]
+			return render json: ["Passwords do not match"], status: 422
+		end
 		@user = User.new(user_params)
 
 		if @user.save
