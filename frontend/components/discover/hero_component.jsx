@@ -18,7 +18,7 @@ class HeroComponent extends React.Component {
   }
 
   render() {
-    return <img alt="cool hero image" className="hero"></img>;
+    return <img src="SF.svg" alt="cool hero image" className="hero"></img>;
   }
 }
 

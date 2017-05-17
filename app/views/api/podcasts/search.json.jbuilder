@@ -1,0 +1,10 @@
+json.podcasts @response.map do |pod|
+  json.name pod["collectionName"]
+  json.itunes_id pod["collectionId"]
+  json.publisher pod["artistName"]
+  json.itunes_genres pod["genreIds"]
+  json.image_url pod["artworkUrl600"]
+  json.sm_image_url pod["artworkUrl30"]
+  # json.summary pod["summary"]
+  # json.data pod
+end

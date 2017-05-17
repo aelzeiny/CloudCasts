@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
-    post '/podcasts/', to: 'podcasts#search'#, as: "podcasts"
+    get '/podcasts/search', to: 'podcasts#search'#, as: "podcasts"
+    get '/podcasts/top', to: 'podcasts#top'
   end
 end

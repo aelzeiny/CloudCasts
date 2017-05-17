@@ -25,12 +25,15 @@ gem 'bcrypt'
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-# HELPER API: https://github.com/rlivsey/itunes-search-api
-gem 'itunes-search-api';
 # font-awesome-rails
 gem "font-awesome-rails";
 # Bootstrap v3
 # gem 'bootstrap-sass', '~> 3.3.6';
+
+# HELPER API: https://github.com/rlivsey/itunes-search-api
+gem "httparty"
+gem 'itunes-search-api';
+gem 'feedjira'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -45,6 +48,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'annotate'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  validates :itunes_id, :genre
+  validates :itunes_id, :genre, presence: true
 
   has_many :podcast_categories,
     primary_key: :id,
