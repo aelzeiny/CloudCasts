@@ -18,7 +18,7 @@ class HeroComponent extends React.Component {
   }
 
   render() {
-    return <img src="http://lorempixel.com/800/600/cats"></img>;
+    return <img alt="cool hero image" className="hero"></img>;
   }
 }
 
