@@ -7,6 +7,7 @@ import {SignupFormContainer} from './modals/signup_form';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 import NavBarContainer from './navbar/navbar_container';
+import DiscoverContainer from './discover/discover_component';
 
 const App = () => (
   <div>
@@ -20,6 +21,7 @@ const App = () => (
       <Route path="/benches/:benchId" component={BenchShowContainer} />
       <Route exact path="/" component={SearchContainer} />
     </Switch> */}
+    <DiscoverContainer />
 
     <LoginFormContainer />
     <SignupFormContainer />
