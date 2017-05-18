@@ -7,12 +7,19 @@ const PodcastReducer = (state = initState, action) => {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_SEARCH_PODCASTS:
-      return action.podcasts;
+      return arrToObj(action.podcasts);
     case RECEIVE_TOP_PODCASTS:
-      return action.podcasts;
+      return arrToObj(action.podcasts);
     default:
       return state;
   }
+}
+
+function arrToObj(arr) {
+  let obj = {};
+  for(let i=0;i<arr.length;i++)
+    obj[arr[i].itunes_id] = arr[i];
+  return obj;
 }
 
 export default PodcastReducer;

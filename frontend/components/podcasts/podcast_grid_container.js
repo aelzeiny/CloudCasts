@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {requestTopPodcasts} from '../../actions/search_actions';
+import {podcastsSelector}from '../../reducers/selectors';
+import {Link} from 'react-router-dom';
 
 class PodcastGrid extends React.Component {
   constructor(props) {
@@ -12,12 +14,15 @@ class PodcastGrid extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <ul className="list-group">
       {
         this.props.podcasts.map( pod => (
-          <li className="list-group-item">{pod.name}</li>
+          <li className="list-group-item" key={`pod-list${pod.itunes_id}`}>
+            <Link to={`/podcasts/${pod.itunes_id}`}>
+              {pod.name}
+            </Link>
+          </li>
         ))
       }
       </ul>
@@ -27,7 +32,7 @@ class PodcastGrid extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    podcasts: state.podcasts
+    podcasts: podcastsSelector(state.podcasts)
   };
 }
 
