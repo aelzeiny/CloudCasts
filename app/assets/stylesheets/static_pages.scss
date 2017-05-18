@@ -22,3 +22,12 @@ section.discover {
 nav.bg-inverse {
   background-color: $hero-background!important;
 }
+
+.hero-parallax {
+  position: relative;
+
+  img.hero {
+    // position: absolute;
+    top: 0;
+  }
+}

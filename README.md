@@ -39,7 +39,7 @@ Check it out live at: [SITE URL GOES HERE]
 | DELETE | api/session                           | sign-out    |
 
 ## DB Schema UML
-![alt text](./readme_assets/CommuteCasts_uml.png)
+![alt text](./readme/readme_assets/CommuteCasts_uml.png)
 
 ## Component Hierarchy
 * Navbar Container
@@ -76,4 +76,5 @@ Check it out live at: [SITE URL GOES HERE]
 
 ## Links
 [Trello](https://trello.com/b/12y48Tj8/ahmed-s-podcast-full-stack)
+
 [Live Site](https://commutecasts.herokuapp.com/)
