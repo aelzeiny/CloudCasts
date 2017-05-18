@@ -1,4 +1,4 @@
-json.podcasts @response.map do |pod|
+json.array!(@response) do |pod|
   json.name pod["collectionName"]
   json.itunes_id pod["collectionId"]
   json.publisher pod["artistName"]
