@@ -27,5 +27,6 @@
 * git checkout master
 * git merge [branch]
 * git push heroku master
+* git rev-list --all --count
 * heroku run rake db:migrate
 * ***you shouldn't even have to look at this***

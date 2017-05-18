@@ -16,8 +16,9 @@ class Api::PodcastsController < ApplicationController
     render :search
   end
 
-  def top
-    @response = ITunesRssAPI.top_podcasts(100)
+  def top(genre_id = 0)
+    @response =  (genre_id > 0) ?
+      ITunesRssAPI.top_podcasts(100, genre_id) : ITunesRssAPI.top_podcasts(100)
     render :top
   end
 

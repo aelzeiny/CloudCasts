@@ -1,7 +1,10 @@
-export const top100Podcasts = function() {
+export const topPodcasts = function(genreId, size = 100) {
+  let url = `/api/podcasts/top?${size}`;
+  if(genreId)
+    url += '&genre_id=' + genreId;
   // look into response.feed for array of itunes objects
   return $.ajax({
-    url: `/api/podcasts/top`,
+    url: url,
     method: 'GET',
   });
 }
