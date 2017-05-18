@@ -1,7 +1,7 @@
 import * as APIUtil from '../util/search_api_utils';
 
-export const RECIEVE_SEARCH_PODCASTS = "RECEIVE_SEARCH_PODCASTS";
-export const RECIEVE_TOP_PODCASTS = "RECEIVE_TOP_PODCASTS";
+export const RECEIVE_SEARCH_PODCASTS = "RECEIVE_SEARCH_PODCASTS";
+export const RECEIVE_TOP_PODCASTS = "RECEIVE_TOP_PODCASTS";
 
 export const receiveSearchPodcasts = (podcasts) => ({
   type: RECEIVE_SEARCH_PODCASTS,
@@ -9,7 +9,7 @@ export const receiveSearchPodcasts = (podcasts) => ({
 });
 
 export const receiveTopPodcasts = (podcasts) => ({
-  type: RECIEVE_TOP_PODCASTS,
+  type: RECEIVE_TOP_PODCASTS,
   podcasts
 });
 
@@ -18,7 +18,7 @@ export const searchPodcasts = searchTerm => dispatch => (
     .then(data => dispatch(receiveSearchPodcasts(data)))
 );
 
-export const retreiveTopPodcasts = (genreId = undefined, size = undefined) => dispatch => (
-  APIUtil.top100Podcasts(genreId, size)
-    .then(data => dispatch(receiveTopPodcasts(data)));
+export const requestTopPodcasts = (genreId = undefined, size = undefined) => dispatch => (
+  APIUtil.topPodcasts(genreId, size)
+    .then(data => dispatch(receiveTopPodcasts(data)))
 );
