@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {requestTopPodcasts} from '../../actions/search_actions';
 import {podcastsSelector}from '../../reducers/selectors';
-import {Link} from 'react-router-dom';
+import PodcastItemComponent from './podcast_item_component';
 
 class PodcastGrid extends React.Component {
   constructor(props) {
@@ -15,17 +15,13 @@ class PodcastGrid extends React.Component {
 
   render() {
     return (
-      <ul className="list-group">
+      <div className="row">
       {
         this.props.podcasts.map( pod => (
-          <li className="list-group-item" key={`pod-list${pod.itunes_id}`}>
-            <Link to={`/podcasts/${pod.itunes_id}`}>
-              {pod.name}
-            </Link>
-          </li>
+          <PodcastItemComponent pod={pod} key={`pod-list${pod.itunes_id}`} />
         ))
       }
-      </ul>
+      </div>
     );
   }
 }

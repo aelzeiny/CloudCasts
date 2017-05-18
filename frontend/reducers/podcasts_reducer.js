@@ -17,8 +17,10 @@ const PodcastReducer = (state = initState, action) => {
 
 function arrToObj(arr) {
   let obj = {};
-  for(let i=0;i<arr.length;i++)
+  for(let i=0;i<arr.length;i++){
     obj[arr[i].itunes_id] = arr[i];
+  }
+  obj.originalArray = arr;
   return obj;
 }
 

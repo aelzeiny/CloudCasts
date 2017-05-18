@@ -1,6 +1,14 @@
 
 # ~TODO 1~
 
+## TODO
+* Errors & Guest User
+* Fix project Readme
+
+## Project Flow
+* Search Filter
+* 
+
 ## Redux Cycle for APIs
 * Create an API utility function that gets data from backend.
 * Create actions for calling API & receiving data. This requires defining a new constant and action creator.
