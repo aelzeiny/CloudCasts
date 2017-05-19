@@ -7,8 +7,8 @@ export const receivePodcasts = (podcasts) => ({
   podcasts
 });
 
-export const searchPodcasts = searchTerm => dispatch => (
-  APIUtil.searchPodcasts(searchTerm)
+export const searchPodcasts = (searchTerm, searchGenre) => dispatch => (
+  APIUtil.searchPodcasts(searchTerm, searchGenre)
     .then(data => dispatch(receivePodcasts(data)))
 );
 

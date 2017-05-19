@@ -28,11 +28,17 @@ export const topPodcasts = function(genreId, size = 100) {
   });
 }
 
-export const searchPodcasts = (term) => {
-  return $.ajax({
+export const searchPodcasts = (term, genre) => {
+  let searchPods = $.ajax({
     url: `/api/podcasts/search?term=${term}`,
     method: 'GET'
   });
+  console.log(term + " " + genre);
+  if(genre)
+    searchPods = searchPods.then(data => data.filter((cast) => {
+      return cast.itunes_genres.includes(genre);
+    }));
+  return searchPods;
 }
 
 export const searchITunes = (term) => {

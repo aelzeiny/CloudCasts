@@ -22,9 +22,9 @@ class SearchFilterContainer extends React.Component{
       this.term = val;
     // dispatch appropriate action
     if(this.term)
-      this.props.search(this.term);
+      this.props.search(this.term, this.genre);
     else
-      this.props.filter(this.genre)
+      this.props.filter(this.genre);
   }
 
   render() {
@@ -43,7 +43,7 @@ class SearchFilterContainer extends React.Component{
 
 function mapDispatchToProps(dispatch) {
   return {
-    search: (genreId) => dispatch(searchPodcasts(genreId)),
+    search: (term, genreId) => dispatch(searchPodcasts(term, genreId)),
     filter: (genreId) => dispatch(requestTopPodcasts(genreId))
   };
 }
