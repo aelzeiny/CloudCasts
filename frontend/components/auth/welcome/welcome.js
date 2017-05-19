@@ -3,7 +3,7 @@ import BoundingBox from './boundingbox';
 
 // Particle Generation Constants
 let PARTICLE_COUNT = 100;
-const PARTICLE_SURFACE_AREA = 6430;
+const PARTICLE_SURFACE_AREA = 6430*2;
 
 let PARTICLE_RADIUS_MIN = 2;
 let PARTICLE_RADIUS_MAX = 4;
@@ -27,6 +27,7 @@ class Welcome {
   setSize(width, height) {
     this.dim = [width, height];
     PARTICLE_COUNT = Math.floor(width * height / PARTICLE_SURFACE_AREA);
+    this._generateParticles();
   }
 
   start(canvasEl) {
@@ -125,7 +126,6 @@ class Welcome {
       // PARTICLES THAT ARE OUT OF BOUNDS EXIT THE SCREEN
       if(wasOutOfBounds && this.numParticles > PARTICLE_COUNT)
       {
-        console.log("OUT");
         this.particles.splice(x, 1);
         this.numParticles --;
       }
