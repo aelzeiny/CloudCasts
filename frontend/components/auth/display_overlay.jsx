@@ -5,5 +5,5 @@ export default DisplayOverlay = function(props) {
     <div className="overlay">
       <i className="fa fa-headphones fa-6"></i>
     </div>
-  )
+  );
 }
