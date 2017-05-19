@@ -2,19 +2,22 @@ import Particle from './particle';
 import BoundingBox from './boundingbox';
 
 // Particle Generation Constants
-const PARTICLE_COUNT = 100;
+let PARTICLE_COUNT = 100;
+const PARTICLE_SURFACE_AREA = 6430;
 
-const PARTICLE_RADIUS_MIN = 2;
-const PARTICLE_RADIUS_MAX = 4;
+let PARTICLE_RADIUS_MIN = 2;
+let PARTICLE_RADIUS_MAX = 4;
 
-const PARTICLE_VELOCITY_MIN = .005;
-const PARTICLE_VELOCITY_MAX = .02;
+let PARTICLE_VELOCITY_MIN = .005;
+let PARTICLE_VELOCITY_MAX = .02;
 
-const RADIUS_CIRCLE_INNER = 150;
+let RADIUS_CIRCLE_INNER = 150;
 
 class Welcome {
   constructor(width, height) {
     this.setSize(width, height);
+    this.numParticles = 0;
+    this.particles = [];
     this._generateParticles();
     this.mousePos = [0,0];
     this.currentTime = new Date().getTime();
@@ -23,6 +26,7 @@ class Welcome {
 
   setSize(width, height) {
     this.dim = [width, height];
+    PARTICLE_COUNT = Math.floor(width * height / PARTICLE_SURFACE_AREA);
   }
 
   start(canvasEl) {
@@ -98,10 +102,11 @@ class Welcome {
     // (1) Update all particles based on time elapsed between frames
     // (not frame-rate for consistency)
     // update particle positions
-    for(let i=0;i<this.particles.length;i++) {
-      let particle = this.particles[i];
+    for(let x=this.particles.length-1; x>=0; x--) {
+      let particle = this.particles[x];
       particle.update(delta);
 
+      let wasOutOfBounds = false;
       // bounce particles in X & Y axes
       for(let i=0;i<this.dim.length;i++) {
         // If particle is out-of-bounds in a certain axis
@@ -109,11 +114,20 @@ class Welcome {
         if(particle.pos[i] < 0) {
           particle.pos[i] = 0; // constrain current axis to bounds
           particle.velo[i] *= -1; // bounce other axis velocity
+          wasOutOfBounds = true;
         }
         else if(particle.pos[i] > this.dim[i]) {
           particle.pos[i] = this.dim[i]; // constrain current axis to bounds
           particle.velo[i] *= -1; // bounce other axis velocity
+          wasOutOfBounds = true;
         }
+      }
+      // PARTICLES THAT ARE OUT OF BOUNDS EXIT THE SCREEN
+      if(wasOutOfBounds && this.numParticles > PARTICLE_COUNT)
+      {
+        console.log("OUT");
+        this.particles.splice(x, 1);
+        this.numParticles --;
       }
     }
   }
@@ -133,20 +147,21 @@ class Welcome {
   }
 
   _generateParticles() {
-    this.particles = new Array(PARTICLE_COUNT);
-    for(let i=0; i<this.particles.length; i++) {
+    for(let i=this.numParticles; i<PARTICLE_COUNT; i++) {
       // randomize position
-      this.particles[i] = new
+      const particle = new
         Particle(
           Math.random() * this.dim[0],
           Math.random() * this.dim[1],
           Math.random() * (PARTICLE_RADIUS_MAX - PARTICLE_RADIUS_MIN) + PARTICLE_RADIUS_MIN
       );
 
-      this.particles[i].setVelocity(
+      particle.setVelocity(
         Math.random() * (PARTICLE_VELOCITY_MAX - PARTICLE_VELOCITY_MIN) + PARTICLE_VELOCITY_MAX,
         Math.random() * (PARTICLE_VELOCITY_MAX - PARTICLE_VELOCITY_MIN) + PARTICLE_VELOCITY_MAX
       );
+      this.particles.push(particle);
+      this.numParticles ++;
     }
   }
 
