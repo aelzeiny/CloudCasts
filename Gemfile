@@ -32,7 +32,6 @@ gem "font-awesome-rails"
 
 # HELPER API: https://github.com/rlivsey/itunes-search-api
 gem "httparty", '0.14'
-gem 'itunes-search-api'
 gem 'feedjira'
 
 group :development, :test do
