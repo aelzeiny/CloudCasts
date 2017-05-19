@@ -2,10 +2,13 @@ import React from 'react';
 import DisplayOverlay from './display_overlay';
 import LoginOverlay from './login_overlay';
 import SignupOverlay from './signup_overlay';
+import HeroComponent from './hero_component';
+import {connect} from 'react-redux';
 
 const STATUS_NEUTRAL = "NEUTRAL";
 const STATUS_LOGIN = "LOGIN";
 const STATUS_SIGNUP = "SIGNUP";
+
 
 class AuthComponent extends React.Component {
   constructor(props) {
@@ -23,12 +26,12 @@ class AuthComponent extends React.Component {
     return (
       <section className="auth">
         <HeroComponent />
-        {this.renderSwitch()}
+        {this._renderSwitch()}
       </section>
     );
   }
 
-  renderSwitch() {
+  _renderSwitch() {
     switch (this.state.status) {
       case STATUS_SIGNUP:
         return <SignupOverlay onSubmit={this.onSubmit.bind(this)}/>
@@ -40,4 +43,17 @@ class AuthComponent extends React.Component {
   }
 }
 
-export default AuthComponent;
+function mapStateToProps(state) {
+  return {
+    errors: state.session.errors,
+    loggedIn: Boolean(state.session.currentUser)
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    login: user => dispatch(login(user))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthComponent);

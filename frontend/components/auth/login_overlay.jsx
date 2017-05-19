@@ -3,7 +3,7 @@ import React from 'react';
 export default function(props) {
   return (
     <div className="overlay">
-      <form onSubmit={this.props.onSubmit}>
+      <form onSubmit={props.onSubmit}>
         <div className="overlay">
           <div className="form-group">
             <label htmlFor="un">Username</label>

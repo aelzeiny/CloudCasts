@@ -1,8 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Route, Redirect, Switch, Link, HashRouter } from 'react-router-dom';
-import {AuthComponent} from './auth/auth_component';
-import {SignupFormContainer} from './modals/signup_form';
+import AuthComponent from './auth/auth_component';
+import ListenComponent from './listen/listen_component';
+import {LoginFormComponent} from './modals/login_form';
 
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
@@ -12,9 +13,10 @@ import DiscoverContainer from './discover/discover_component';
 const App = () => (
   <div>
     <Switch>
-      <AuthRoute exact={true} path="/" component={AuthComponent} />
+      <AuthRoute path="/" component={AuthComponent} />
       <ProtectedRoute path="/listen" component={ListenComponent} />
     </Switch>
+    <h1>React is kinda working</h1>
   </div>
 );
 
