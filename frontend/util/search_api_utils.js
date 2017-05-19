@@ -1,3 +1,22 @@
+export const topGenres = {
+  "Arts": 1301,
+  "Business": 1321,
+  "Comedy": 1303,
+  "Education": 1304,
+  "Games & Hobbies": 1323,
+  "Government & Organizations": 1325,
+  "Health": 1307,
+  "Kids & Family": 1305,
+  "Music": 1310,
+  "News & Politics": 1311,
+  "Religion & Spirituality": 1314,
+  "Science & Medicine": 1315,
+  "Society & Culture": 1324,
+  "Sports & Recreation": 1316,
+  "Technology": 1318,
+  "Film": 1309
+};
+
 export const topPodcasts = function(genreId, size = 100) {
   let url = `/api/podcasts/top?${size}`;
   if(genreId)

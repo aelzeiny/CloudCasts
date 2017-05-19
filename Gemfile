@@ -26,13 +26,13 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # font-awesome-rails
-gem "font-awesome-rails";
+gem "font-awesome-rails"
 # Bootstrap v3
 # gem 'bootstrap-sass', '~> 3.3.6';
 
 # HELPER API: https://github.com/rlivsey/itunes-search-api
-gem "httparty"
-gem 'itunes-search-api';
+gem "httparty", '0.14'
+gem 'itunes-search-api'
 gem 'feedjira'
 
 group :development, :test do

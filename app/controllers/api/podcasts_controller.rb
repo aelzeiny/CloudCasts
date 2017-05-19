@@ -12,6 +12,7 @@ class Api::PodcastsController < ApplicationController
     }
     # encoding: utf-8 so no errors will be thrown
     encoded = encode_params(search_params)
+    p encoded.first[1].encoding
     @response = ITunesSearchAPI.search(encoded)
     render :search
   end

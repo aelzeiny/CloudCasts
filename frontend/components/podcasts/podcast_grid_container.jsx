@@ -11,7 +11,7 @@ class PodcastGrid extends React.Component {
 
   componentDidMount() {
     this.props.requestTopPodcasts();
-  }
+  } 
 
   render() {
     return (
