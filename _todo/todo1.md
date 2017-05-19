@@ -1,13 +1,18 @@
 
 # ~TODO 1~
 
-## TODO
+## LUKE TODO
 * Errors & Guest User
 * Fix project Readme
 
-## Project Flow
-* Search Filter
-* 
+## Tasks TODO
+* Splash Screen Overhaul
+* New balsamic drawings
+* Discovery Sidebar
+* Subscriptions Sidebar
+* Podcast Show Page
+* Epsiode Streaming Player
+* Styling all of the above
 
 ## Redux Cycle for APIs
 * Create an API utility function that gets data from backend.
