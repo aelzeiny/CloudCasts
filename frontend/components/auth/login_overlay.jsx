@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default LoginOverlay = function(props) {
+export default function(props) {
   return (
     <div className="overlay">
       <form onSubmit={this.props.onSubmit}>
