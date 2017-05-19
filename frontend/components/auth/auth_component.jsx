@@ -21,13 +21,15 @@ class AuthComponent extends React.Component {
 
   render() {
     return (
-      <HeroComponent />
-      {this.renderSwitch()}
+      <section className="auth">
+        <HeroComponent />
+        {this.renderSwitch()}
+      </section>
     );
   }
 
   renderSwitch() {
-    switch this.state.status {
+    switch (this.state.status) {
       case STATUS_SIGNUP:
         return <SignupOverlay onSubmit={this.onSubmit.bind(this)}/>
       case STATUS_LOGIN:

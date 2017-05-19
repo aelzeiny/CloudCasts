@@ -1,5 +1,4 @@
 import React from 'react';
-import HeroComponent from '../hero/hero_component';
 import SearchFilterContainer from './search_filter_container';
 import PodcastGridContainer from '../podcasts/podcast_grid_container';
 
@@ -7,11 +6,8 @@ import PodcastGridContainer from '../podcasts/podcast_grid_container';
 const DiscoverContainer = (props) => {
     return (
       <section className="discover">
-        <HeroComponent />
-        <div className="container">
-          <SearchFilterContainer />
-          <PodcastGridContainer />
-        </div>
+        <SearchFilterContainer />
+        <PodcastGridContainer />
       </section>
     );
 }
