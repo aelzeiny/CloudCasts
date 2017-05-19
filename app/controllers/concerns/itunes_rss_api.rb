@@ -11,7 +11,13 @@ class ITunesRssAPI
     return JSON.parse(HTTParty.get(url).parsed_response)
   end
 
-  def self.search_podcasts(term)
+  def self.lookup_podcast(itunes_id)
+    url = "https://itunes.apple.com/lookup?id=#{itunes_id}"
+    getReq = HTTParty.get(url)
+    return JSON.parse(getReq.parsed_response)["results"].first
+  end
+
+  def self.search_podcast(term)
     search_params = {
       country: 'US',
       media: 'podcast',

@@ -7,9 +7,17 @@ class Api::PodcastsController < ApplicationController
   end
 
   def top
-    @response =  params.has_key?(:genre_id) ?
+    @response =  params.has_key?(:id) ?
       ITunesRssAPI.top_podcasts(100, params[:genre_id].to_i)
       : ITunesRssAPI.top_podcasts(100)
     render :top
+  end
+
+  def show
+    @podcast = ITunesRssAPI.lookup_podcast(params[:itunes_id])
+    render json: @podcast
+    # # @podcast = Podcast.find_by(itunes_id: [params[:id]])
+    # # if(@podcast)
+    # #
   end
 end

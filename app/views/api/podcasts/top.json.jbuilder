@@ -10,4 +10,5 @@ json.array!(entries) do |pod|
 
   # NOTE: Summary is not included in search
   # json.summary pod["summary"]["label"]
+  json.data pod
 end
