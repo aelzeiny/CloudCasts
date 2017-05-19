@@ -11,7 +11,7 @@ class PodcastItemComponent extends React.Component{
     return(
       <Link to={`/podcasts/${pod.itunes_id}`} >
         <div className="pod-box">
-          <img src={pod.image_url}></img>
+          <img src={pod.md_image_url}></img>
         </div>
       </Link>);
   }

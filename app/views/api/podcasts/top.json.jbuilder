@@ -9,5 +9,5 @@ json.array!(entries) do |pod|
   json.publisher pod["im:artist"]["label"]
 
   # NOTE: Summary is not included in search
-  json.summary pod["summary"]["label"]
+  # json.summary pod["summary"]["label"]
 end

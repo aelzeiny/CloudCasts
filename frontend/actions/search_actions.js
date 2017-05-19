@@ -12,7 +12,7 @@ export const searchPodcasts = searchTerm => dispatch => (
     .then(data => dispatch(receivePodcasts(data)))
 );
 
-export const requestTopPodcasts = (genreId = undefined, size = undefined) => dispatch => (
-  APIUtil.topPodcasts(genreId, size)
-    .then(data => dispatch(receivePodcasts(data)))
-);
+export const requestTopPodcasts = (genreId = undefined, size = undefined) => dispatch => {
+  return APIUtil.topPodcasts(genreId, size)
+    .then(data => dispatch(receivePodcasts(data)));
+};

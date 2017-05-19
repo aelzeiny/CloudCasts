@@ -7,5 +7,5 @@ json.array!(@response) do |pod|
   json.sm_image_url pod["artworkUrl30"]
   json.md_image_url pod["artworkUrl100"]
   # json.summary pod["summary"]
-  json.data pod
+  # json.data pod
 end

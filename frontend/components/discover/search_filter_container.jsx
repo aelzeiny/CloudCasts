@@ -17,14 +17,14 @@ class SearchFilterContainer extends React.Component{
     const attr = $select.attr("name")
     const val = $select.val();
     if(attr === "genre")
-      this.genre = val===ALL_KEY ? undefined : val;
+      this.genre = val === ALL_KEY ? undefined : val;
     else if(attr === "term")
       this.term = val;
     // dispatch appropriate action
     if(this.term)
       this.props.search(this.term);
     else
-      this.props.filter(this.genreId)
+      this.props.filter(this.genre)
   }
 
   render() {
