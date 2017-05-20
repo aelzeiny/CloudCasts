@@ -18,16 +18,11 @@ class HeroComponent extends React.Component {
     };
     resize();
     window.addEventListener("resize", resize);
-    this.canvas.addEventListener("mouseenter", this.mouseenter.bind(this));
-    this.canvas.addEventListener("mouseout", this.mouseout.bind(this));
-
     this.welcome.start(this.canvas);
-    this.canvas.addEventListener("mousemove", this.mousemove.bind(this), true);
-    this.canvas.addEventListener("mousedown", this.mousemove.bind(this), true);
   }
 
   componentWillUnmount() {
-    window.addEventListener("resize", resize);
+    window.removeEventListener("resize", resize);
     this.canvas.removeEventListener("mouseenter", this.mouseenter);
     this.canvas.removeEventListener("mouseout", this.mouseout);
     this.canvas.removeEventListener("mousemove", this.mousemove, true);

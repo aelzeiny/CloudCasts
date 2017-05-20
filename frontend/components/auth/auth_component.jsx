@@ -5,6 +5,7 @@ import OptionsOverlay from './options_overlay';
 import SignupOverlay from './signup_overlay';
 import HeroComponent from './hero_component';
 import {connect} from 'react-redux';
+import {signup, login, receiveErrors} from '../../actions/session_actions';
 
 const STATUS_NEUTRAL = "neutral";
 const STATUS_LOGIN = "login";
@@ -19,13 +20,43 @@ class AuthComponent extends React.Component {
     };
   }
 
+  // componentDidMount() {
+  //   this.canvas.addEventListener("mouseenter", this.mouseenter.bind(this));
+  //   this.canvas.addEventListener("mouseout", this.mouseout.bind(this));
+  //   this.canvas.addEventListener("mousemove", this.mousemove.bind(this), true);
+  //   this.canvas.addEventListener("mousedown", this.mousemove.bind(this), true);
+  // }
+  //
+  // componentWillUnmount() {
+  //   this.canvas.removeEventListener("mouseenter", this.mouseenter);
+  //   this.canvas.removeEventListener("mouseout", this.mouseout);
+  //   this.canvas.removeEventListener("mousemove", this.mousemove, true);
+  //   this.canvas.removeEventListener("mousedown", this.mousemove, true);
+  // }
+
   onSubmit(e) {
-    console.log(e.currentTarget);
+    e.preventDefault();
+    const id = form.getAttribute("id");
+    const data = this.parseForm(e.currentTarget);
+    if(id === "loginForm")
+      this.props.login(data);
+    else if(id === "signupForm")
+      this.props.signup(data);
+  }
+
+  parseForm(form) {
+    const answer = {};
+    $("#"+form.getAttribute("id")+" input").each((idx,el) => {
+      let $el = $(el);
+      answer[$el.attr("name")] = $el.val();
+    });
+    return answer;
   }
 
   onOptionSelect(e) {
     var attr = e.currentTarget.getAttribute("name");
     this.setState({status: attr});
+    this.props.clearErrors();
   }
 
   render() {
@@ -61,7 +92,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    login: user => dispatch(login(user))
+    login: user => dispatch(login(user)),
+    signup: user => dispatch(signup(user)),
+    clearErrors: () => dispatch(receiveErrors([]))
   };
 }
 

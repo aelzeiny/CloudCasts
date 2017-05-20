@@ -2,8 +2,8 @@ import React from 'react';
 
 export default function(props) {
   return (
-    <div className="overlay">
-      <form onSubmit={props.onSubmit}>
+    <div className="overlay center">
+      <form id="signupForm" onSubmit={props.onSubmit}>
         <div className="form-group">
           <label htmlFor="un">Username</label>
           <input className="form-control" type="text" name="username" id="un"></input>
