@@ -8,9 +8,9 @@ Rails.application.routes.draw do
     end
 
     #NB: Podcasts Ids are actually based on Itunes Ids
-    resources :podcasts, only: [:show, :create]
     get '/podcasts/top', to: 'podcasts#top'
     get '/podcasts/search', to: 'podcasts#search'
+    resources :podcasts, only: [:show, :create]
 
     resource :session, only: [:create, :destroy]
   end
