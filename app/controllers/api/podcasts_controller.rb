@@ -13,8 +13,9 @@ class Api::PodcastsController < ApplicationController
     render :top
   end
 
+  #NB: Podcast Ids are based on itunes ids
   def show
-    @podcast = ITunesRssAPI.lookup_podcast(params[:itunes_id])
+    @podcast = ITunesRssAPI.lookup_podcast(params[:id])
     render json: @podcast
     # # @podcast = Podcast.find_by(itunes_id: [params[:id]])
     # # if(@podcast)
