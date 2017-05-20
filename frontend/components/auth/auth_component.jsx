@@ -23,6 +23,11 @@ class AuthComponent extends React.Component {
     console.log(e.currentTarget);
   }
 
+  onOptionSelect(e) {
+    var attr = e.currentTarget.getAttribute("name");
+    this.setState({status: attr});
+  }
+
   render() {
     return (
       <section className="auth">
@@ -42,7 +47,7 @@ class AuthComponent extends React.Component {
       case STATUS_LOGIN:
         return <LoginOverlay onSubmit={this.onSubmit.bind(this)}/>
       default:
-        return <OptionsOverlay />
+        return <OptionsOverlay onClick={this.onOptionSelect.bind(this)}/>
     }
   }
 }
