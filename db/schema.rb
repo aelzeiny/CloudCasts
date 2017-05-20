@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 20170520195123) do
     t.integer  "itunes_id"
     t.string   "publisher",                 null: false
     t.string   "image_url",    limit: 2200, null: false
-    t.string   "sm_image_url", limit: 2200, null: false
-    t.string   "md_image_url", limit: 2200, null: false
+    t.string   "sm_image_url", limit: 2200
+    t.string   "md_image_url", limit: 2200
     t.index ["itunes_id"], name: "index_podcasts_on_itunes_id", unique: true, using: :btree
   end
 

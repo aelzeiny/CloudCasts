@@ -10,9 +10,6 @@
 #  itunes_id    :integer
 #  publisher    :string           not null
 #  image_url    :string(2200)     not null
-#  sm_image_url :string(2200)     not null
-#  md_image_url :string(2200)     not null
-#
 
 class Podcast < ApplicationRecord
   validates :name, :category, :itunes_id, :publisher,

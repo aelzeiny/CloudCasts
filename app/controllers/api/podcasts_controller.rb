@@ -4,6 +4,7 @@ class Api::PodcastsController < ApplicationController
   def create
 
   end
+
   def search
     @response = ITunesRssAPI.search_podcasts(params[:term])
     render :search
@@ -25,6 +26,6 @@ class Api::PodcastsController < ApplicationController
   private
 
   def podcast_params
-    
+    params.require(:podcast).permit(:name, :category, :itunes_id, :publisher, :image_url, :sm_image_url, :md_image_url)
   end
 end

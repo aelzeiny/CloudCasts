@@ -7,9 +7,7 @@ class AddColumnsToPodcasts < ActiveRecord::Migration[5.0]
     change_column_null :podcasts, :image_url, false
 
     add_column :podcasts, :sm_image_url, :string, limit: 2200
-    change_column_null :podcasts, :sm_image_url, false
 
     add_column :podcasts, :md_image_url, :string, limit: 2200
-    change_column_null :podcasts, :md_image_url, false
   end
 end
