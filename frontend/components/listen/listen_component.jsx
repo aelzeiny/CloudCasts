@@ -6,9 +6,7 @@ const Listen = (props) => {
   console.log("HERE");
   return (
     <section className="listen">
-      {/* <NavBarContainer /> */}
-      <i className="fa fa-spinner fa-spin"></i>
-      <h3>NOOO</h3>
+      <NavbarContainer />
     </section>
   );
 };
