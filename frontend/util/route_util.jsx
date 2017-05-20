@@ -5,19 +5,20 @@ import { Route, Redirect, withRouter } from 'react-router-dom';
 const Auth = ({ component: Component, path, loggedIn }) => (
   <Route path={path} render={(props) => (
     !loggedIn ? (<Component {...props} />)
-      : (<Redirect to="/" />)
+      : (<Redirect to="/listen" />)
   )} />
 );
 
-const Protected = ({ component: Component, path, loggedIn }) => (
-  <Route path={path} render={(props) => (
+const Protected = ({ component: Component, path, loggedIn }) => {
+  console.log("LOGGEDIN?:" + loggedIn);
+  return (<Route path={path} render={(props) => (
      loggedIn ? (
       <Component {...props} />
     ) : (
       <Redirect to="/" />
     )
-  )} />
-);
+  )} />);
+};
 
 const mapStateToProps = state => (
   {loggedIn: Boolean(state.session.currentUser)}

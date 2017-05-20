@@ -13,8 +13,8 @@ import DiscoverContainer from './discover/discover_component';
 const App = () => (
   <div>
     <Switch>
-      <AuthRoute path="/" component={AuthComponent} />
       <ProtectedRoute path="/listen" component={ListenComponent} />
+      <AuthRoute path="/" component={AuthComponent} />
     </Switch>
   </div>
 );

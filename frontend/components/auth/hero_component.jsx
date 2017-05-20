@@ -27,7 +27,6 @@ class HeroComponent extends React.Component {
     this.canvas.removeEventListener("mouseout", this.mouseout);
     this.canvas.removeEventListener("mousemove", this.mousemove, true);
     this.canvas.removeEventListener("mousedown", this.mousemove, true);
-    this.welcome.end();
   }
 
   mouseenter() {
