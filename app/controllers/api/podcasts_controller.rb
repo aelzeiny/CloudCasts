@@ -2,8 +2,11 @@ require_relative '../concerns/itunes_rss_api'
 
 class Api::PodcastsController < ApplicationController
   def create
-    @pod = Podcast.new(podcast_params)
-    render "api/podcasts/show/"
+    # first check if categories exist
+    render json: podcast_params
+    # @pod = Podcast.new(podcast_params)
+    #
+    # render "api/podcasts/show/"
   end
 
   def search
@@ -27,6 +30,6 @@ class Api::PodcastsController < ApplicationController
   private
 
   def podcast_params
-    params.require(:podcast).permit(:name, :category, :itunes_id, :publisher, :image_url, :sm_image_url, :md_image_url)
+    params.require(:podcast).permit(:name, :category, :itunes_id, :publisher, :image_url, :sm_image_url, :md_image_url, itunes_genres: [])
   end
 end
