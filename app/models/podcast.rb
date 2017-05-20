@@ -2,15 +2,21 @@
 #
 # Table name: podcasts
 #
-#  id         :integer          not null, primary key
-#  name       :string           not null
-#  category   :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :integer          not null, primary key
+#  name         :string           not null
+#  category     :string           not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  itunes_id    :integer
+#  publisher    :string           not null
+#  image_url    :string(2200)     not null
+#  sm_image_url :string(2200)     not null
+#  md_image_url :string(2200)     not null
 #
 
 class Podcast < ApplicationRecord
-  validates :name, :category, presence: true
+  validates :name, :category, :itunes_id, :publisher,
+    :image_url, :sm_image_url, :md_image_url, presence: true
 
   has_many :subscriptions,
     primary_key: :id,
