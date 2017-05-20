@@ -2,7 +2,8 @@ class Api::SubscriptionsController < ApplicationController
   def create
     @sub = Subscription.new(subscription_params)
     if @sub.save
-      render :create
+      @podcasts = @sub.user.podcasts
+      render "api/podcasts/index"
 		else
 			render json: @sub.errors.full_messages, status: 422
   end
@@ -11,6 +12,8 @@ class Api::SubscriptionsController < ApplicationController
     @sub = Subscription.find(params[:id])
     if @sub
       @sub.destroy
+      @podcasts = @sub.user.podcasts
+      render "api/podcasts/index"
     else
       render json: ["User is not subscribed to this podcast"], status: 404
     end
