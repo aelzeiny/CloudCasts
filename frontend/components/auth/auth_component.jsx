@@ -36,12 +36,14 @@ class AuthComponent extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    const id = form.getAttribute("id");
+    const id = e.currentTarget.getAttribute("id");
     const data = this.parseForm(e.currentTarget);
+    const user = {user: data};
+    console.log(data);
     if(id === "loginForm")
-      this.props.login(data);
+      this.props.login(user);
     else if(id === "signupForm")
-      this.props.signup(data);
+      this.props.signup(user);
   }
 
   parseForm(form) {
@@ -56,16 +58,24 @@ class AuthComponent extends React.Component {
   onOptionSelect(e) {
     var attr = e.currentTarget.getAttribute("name");
     this.setState({status: attr});
-    this.props.clearErrors();
+    if(this.props.errors.length > 0)
+      this.props.clearErrors();
   }
 
   render() {
     return (
       <section className="auth">
         <HeroComponent className={this.state.status}/>
-        <div className="row">
+        <div>
           <LogoOverlay />
         </div>
+          <ul className="validation-errors overlay">
+            {this.props.errors.map((err, idx) => (
+              <li key={typeof(this)+idx} className="validation-items">
+                <i className="fa fa-exclamation"></i> {err}
+              </li>
+            ))}
+          </ul>
         {this._renderSwitch()}
       </section>
     );

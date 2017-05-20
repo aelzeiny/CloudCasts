@@ -25,6 +25,11 @@ section.auth {
     vertical-align: middle;
   }
 
+
+  .validation-errors{
+    align-content: center;
+  }
+
   .overlay {
     position: absolute;
     top: 0; right: 0; bottom: 0; left: 0;
@@ -60,9 +65,6 @@ section.auth {
         top: -175px;
       }
   }
-
-
-
   div#oStrongText {
       /* background-color: black; */
       font-size: 4em;
