@@ -11,7 +11,7 @@ export default function(props) {
           One Place</b>
       </div>
       <div className="overlay center" id="oButtons">
-        <button name="login" onClick={props.onClick} className="btn btn-lg btn-outline-primary" style={{"margin-right": "38px"}}>
+        <button name="login" onClick={props.onClick} className="btn btn-lg btn-outline-primary" style={{"marginRight": "38px"}}>
           Login
         </button>
         <button name="signup" onClick={props.onClick} className="btn btn-lg btn-outline-danger">Signup</button>

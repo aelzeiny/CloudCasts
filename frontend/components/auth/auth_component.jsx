@@ -43,11 +43,11 @@ class AuthComponent extends React.Component {
   _renderSwitch() {
     switch (this.state.status) {
       case STATUS_SIGNUP:
-        return <SignupOverlay onSubmit={this.onSubmit.bind(this)}/>
+        return <SignupOverlay onSubmit={this.onSubmit.bind(this)} onOptionChange={this.onOptionSelect.bind(this)}/>
       case STATUS_LOGIN:
-        return <LoginOverlay onSubmit={this.onSubmit.bind(this)}/>
+        return <LoginOverlay onSubmit={this.onSubmit.bind(this)} onOptionChange={this.onOptionSelect.bind(this)}/>
       default:
-        return <OptionsOverlay onClick={this.onOptionSelect.bind(this)}/>
+        return <OptionsOverlay onClick={this.onOptionSelect.bind(this)} onOptionChange={this.onOptionSelect.bind(this)}/>
     }
   }
 }
