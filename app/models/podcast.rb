@@ -12,8 +12,7 @@
 #  image_url    :string(2200)     not null
 
 class Podcast < ApplicationRecord
-  validates :name, :category, :itunes_id, :publisher,
-    :image_url, :sm_image_url, :md_image_url, presence: true
+  validates :name, :category, :itunes_id, :publisher, :image_url, presence: true
 
   has_many :subscriptions,
     primary_key: :id,

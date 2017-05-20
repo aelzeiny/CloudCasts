@@ -2,7 +2,8 @@ require_relative '../concerns/itunes_rss_api'
 
 class Api::PodcastsController < ApplicationController
   def create
-
+    @pod = Podcast.new(podcast_params)
+    render "api/podcasts/show/"
   end
 
   def search
@@ -20,7 +21,7 @@ class Api::PodcastsController < ApplicationController
   #NB: Podcast Ids are based on itunes ids
   def show
     @podcast = ITunesRssAPI.lookup_podcast(params[:id])
-    render json: @podcast
+    render :show
   end
 
   private
