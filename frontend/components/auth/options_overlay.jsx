@@ -2,16 +2,18 @@ import React from 'react';
 
 export default function(props) {
   return (
-    <div>
-      <div className="overlay center">
-        <b style={{'font-size':'.5em'}}>Your favorite Podcasts</b>
+    <div className="options">
+      <div className="overlay center" id="oSideText">
+        <b>Your favorite Podcasts</b>
       </div>
-      <div className="overlay center">
+      <div className="overlay center" id="oStrongText">
           <b>All In <br/>
           One Place</b>
       </div>
-      <div className="overlay center">
-        <button className="btn btn-lg btn-outline-primary">Login</button>
+      <div className="overlay center" id="oButtons">
+        <button className="btn btn-lg btn-outline-primary" style={{"margin-right": "38px"}}>
+          Login
+        </button>
         <button className="btn btn-lg btn-outline-danger">Signup</button>
       </div>
     </div>

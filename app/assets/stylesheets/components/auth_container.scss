@@ -33,19 +33,6 @@ section.auth {
     &.center {
       justify-content: center;
       align-items: center;
-
-      .btn {
-        margin-top: 20px;
-        margin-right: 30px;
-      }
-    }
-
-    strong {
-      background-color: black;
-      color: white;
-      padding: 35px 14px;
-      margin-left: 21px;
-      float: right;
     }
   }
 
@@ -55,5 +42,28 @@ section.auth {
     img {
       width: 100px;
     }
+  }
+
+  div#oButtons {
+      flex-direction: row;
+      align-items: flex-end;
+      margin-bottom: 100px;
+  }
+
+  #oSideText b {
+      position: relative;
+      left: -314px;
+      font-size: 2em;
+  }
+
+  div#oStrongText {
+      /* background-color: black; */
+      font-size: 4em;
+      text-align: center;
+      b {
+        background-color: black;
+        color: white;
+        padding: 46px 16px;
+      }
   }
 }
