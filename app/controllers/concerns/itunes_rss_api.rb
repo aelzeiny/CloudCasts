@@ -17,7 +17,7 @@ class ITunesRssAPI
     return JSON.parse(getReq.parsed_response)["results"].first
   end
 
-  def self.search_podcast(term)
+  def self.search_podcasts(term)
     search_params = {
       country: 'US',
       media: 'podcast',

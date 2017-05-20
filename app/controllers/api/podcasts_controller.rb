@@ -7,7 +7,7 @@ class Api::PodcastsController < ApplicationController
   end
 
   def top
-    @response =  params.has_key?(:id) ?
+    @response =  params.has_key?(:genre_id) ?
       ITunesRssAPI.top_podcasts(100, params[:genre_id].to_i)
       : ITunesRssAPI.top_podcasts(100)
     render :top

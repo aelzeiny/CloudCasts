@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
     get '/podcasts/top', to: 'podcasts#top'
-    get '/podcasts/:itunes_id', to: 'podcasts#show'
     get '/podcasts/search', to: 'podcasts#search'#, as: "podcasts"
+    get '/podcasts/:itunes_id', to: 'podcasts#show'
   end
 end
