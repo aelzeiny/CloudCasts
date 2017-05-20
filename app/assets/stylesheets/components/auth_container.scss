@@ -1,0 +1,35 @@
+@import '../base/colors';
+@import '../base/fonts';
+
+section.auth {
+  font-family: "Archer Book italic";
+  font-size: 7em;
+  position: relative;
+  text-align: center;
+
+  .hero {
+    &.neutral {
+      background-color: $yellow;
+    }
+    &.login {
+      background-color: $green;
+    }
+    &.signup {
+      background-color: $yellow;
+    }
+    position: absolute;
+    z-index: 0;
+    left: 0;
+  }
+
+  .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    top: 0;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+  }
+}

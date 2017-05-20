@@ -13,8 +13,8 @@ class HeroComponent extends React.Component {
 
     const resize = () => {
       // RESIZE WELCOME SECTION
-      this.canvas.width = window.innerWidth -25;
-      this.canvas.height = window.innerHeight * 6/8;
+      this.canvas.width = window.innerWidth - 25;
+      this.canvas.height = window.innerHeight;
     };
     resize();
     window.addEventListener("resize", resize);
@@ -48,12 +48,7 @@ class HeroComponent extends React.Component {
   }
 
   render() {
-    return (
-    <div className="hero-parallax">
-      <canvas id="welcome-canvas" style={{"backgroundColor":"#fcc600"}}>
-
-      </canvas>
-    </div>);
+    return (<canvas id="welcome-canvas" className={"hero " + this.props.className}></canvas>);
   }
 }
 

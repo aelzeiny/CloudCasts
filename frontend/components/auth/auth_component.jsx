@@ -5,9 +5,9 @@ import SignupOverlay from './signup_overlay';
 import HeroComponent from './hero_component';
 import {connect} from 'react-redux';
 
-const STATUS_NEUTRAL = "NEUTRAL";
-const STATUS_LOGIN = "LOGIN";
-const STATUS_SIGNUP = "SIGNUP";
+const STATUS_NEUTRAL = "neutral";
+const STATUS_LOGIN = "login";
+const STATUS_SIGNUP = "signup";
 
 
 class AuthComponent extends React.Component {
@@ -25,7 +25,7 @@ class AuthComponent extends React.Component {
   render() {
     return (
       <section className="auth">
-        <HeroComponent />
+        <HeroComponent className={this.state.status}/>
         {this._renderSwitch()}
       </section>
     );

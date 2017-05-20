@@ -16,7 +16,6 @@ const App = () => (
       <AuthRoute path="/" component={AuthComponent} />
       <ProtectedRoute path="/listen" component={ListenComponent} />
     </Switch>
-    <h1>React is kinda working</h1>
   </div>
 );
 
