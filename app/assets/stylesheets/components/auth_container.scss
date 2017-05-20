@@ -2,10 +2,11 @@
 @import '../base/fonts';
 
 section.auth {
-  font-family: "Archer Book italic";
-  font-size: 7em;
+  font-family: "Archer Book", serif;
+  font-style: italic;
+  // font-family: 'Josefin Slab', serif;
+  font-size: 1em;
   position: relative;
-  text-align: center;
 
   .hero {
     &.neutral {
@@ -17,19 +18,42 @@ section.auth {
     &.signup {
       background-color: $yellow;
     }
-    position: absolute;
-    z-index: 0;
-    left: 0;
+
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
   }
 
   .overlay {
-    width: 100%;
-    height: 100%;
     position: absolute;
-    justify-content: center;
-    align-items: center;
+    top: 0; right: 0; bottom: 0; left: 0;
     display: flex;
-    top: 0;
-    -webkit-transform: translateY(-50%) translateX(-50%);
+    flex-direction: column;
+
+    &.center {
+      justify-content: center;
+      align-items: center;
+
+      .btn {
+        margin-top: 20px;
+        margin-right: 30px;
+      }
+    }
+
+    strong {
+      background-color: black;
+      color: white;
+      padding: 35px 14px;
+      margin-left: 21px;
+      float: right;
+    }
+  }
+
+  #logo {
+    align-items: flex-start;
+    justify-content: flex-start;
+    img {
+      width: 100px;
+    }
   }
 }

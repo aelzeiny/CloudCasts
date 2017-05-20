@@ -1,6 +1,7 @@
 import React from 'react';
-import DisplayOverlay from './display_overlay';
+import LogoOverlay from './logo_overlay';
 import LoginOverlay from './login_overlay';
+import OptionsOverlay from './options_overlay';
 import SignupOverlay from './signup_overlay';
 import HeroComponent from './hero_component';
 import {connect} from 'react-redux';
@@ -26,6 +27,9 @@ class AuthComponent extends React.Component {
     return (
       <section className="auth">
         <HeroComponent className={this.state.status}/>
+        <div className="row">
+          <LogoOverlay />
+        </div>
         {this._renderSwitch()}
       </section>
     );
@@ -38,7 +42,7 @@ class AuthComponent extends React.Component {
       case STATUS_LOGIN:
         return <LoginOverlay onSubmit={this.onSubmit.bind(this)}/>
       default:
-        return <DisplayOverlay/>
+        return <OptionsOverlay />
     }
   }
 }

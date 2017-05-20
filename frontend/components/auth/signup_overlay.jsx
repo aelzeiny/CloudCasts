@@ -16,7 +16,7 @@ export default function(props) {
           <label htmlFor="cpw">Confirm Password</label>
           <input className="form-control" type="password" name="password_confirm" id="cpw"></input>
         </div>
-        <button class="btn btn-danger">submit</button>
+        <button className="btn btn-default">submit</button>
       </form>
     </div>
   );
