@@ -2,7 +2,7 @@ class Api::SubscriptionsController < ApplicationController
   def create
     @sub = Subscription.new(subscription_params)
     if @sub.save
-      @podcasts = @sub.user.podcasts
+      @podcasts = @sub.podcasts_for_user
       render "api/podcasts/index"
 		else
 			render json: @sub.errors.full_messages, status: 422

@@ -21,4 +21,8 @@ class Subscription < ApplicationRecord
     primary_key: :id,
     foreign_key: :podcast_id,
     class_name: 'Podcast'
+
+  has_many :podcasts_for_user,
+    through: :user,
+    source: :podcasts
 end
