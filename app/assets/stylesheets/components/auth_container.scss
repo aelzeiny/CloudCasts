@@ -1,5 +1,6 @@
 @import '../base/colors';
 @import '../base/fonts';
+@import '../base/media';
 
 section.auth {
   font-family: "Archer Book", serif;
@@ -54,7 +55,13 @@ section.auth {
       position: relative;
       left: -314px;
       font-size: 2em;
+      @media screen and (max-width: $break-md) {
+        left: 0px;
+        top: -175px;
+      }
   }
+
+
 
   div#oStrongText {
       /* background-color: black; */
