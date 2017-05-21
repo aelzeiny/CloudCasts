@@ -3,7 +3,7 @@ require_relative '../concerns/itunes_rss_api'
 class Api::PodcastsController < ApplicationController
   def create
     # first check if categories exist
-    @pod = Podcast.find_by(params[:itunes_id])
+    @pod = Podcast.find_by(itunes_id: params[:podcast][:itunes_id])
     if @pod
       render :create
       return
@@ -18,7 +18,7 @@ class Api::PodcastsController < ApplicationController
       end
       render :create
     else
-      render :create
+      render json: @pod.errors.full_messages, status: 422
     end
   end
 
@@ -37,7 +37,11 @@ class Api::PodcastsController < ApplicationController
   #NB: Podcast Ids are based on itunes ids
   def show
     @podcast = Podcast.find_by(itunes_id: params[:id])
-    @feed = ITunesRssAPI.parse_feed(@podcast.feed_url) # parse_lookup(parse_lookup(@podcast))
+    unless @podcast
+      lookup_values = ITunesRssAPI.lookup_podcast(params[:id])
+      @podcast = create_podcast(parse_lookup(lookup_values))
+    end
+    @feed = ITunesRssAPI.parse_feed(@podcast.feed_url)
     @episodes = []
     @feed.entries.each do |ep|
       episode = {
@@ -58,8 +62,22 @@ class Api::PodcastsController < ApplicationController
 
   private
 
+  def create_podcast(cast_params)
+    genres = cast_params[:itunes_genres]
+    cast_params.delete(:itunes_genres)
+    pod = Podcast.new(cast_params)
+    if pod.save
+      genres.each do |itunes_id|
+        categ = Category.find_by(itunes_id: itunes_id)
+        if categ
+          PodcastCategory.create(category_id: categ.id, podcast_id: pod.id)
+        end
+      end
+    end
+    pod
+  end
+
   def parse_lookup(pod)
-    # json.name
     {
       name: pod["collectionName"],
       itunes_id: pod["collectionId"],

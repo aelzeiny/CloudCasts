@@ -14,11 +14,6 @@ export const createPodcast = function(data) {
   });
 };
 
-
-function _generateSubscribe(user_id, podcast_id, url) {
-
-}
-
 export const subscribe = function(user_id, podcast_id) {
   return $.ajax({
     method: 'POST',
