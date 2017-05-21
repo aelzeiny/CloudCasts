@@ -37,8 +37,7 @@ ActiveRecord::Schema.define(version: 20170521151607) do
     t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["category_id"], name: "index_podcast_categories_on_category_id", unique: true, using: :btree
-    t.index ["podcast_id"], name: "index_podcast_categories_on_podcast_id", unique: true, using: :btree
+    t.index ["podcast_id", "category_id"], name: "index_podcast_categories_on_podcast_id_and_category_id", unique: true, using: :btree
   end
 
   create_table "podcasts", force: :cascade do |t|

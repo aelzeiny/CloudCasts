@@ -11,6 +11,7 @@
 
 class Subscription < ApplicationRecord
   validates :user, :podcast, presence: true
+  validates :user, uniqueness: { scope: [:podcast] }
 
   belongs_to :user,
     primary_key: :id,
