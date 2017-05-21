@@ -17,7 +17,7 @@ class Podcast < ApplicationRecord
   validates :name, :itunes_id, :publisher, :image_url, :feed_url, presence: true
 
   has_many :subscriptions,
-    primary_key: :id,
+    primary_key: :itunes_id,
     foreign_key: :podcast_id,
     class_name: 'Subscription'
 

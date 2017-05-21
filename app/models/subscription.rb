@@ -18,7 +18,7 @@ class Subscription < ApplicationRecord
     class_name: 'User'
 
   belongs_to :podcast,
-    primary_key: :id,
+    primary_key: :itunes_id,
     foreign_key: :podcast_id,
     class_name: 'Podcast'
 

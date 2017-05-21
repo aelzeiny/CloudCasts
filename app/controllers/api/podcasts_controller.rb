@@ -6,7 +6,7 @@ class Api::PodcastsController < ApplicationController
     @pod = Podcast.find_by(params[:itunes_id])
     if @pod
       render :create
-      return;
+      return
     end
     @pod = Podcast.new(podcast_params)
     if @pod.save
