@@ -10,7 +10,7 @@
 #
 
 class PodcastCategory < ApplicationRecord
-  validates :user, :podcast, presence: true
+  validates :podcast, :podcast, presence: true
 
   belongs_to :category,
     primary_key: :id,

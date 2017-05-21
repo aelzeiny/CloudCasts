@@ -3,10 +3,18 @@ require_relative '../concerns/itunes_rss_api'
 class Api::PodcastsController < ApplicationController
   def create
     # first check if categories exist
-    render json: podcast_params
-    # @pod = Podcast.new(podcast_params)
-    #
-    # render "api/podcasts/show/"
+    @pod = Podcast.new(podcast_params)
+    if @pod.save
+      params[:podcast][:itunes_genres].each do |itunes_id|
+        categ = Category.find_by(itunes_id: itunes_id)
+        if categ
+          PodcastCategory.create(category_id: categ.id, podcast_id: @pod.id)
+        end
+      end
+      render json: @pod
+    else
+      render json: @pod.errors.full_messages, status: 422
+    end
   end
 
   def search
@@ -30,6 +38,6 @@ class Api::PodcastsController < ApplicationController
   private
 
   def podcast_params
-    params.require(:podcast).permit(:name, :category, :itunes_id, :publisher, :image_url, :sm_image_url, :md_image_url, itunes_genres: [])
+    params.require(:podcast).permit(:name, :category, :itunes_id, :publisher, :image_url, :sm_image_url, :md_image_url)
   end
 end
