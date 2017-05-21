@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170521010906) do
+ActiveRecord::Schema.define(version: 20170521151607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20170521010906) do
     t.string   "image_url",    limit: 2200, null: false
     t.string   "sm_image_url", limit: 2200
     t.string   "md_image_url", limit: 2200
+    t.string   "feed_url",     limit: 2200, null: false
     t.index ["itunes_id"], name: "index_podcasts_on_itunes_id", unique: true, using: :btree
   end
 

@@ -28,4 +28,9 @@ class ITunesRssAPI
     getReq = HTTParty.get("https://itunes.apple.com/search", query: search_params)
     return JSON.parse(getReq.parsed_response)["results"]
   end
+
+  def self.parse_feed(url)
+    xml = HTTParty.get(url).body
+    Feedjira::Feed.parse_with(Feedjira::Parser::ITunesRSS, xml)
+  end
 end

@@ -9,7 +9,7 @@ class PodcastShowComponent extends React.Component {
   }
 
   onPlay(episode) {
-
+    console.log(episode);
   }
 
   render() {
@@ -22,8 +22,8 @@ class PodcastShowComponent extends React.Component {
         </div>
         <div className="episodes">
           <div id="accordion" role="tablist" aria-multiselectable="true">
-            {pod.episodes.map((ep) => (
-              <EpisodeItemComponent episode={ep} key={"ep-" + ep.title} onPlay={this.onPlay}/>
+            {pod.episodes.map((ep, idx) => (
+              <EpisodeItemComponent episode={ep} key={"ep-" + ep.idx} onPlay={this.onPlay}/>
             ))}
           </div>
         </div>
