@@ -31,5 +31,7 @@ export const subscribeToPodcast = (userId, podcastId) => dispatch => ({
 });
 
 export const unsubscribeFromPodcast = (subId) => dispatch => ({
-  APIUtil.unsubscribe(subId).then(data => dispatch(receiveSubscriptions(data)))
+  APIUtil.unsubscribe(subId).then(
+    data => dispatch(receiveSubscriptions(data))
+  )
 });
