@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { topGenres } from '../../util/search_api_utils';
-import { searchPodcasts, requestTopPodcasts  } from '../../actions/search_actions';
+import { topGenres } from '../../../util/search_api_utils';
+import { searchPodcasts, requestTopPodcasts  } from '../../../actions/search_actions';
 
 const ALL_KEY = "all";
 class SearchFilterContainer extends React.Component{

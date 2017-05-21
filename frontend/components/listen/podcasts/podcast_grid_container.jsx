@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {requestTopPodcasts} from '../../actions/search_actions';
-import {podcastsSelector}from '../../reducers/selectors';
+import {requestTopPodcasts} from '../../../actions/search_actions';
+import {podcastsSelector}from '../../../reducers/selectors';
 import PodcastItemComponent from './podcast_item_component';
 
 class PodcastGrid extends React.Component {
@@ -11,7 +11,7 @@ class PodcastGrid extends React.Component {
 
   componentDidMount() {
     this.props.requestTopPodcasts();
-  } 
+  }
 
   render() {
     return (

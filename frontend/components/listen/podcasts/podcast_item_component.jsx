@@ -9,11 +9,15 @@ class PodcastItemComponent extends React.Component{
   render() {
     const pod = this.props.pod;
     return(
-      <Link to={`/podcasts/${pod.itunes_id}`} >
-        <div className="pod-box">
+      <div className="pod-box">
+        <Link to={`/podcasts/${pod.itunes_id}`} >
           <img src={pod.md_image_url}></img>
-        </div>
-      </Link>);
+        </Link>
+        <button className="overlay btn btn-primary">
+          <i className="fa fa-plus"></i>
+        </button>
+      </div>
+    );
   }
 }
 

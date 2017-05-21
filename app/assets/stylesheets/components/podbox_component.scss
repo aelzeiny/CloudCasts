@@ -1,7 +1,13 @@
 .pod-box {
   padding: 0;
+  position: relative;
   img {
     width: 150px;
     height: 150px;
+  }
+  .overlay {
+    position: absolute;
+    top: 50%;
+    right: 0;
   }
 }
