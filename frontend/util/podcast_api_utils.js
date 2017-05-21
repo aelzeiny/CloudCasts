@@ -5,6 +5,13 @@ export const showPodcast = function(id) {
   });
 };
 
+export const ensurePodcast = function(id) {
+  return $.ajax({
+    url: `/api/podcasts/ensure/${id}`,
+    method: 'PATCH'
+  });
+}
+
 export const createPodcast = function(data) {
   return $.ajax({
     url: '/api/podcasts',

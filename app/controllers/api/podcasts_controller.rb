@@ -22,6 +22,15 @@ class Api::PodcastsController < ApplicationController
     end
   end
 
+  def ensure_create
+    @pod = Podcast.find_by(itunes_id: params[:id])
+    unless @podcast
+      lookup_values = ITunesRssAPI.lookup_podcast(params[:id])
+      @podcast = create_podcast(parse_lookup(lookup_values))
+    end
+    render :create
+  end
+
   def search
     @response = ITunesRssAPI.search_podcasts(params[:term])
     render :search
@@ -37,10 +46,6 @@ class Api::PodcastsController < ApplicationController
   #NB: Podcast Ids are based on itunes ids
   def show
     @podcast = Podcast.find_by(itunes_id: params[:id])
-    unless @podcast
-      lookup_values = ITunesRssAPI.lookup_podcast(params[:id])
-      @podcast = create_podcast(parse_lookup(lookup_values))
-    end
     @feed = ITunesRssAPI.parse_feed(@podcast.feed_url)
     @episodes = []
     @feed.entries.each do |ep|
