@@ -12,7 +12,7 @@ class Api::SubscriptionsController < ApplicationController
   def destroy
     @sub = Subscription.find(params[:id])
     if @sub
-      @user = @sub.user.podcast
+      @user = @sub.podcasts_for_user
       @sub.destroy
       render "api/podcasts/index"
     else

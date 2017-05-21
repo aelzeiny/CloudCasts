@@ -28,10 +28,10 @@ export const subscribe = function(user_id, podcast_id) {
   });
 };
 
-export const unsubscribe = function(user_id, podcast_id) {
+export const unsubscribe = function(subscription_id) {
   return $.ajax({
     method: 'DELETE',
-    url: 'api/subscriptions',
+    url: `api/subscriptions/${subscription_id}`,
     type: 'json',
     data: {
       subscription: {
@@ -41,3 +41,17 @@ export const unsubscribe = function(user_id, podcast_id) {
     }
   });
 };
+
+// export const unsubscribe = function(user_id, podcast_id) {
+//   return $.ajax({
+//     method: 'DELETE',
+//     url: 'api/subscriptions',
+//     type: 'json',
+//     data: {
+//       subscription: {
+//         user_id: user_id,
+//         podcast_id: podcast_id
+//       }
+//     }
+//   });
+// };
