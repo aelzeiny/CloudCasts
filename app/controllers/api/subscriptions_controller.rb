@@ -23,6 +23,6 @@ class Api::SubscriptionsController < ApplicationController
   private
 
   def subscription_params
-    @params.require(:subscription).permit(:user_id, :podcast_id)
+    params.require(:subscription).permit(:user_id, :podcast_id)
   end
 end

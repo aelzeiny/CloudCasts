@@ -1,3 +1,3 @@
 json.array! @podcasts do |pod|
-  json.partial "podcast_view", pod: pod
+  json.partial! "api/podcasts/cast", pod: pod
 end

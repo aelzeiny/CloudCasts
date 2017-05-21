@@ -1,1 +1,1 @@
-json.partial! 'podcast_view', pod: @podcast
+json.partial! 'cast', pod: @podcast

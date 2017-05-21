@@ -5,10 +5,10 @@ import PodcastGridContainer from '../podcasts/podcast_grid_container';
 
 const DiscoverContainer = (props) => {
     return (
-      <section className="discover">
+      <aside className="discover">
         <SearchFilterContainer />`
         <PodcastGridContainer />
-      </section>
+      </aside>
     );
 }
 
