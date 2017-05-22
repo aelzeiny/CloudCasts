@@ -25,12 +25,12 @@ class AuthComponent extends React.Component {
     const $authC = $(authC);
     $authC.mouseenter(this.mouseenter.bind(this));
     $authC.mouseleave(this.mouseleave.bind(this));
-    authC.addEventListener("mousemove", this.mousemove.bind(this), true);
-    authC.addEventListener("mousedown", this.mousemove.bind(this), true);
+    authC.addEventListener("mousemove", this.mousemove.bind(this));
+    authC.addEventListener("mousedown", this.mousemove.bind(this));
   }
 
   componentWillUnmount() {
-    const authC = this.getElementById("auth");
+    const authC = document.getElementById("auth");
     authC.removeEventListener("mouseenter", this.mouseenter);
     authC.removeEventListener("mouseout", this.mouseout);
     authC.removeEventListener("mousemove", this.mousemove);
@@ -54,7 +54,6 @@ class AuthComponent extends React.Component {
     const id = e.currentTarget.getAttribute("id");
     const data = this.parseForm(e.currentTarget);
     const user = {user: data};
-    console.log(data);
     if(id === "loginForm")
       this.props.login(user);
     else if(id === "signupForm")

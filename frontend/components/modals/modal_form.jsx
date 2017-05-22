@@ -8,7 +8,6 @@ class ModalForm extends React.Component {
 
   closeModal() {
     $("#" + this.id).modal("hide");
-    console.log("CLOSED");
     $("#"+this.id+" input").each((idx,el) => {
       $(el).val('');
     });

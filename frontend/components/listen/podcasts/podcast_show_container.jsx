@@ -90,7 +90,6 @@ function mapStateToProps(state, {match}) {
 function mapDispatchToProps(dispatch) {
   return {
     loadPodcast: (id) => {
-      console.log("DISPATCH");
       return dispatch(showPodcast(id));
     }
   };

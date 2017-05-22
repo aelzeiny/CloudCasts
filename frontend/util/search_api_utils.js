@@ -33,7 +33,6 @@ export const searchPodcasts = (term, genre) => {
     url: `/api/podcasts/search?term=${term}`,
     method: 'GET'
   });
-  console.log(term + " " + genre);
   if(genre)
     searchPods = searchPods.then(data => data.filter((cast) => {
       return cast.itunes_genres.includes(genre);

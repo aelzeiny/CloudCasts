@@ -13,7 +13,6 @@ function formatJavscriptDate(date) {
 
 export default function(props) {
   const ep = props.episode;
-  // console.log(ep);
   const date = formatJavscriptDate(new Date(ep.published));
   return (
     yee(ep, props.idx, date)

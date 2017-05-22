@@ -6,7 +6,6 @@ import PodcastShowContainer from './podcasts/podcast_show_container';
 import { Route, Switch, Link, HashRouter } from 'react-router-dom';
 
 const Listen = (props) => {
-  console.log("HERE");
   return (
     <section className="listen">
       <NavbarContainer />
