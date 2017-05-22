@@ -14,7 +14,7 @@ export const receiveSubscriptions = (subscriptions) => ({
 });
 
 export const showPodcast = (itunesId) => dispatch => {
-  return(APIUtil.ensurePodcast(itunesId).then(
+  return (APIUtil.ensurePodcast(itunesId).then(wait =>
     APIUtil.showPodcast(itunesId).then(
       data => dispatch(receivePodcast(data))
     )
@@ -22,7 +22,7 @@ export const showPodcast = (itunesId) => dispatch => {
 };
 
 export const subscribeToPodcast = (userId, podcastId) => dispatch => (
-  APIUtil.ensurePodcast(podcastId).then(
+  APIUtil.ensurePodcast(podcastId).then( waiter =>
     APIUtil.subscribe(userId, podcastId).then(
       data => dispatch(receiveSubscriptions(data))
     )

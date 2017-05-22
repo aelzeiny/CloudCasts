@@ -17,6 +17,7 @@ class PodcastShowComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log("NEW PROPS");
     if(this.props.match.params.podcastId != nextProps.match.params.podcastId)
       this.props.loadPodcast(nextProps.match.params.podcastId);
   }

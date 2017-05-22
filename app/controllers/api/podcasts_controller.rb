@@ -46,6 +46,8 @@ class Api::PodcastsController < ApplicationController
   #NB: Podcast Ids are based on itunes ids
   def show
     @podcast = Podcast.find_by(itunes_id: params[:id])
+    p "LOOK @ ME"
+    p @podcast
     @feed = ITunesRssAPI.parse_feed(@podcast.feed_url)
     @episodes = []
     @feed.entries.each do |ep|

@@ -11,6 +11,7 @@
 #  image_url    :string(2200)     not null
 #  sm_image_url :string(2200)
 #  md_image_url :string(2200)
+#  feed_url     :string(2200)     not null
 #
 
 class Podcast < ApplicationRecord
