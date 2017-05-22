@@ -3,30 +3,57 @@ import {connect} from 'react-redux';
 import {subscribeToPodcast, unsubscribeFromPodcast, showPodcast} from '../../../actions/podcast_actions';
 import isEmpty from 'lodash/isEmpty';
 import EpisodeItemComponent from './episode_item_component';
+import * as Vibrant from 'node-vibrant';
 
 class PodcastShowComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      constrastColor: "black"
+      vibrant: "white"
     };
   }
 
   componentDidMount() {
-    this.props.loadPodcast(this.props.match.params.podcastId)
+    this.props.loadPodcast(this.props.match.params.podcastId);
+    // this.setConstrastColor(this.props.podcast.md_image_url);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("NEW PROPS");
-    if(this.props.match.params.podcastId != nextProps.match.params.podcastId)
+    if(this.props.match.params.podcastId != nextProps.match.params.podcastId){
       this.props.loadPodcast(nextProps.match.params.podcastId);
+      // this.setConstrastColor(nextProps.podcast.md_image_url);
+    }
   }
+  //
+  // setConstrastColor(url) {
+  //   let palette;
+  //   var img = new Image();
+  //   img.onLoad = () => {
+  //     Vibrant.from(img)
+  //     .getPalette(function(err, pal){
+  //       console.log(err);
+  //       console.log(palette);;
+  //     });
+  //   };
+  //   img.src = url;
+  //     /*
+  //     * Vibrant #7a4426
+  //    * Muted #7b9eae
+  //    * DarkVibrant #348945
+  //    * DarkMuted #141414
+  //    * LightVibrant #f3ccb4*/
+  //   // this.setState({
+  //   //   Vibrant: vibrant.vi
+  //   // })
+  // }
 
   onPlay(episode) {
     console.log(episode);
   }
+
   render() {
     const pod = this.props.podcast;
+    // this.setConstrast.Color(this.props.md_image_url);
     if(isEmpty(pod))
       return (
         <section className="podcast-show">
@@ -36,8 +63,9 @@ class PodcastShowComponent extends React.Component {
     return(
       <section className="podcast-show">
         <div className="episode-viewport">
-          <img src={pod.super_img}></img>
-          <canvas id="podcast-capture"></canvas>
+          <figcaption style={{backgroundImage: `url(${pod.super_img})`}}>
+            <img id="podImg" src={this.props.podcast.md_image_url}></img>
+          </figcaption>
         </div>
         <div className="episodes">
           <div id="accordion" role="tablist" aria-multiselectable="true">
