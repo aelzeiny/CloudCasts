@@ -1,6 +1,5 @@
 import * as APIUtil from '../util/podcast_api_utils';
 
-
 export const RECEIVE_PODCAST = "RECEIVE_PODCAST";
 export const RECEIVE_SUBSCRIPTIONS = "RECEIVE_SUBSCRIPTIONS";
 
