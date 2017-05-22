@@ -14,6 +14,7 @@ class PodcastShowComponent extends React.Component {
   }
 
   componentDidMount() {
+   $(this).scrollTop(0);
     this.props.loadPodcast(this.props.match.params.podcastId);
     // this.setConstrastColor(this.props.podcast.md_image_url);
   }

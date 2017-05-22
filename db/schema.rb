@@ -41,16 +41,10 @@ ActiveRecord::Schema.define(version: 20170521151607) do
   end
 
   create_table "podcasts", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "itunes_id"
-    t.string   "publisher",                 null: false
-    t.string   "image_url",    limit: 2200, null: false
-    t.string   "sm_image_url", limit: 2200
-    t.string   "md_image_url", limit: 2200
-    t.string   "feed_url",     limit: 2200, null: false
-    t.index ["itunes_id"], name: "index_podcasts_on_itunes_id", unique: true, using: :btree
+    t.string   "name",       null: false
+    t.string   "category",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "subscriptions", force: :cascade do |t|
