@@ -1,5 +1,5 @@
 import {RECEIVE_SUBSCRIPTIONS} from '../actions/podcast_actions';
-export default function(state, action) {
+export default function(state = {}, action) {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_SUBSCRIPTIONS:

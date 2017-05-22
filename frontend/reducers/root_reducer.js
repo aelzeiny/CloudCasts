@@ -6,7 +6,7 @@ import PodcastReducer from './podcast_reducer';
 
 const RootReducer = combineReducers({
   session: SessionReducer,
-  podcasts: PodcastReducer,
+  podcasts: PodcastsReducer,
   subscriptions: SubscriptionReducer,
   podcast: PodcastReducer
 });

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get '/podcasts/top', to: 'podcasts#top'
     get '/podcasts/search', to: 'podcasts#search'
     get '/podcasts/lookup/:id', to: 'podcasts#lookup'
-    patch '/podcasts/ensure/:id', to: 'podcasts#ensure_create'
+    post '/podcasts/ensure/:id', to: 'podcasts#ensure_create'
     resources :podcasts, only: [:show, :create]
 
     resource :session, only: [:create, :destroy]

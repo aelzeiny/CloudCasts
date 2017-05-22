@@ -24,9 +24,9 @@ class Api::PodcastsController < ApplicationController
 
   def ensure_create
     @pod = Podcast.find_by(itunes_id: params[:id])
-    unless @podcast
+    unless @pod
       lookup_values = ITunesRssAPI.lookup_podcast(params[:id])
-      @podcast = create_podcast(parse_lookup(lookup_values))
+      @pod = create_podcast(parse_lookup(lookup_values))
     end
     render :create
   end
