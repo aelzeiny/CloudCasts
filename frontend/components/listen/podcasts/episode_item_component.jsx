@@ -14,26 +14,25 @@ function formatJavscriptDate(date) {
 export default function(props) {
   const ep = props.episode;
   const date = formatJavscriptDate(new Date(ep.published));
-  return (
-    yee(ep, props.idx, date)
-  );
+  const idx = props.idx;
+  let reactElement = props.parse(ep.summary);
+    return(
+      <div className="card">
+        <a data-toggle="collapse" data-parent="#accordion" href={"#collapse"+idx} aria-expanded={idx === 0 ? "true" : "false"} aria-controls={"collapse"+idx}>
+          <div className="card-header" role="tab" id={"heading"+idx}>
+            {ep.title}
+          </div>
+        </a>
+
+        <div id={"collapse"+idx} className={"collapse" + (idx === 0 ? " show" : "")} role="tabpanel" aria-labelledby={"heading"+idx}>
+          <div className="card-block">
+            {reactElement}
+          </div>
+        </div>
+      </div>
+    );
 }
 
 
 function yee(ep, idx, date) {
-  return(
-    <div className="card">
-      <a data-toggle="collapse" data-parent="#accordion" href={"#collapse"+idx} aria-expanded={idx === 0 ? "true" : "false"} aria-controls={"collapse"+idx}>
-        <div className="card-header" role="tab" id={"heading"+idx}>
-          {ep.title}
-        </div>
-      </a>
-
-      <div id={"collapse"+idx} className={"collapse" + (idx === 0 ? " show" : "")} role="tabpanel" aria-labelledby={"heading"+idx}>
-        <div className="card-block">
-          {ep.summary}
-        </div>
-      </div>
-    </div>
-  );
 }

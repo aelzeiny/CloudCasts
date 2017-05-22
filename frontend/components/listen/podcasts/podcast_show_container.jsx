@@ -4,6 +4,7 @@ import {subscribeToPodcast, unsubscribeFromPodcast, showPodcast} from '../../../
 import isEmpty from 'lodash/isEmpty';
 import EpisodeItemComponent from './episode_item_component';
 import * as Vibrant from 'node-vibrant';
+var HtmlToReactParser = require('html-to-react').Parser;
 
 class PodcastShowComponent extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class PodcastShowComponent extends React.Component {
     this.state = {
       vibrant: "white"
     };
+    this.parser = new HtmlToReactParser();
   }
 
   componentDidMount() {
@@ -54,6 +56,7 @@ class PodcastShowComponent extends React.Component {
 
   render() {
     const pod = this.props.podcast;
+    console.log(pod);
     // this.setConstrast.Color(this.props.md_image_url);
     if(isEmpty(pod))
       return (
@@ -64,14 +67,14 @@ class PodcastShowComponent extends React.Component {
     return(
       <section className="podcast-show">
         <div className="episode-viewport">
-          <figcaption style={{backgroundImage: `url(${pod.super_img})`}}>
+          <figcaption style={{backgroundImage: `url(${pod.image_url})`}}>
             <img id="podImg" src={this.props.podcast.md_image_url}></img>
           </figcaption>
         </div>
         <div className="episodes">
           <div id="accordion" role="tablist" aria-multiselectable="true">
             {pod.episodes.map((ep, idx) => (
-              <EpisodeItemComponent episode={ep} idx={idx} key={"ep-" + ep.published} onPlay={this.onPlay}/>
+              <EpisodeItemComponent parse={this.parser.parse} episode={ep} idx={idx} key={"ep-" + ep.published} onPlay={this.onPlay}/>
             ))}
           </div>
         </div>

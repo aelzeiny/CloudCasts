@@ -10,7 +10,13 @@
 * podcast:
   * image_url
   * feed_url
-  * episodes
+  * episodes: []
+    * title
+    * summary
+    * published
+    * audioType
+    * audioSize
+    * audioLength
 * subscriptions: []
 * session:
   * currentUser:
