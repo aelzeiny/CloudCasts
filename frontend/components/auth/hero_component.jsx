@@ -23,10 +23,6 @@ class HeroComponent extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.resize);
-    this.canvas.removeEventListener("mouseenter", this.mouseenter);
-    this.canvas.removeEventListener("mouseout", this.mouseout);
-    this.canvas.removeEventListener("mousemove", this.mousemove, true);
-    this.canvas.removeEventListener("mousedown", this.mousemove, true);
   }
 
   mouseenter() {

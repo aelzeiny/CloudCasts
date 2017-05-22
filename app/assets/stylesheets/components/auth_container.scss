@@ -19,7 +19,7 @@ section.auth {
     &.signup {
       background-color: $red;
     }
-
+    transition: background-color .5s ease;
     width: 100%;
     height: auto;
     vertical-align: middle;

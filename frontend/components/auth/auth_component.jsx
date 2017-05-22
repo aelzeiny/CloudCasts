@@ -20,19 +20,34 @@ class AuthComponent extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.canvas.addEventListener("mouseenter", this.mouseenter.bind(this));
-  //   this.canvas.addEventListener("mouseout", this.mouseout.bind(this));
-  //   this.canvas.addEventListener("mousemove", this.mousemove.bind(this), true);
-  //   this.canvas.addEventListener("mousedown", this.mousemove.bind(this), true);
-  // }
-  //
-  // componentWillUnmount() {
-  //   this.canvas.removeEventListener("mouseenter", this.mouseenter);
-  //   this.canvas.removeEventListener("mouseout", this.mouseout);
-  //   this.canvas.removeEventListener("mousemove", this.mousemove, true);
-  //   this.canvas.removeEventListener("mousedown", this.mousemove, true);
-  // }
+  componentDidMount() {
+    const authC = document.getElementById("auth");
+    const $authC = $(authC);
+    $authC.mouseenter(this.mouseenter.bind(this));
+    $authC.mouseleave(this.mouseleave.bind(this));
+    authC.addEventListener("mousemove", this.mousemove.bind(this), true);
+    authC.addEventListener("mousedown", this.mousemove.bind(this), true);
+  }
+
+  componentWillUnmount() {
+    const authC = this.getElementById("auth");
+    authC.removeEventListener("mouseenter", this.mouseenter);
+    authC.removeEventListener("mouseout", this.mouseout);
+    authC.removeEventListener("mousemove", this.mousemove);
+    authC.removeEventListener("mousedown", this.mousemove);
+  }
+
+  mouseenter(evt) {
+    this.hero.mouseenter.apply(this.hero, arguments);
+  }
+
+  mouseleave(evt) {
+    this.hero.mouseout.apply(this.hero, arguments);
+  }
+
+  mousemove(evt) {
+    this.hero.mousemove.apply(this.hero, arguments);
+  }
 
   onSubmit(e) {
     e.preventDefault();
@@ -64,8 +79,8 @@ class AuthComponent extends React.Component {
 
   render() {
     return (
-      <section className="auth">
-        <HeroComponent className={this.state.status}/>
+      <section className="auth" id="auth">
+        <HeroComponent className={this.state.status} ref={inst => this.hero = inst}/>
         <div>
           <LogoOverlay />
         </div>
