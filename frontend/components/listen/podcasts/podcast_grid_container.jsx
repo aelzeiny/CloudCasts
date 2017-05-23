@@ -15,7 +15,7 @@ class PodcastGrid extends React.Component {
 
   render() {
     return (
-      <div className="row">
+      <div className="pod-grid">
       {
         this.props.podcasts.map( pod => (
           <PodcastItemComponent pod={pod} key={`pod-list${pod.itunes_id}`} />

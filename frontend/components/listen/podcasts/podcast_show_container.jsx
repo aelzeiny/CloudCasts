@@ -1,6 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {subscribeToPodcast, unsubscribeFromPodcast, showPodcast} from '../../../actions/podcast_actions';
+import {
+  subscribeToPodcast,
+  unsubscribeFromPodcast,
+  showPodcast,
+  receiveEpisode
+} from '../../../actions/podcast_actions';
+
 import isEmpty from 'lodash/isEmpty';
 import EpisodeItemComponent from './episode_item_component';
 import * as Vibrant from 'node-vibrant';
@@ -77,6 +83,7 @@ class PodcastShowComponent extends React.Component {
 
   onPlay(episode) {
     console.log(episode);
+    this.props.playEpisode(episode);
   }
 
   render() {
@@ -100,7 +107,7 @@ class PodcastShowComponent extends React.Component {
         <div className="episodes container">
           <div id="accordion" role="tablist" aria-multiselectable="true">
             {pod.episodes.map((ep, idx) => (
-              <EpisodeItemComponent parse={this.parser.parse} episode={ep} idx={idx} key={"ep-" + ep.published + idx} onPlay={this.onPlay}/>
+              <EpisodeItemComponent parse={this.parser.parse} episode={ep} idx={idx} key={"ep-" + ep.published + idx} onPlay={this.onPlay.bind(this)}/>
             ))}
           </div>
         </div>
@@ -120,6 +127,9 @@ function mapDispatchToProps(dispatch) {
   return {
     loadPodcast: (id) => {
       return dispatch(showPodcast(id));
+    },
+    playEpisode: (episode) => {
+      return dispatch(receiveEpisode(episode));
     }
   };
 }
