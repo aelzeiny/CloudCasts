@@ -19,9 +19,21 @@ export default function(props) {
     return(
       <div className="card">
         <a data-toggle="collapse" data-parent="#accordion" href={"#collapse"+idx} aria-expanded="false" aria-controls={"collapse"+idx}>
-          <div className="card-header row" role="tab" id={"heading"+idx}>
-            <div className="col-xs-12">
-              {ep.title}
+          <div className="card-header" role="tab" id={"heading"+idx}>
+            <div className="row">
+              <div className="col-sm-2">
+                {date}
+              </div>
+              <div className="col-sm-7">
+                {ep.title}
+              </div>
+              <div className="col-sm-1">
+                {ep.audio_length}
+              </div>
+              <div className="col-sm-2">
+                <i className="fa fa-2 fa-play-circle-o"></i>
+                <i className="fa fa-2 fa-arrow-circle-o-down"></i>
+              </div>
             </div>
           </div>
         </a>

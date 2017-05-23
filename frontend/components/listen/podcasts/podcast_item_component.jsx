@@ -13,9 +13,6 @@ class PodcastItemComponent extends React.Component{
         <Link to={`/podcasts/${pod.itunes_id}`} >
           <img src={pod.md_image_url}></img>
         </Link>
-        {/* <button className="overlay btn btn-primary">
-          <i className="fa fa-plus"></i>
-        </button> */}
       </div>
     );
   }
