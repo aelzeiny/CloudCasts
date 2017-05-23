@@ -16,27 +16,34 @@ export default function(props) {
   const date = formatJavscriptDate(new Date(ep.published));
   const idx = props.idx;
   let reactElement = props.parse(ep.summary);
+  // console.log(ep);
     return(
       <div className="card">
-        <a data-toggle="collapse" data-parent="#accordion" href={"#collapse"+idx} aria-expanded="false" aria-controls={"collapse"+idx}>
-          <div className="card-header" role="tab" id={"heading"+idx}>
-            <div className="row">
-              <div className="col-sm-2">
-                {date}
-              </div>
-              <div className="col-sm-7">
-                {ep.title}
-              </div>
-              <div className="col-sm-1">
-                {ep.audio_length}
-              </div>
-              <div className="col-sm-2">
-                <i className="fa fa-2 fa-play-circle-o"></i>
-                <i className="fa fa-2 fa-arrow-circle-o-down"></i>
+        <div className="card-header" role="tab" id={"heading"+idx}>
+          <div className="row">
+            <div className="col-md-10">
+              <div data-toggle="collapse" data-parent="#accordion" href={"#collapse"+idx} aria-expanded="false" aria-controls={"collapse"+idx}>
+                <div className="row">
+                  <div className="col-md-2">
+                    {date}
+                  </div>
+                  <div className="col-md-7">
+                    {ep.title}
+                  </div>
+                  <div className="col-md-1">
+                    {ep.audio_length}
+                  </div>
+                </div>
               </div>
             </div>
+            <div className="col-md-2">
+              <i className="fa fa-2 fa-play-circle-o"></i>
+              <a href={ep.audio}>
+                <i className="fa fa-2 fa-arrow-circle-o-down"></i>
+              </a>
+            </div>
           </div>
-        </a>
+        </div>
 
         <div id={"collapse"+idx} className="collapse" role="tabpanel" aria-labelledby={"heading"+idx}>
           <div className="card-block">
