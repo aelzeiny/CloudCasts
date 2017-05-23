@@ -37,14 +37,15 @@ export default function(props) {
               </div>
             </div>
             <div className="col-md-2">
-              <i className="fa fa-2 fa-play-circle-o"></i>
-              <a href={ep.audio}>
+              <button className="btn btn-link" onClick={() => props.onPlay(ep)}>
+                <i className="fa fa-2 fa-play-circle-o"></i>
+              </button>
+              <a href={ep.audio} download target="_blank">
                 <i className="fa fa-2 fa-arrow-circle-o-down"></i>
               </a>
             </div>
           </div>
         </div>
-
         <div id={"collapse"+idx} className="collapse" role="tabpanel" aria-labelledby={"heading"+idx}>
           <div className="card-block">
             {reactElement}
