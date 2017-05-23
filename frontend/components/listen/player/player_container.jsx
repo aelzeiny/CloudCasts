@@ -6,24 +6,36 @@ class PlayerContainer extends React.Component {
     super(props);
   }
 
-  render() {
-    const ep = this.props.episode;
-    if(!ep) {
-      return (
-        <section className="">
-        </section>
-      );
+  componentDidMount() {
+    this.player.addEventListener('canplaythrough', () => {
+      this.player.play();
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(this.props.episode && this.props.episode.audio != nextProps.episode.audio) {
+      this.player.load();
     }
+  }
+
+  render() {
     return (
       <footer className="player">
         <div className="container">
-          <audio controls>
-            <source src={ep.audio} type={ep.audio_type}/>
-            Your browser does not support the audio element.
+          <audio ref={(me) => this.player = me} controls>
+            {this._getSrc()}
+            Your browser does not support our audio player
           </audio>
         </div>
       </footer>
     );
+  }
+
+  _getSrc() {
+    const ep = this.props.episode;
+    if(!ep)
+      return (<b></b>);
+    return <source src={ep.audio} type={ep.audio_type}/>
   }
 }
 
