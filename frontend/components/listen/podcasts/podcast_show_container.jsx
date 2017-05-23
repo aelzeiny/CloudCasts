@@ -23,32 +23,32 @@ class PodcastShowComponent extends React.Component {
 
   componentDidMount() {
     this.beginPodcastLoad();
-    // this.setConstrastColor(this.props.podcast.md_image_url);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      loading: true,
-      pallet: NULL_PALLET
-    });
-    if(this.props.match.params.podcastId != nextProps.match.params.podcastId)
+    if(this.props.match.params.podcastId != nextProps.match.params.podcastId) {
+      this.setState({
+        loading: true,
+        pallet: NULL_PALLET
+      });
       this.beginPodcastLoad();
+    }
   }
 
   beginPodcastLoad() {
     $(this).scrollTop(0);
     this.props.loadPodcast(this.props.match.params.podcastId).then(() => {
+      this.setState({loading: false});
       var img = document.getElementById("podImg");
       Vibrant.from(img).getPalette((err,pal) => {
         window.pal = [err,pal];
-        if(pal){
+        if(pal) {
           // Set State
           let contrast = this.getLightestAndDarketFromPallet(pal);
           this.setState({pallet: {
             light: contrast[0],
             dark: contrast[1]
           }});
-          window.contrast = contrast;
         }
         else if(err)
           console.log(err);
@@ -81,14 +81,15 @@ class PodcastShowComponent extends React.Component {
 
   render() {
     const pod = this.props.podcast;
-    console.log(pod);
     // this.setConstrast.Color(this.props.md_image_url);
-    if(isEmpty(pod))
+    if(this.state.loading || isEmpty(pod)) {
       return (
         <section className="podcast-show">
-          <i className="fa fa-6 fa-spin fa-spinner"></i>
+          <i className="fa fa-6 fa-spin fa-spinner" style={{fontSize: '10em'}}></i>
+          <img id="podImg" src={this.props.podcast.md_image_url}></img>
         </section>
       );
+    }
     return(
       <section className="podcast-show">
         <div className="episode-viewport" style={{backgroundColor: this.state.pallet.light}}>
