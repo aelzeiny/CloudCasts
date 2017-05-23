@@ -80,5 +80,25 @@ section.auth {
     font-family: "Myriad Regular", sans-serif;
     font-weight: bold;
     font-style: normal;
+    background-color: black;
+    color: white;
+    width: 350px;
+    height: 300px;
+  }
+
+  .group {
+      margin-left: 15px;
+      margin-right: 15px;
+
+      input {
+          width: 100%;
+          background-color: transparent;
+      }
+      .bar {
+          width: 100%;
+      }
+      .highlight {
+          width: 100%;
+      }
   }
 }
