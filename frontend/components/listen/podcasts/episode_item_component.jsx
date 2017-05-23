@@ -18,13 +18,15 @@ export default function(props) {
   let reactElement = props.parse(ep.summary);
     return(
       <div className="card">
-        <a data-toggle="collapse" data-parent="#accordion" href={"#collapse"+idx} aria-expanded={idx === 0 ? "true" : "false"} aria-controls={"collapse"+idx}>
-          <div className="card-header" role="tab" id={"heading"+idx}>
-            {ep.title}
+        <a data-toggle="collapse" data-parent="#accordion" href={"#collapse"+idx} aria-expanded="false" aria-controls={"collapse"+idx}>
+          <div className="card-header row" role="tab" id={"heading"+idx}>
+            <div className="col-xs-12">
+              {ep.title}
+            </div>
           </div>
         </a>
 
-        <div id={"collapse"+idx} className={"collapse" + (idx === 0 ? " show" : "")} role="tabpanel" aria-labelledby={"heading"+idx}>
+        <div id={"collapse"+idx} className="collapse" role="tabpanel" aria-labelledby={"heading"+idx}>
           <div className="card-block">
             {reactElement}
           </div>

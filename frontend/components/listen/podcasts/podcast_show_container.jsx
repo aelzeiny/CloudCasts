@@ -6,49 +6,74 @@ import EpisodeItemComponent from './episode_item_component';
 import * as Vibrant from 'node-vibrant';
 var HtmlToReactParser = require('html-to-react').Parser;
 
+const NULL_PALLET = {
+  light: 'lightgray',
+  dark: 'black'
+};
+
 class PodcastShowComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      vibrant: "white"
+      loading: true,
+      pallet: NULL_PALLET
     };
     this.parser = new HtmlToReactParser();
   }
 
   componentDidMount() {
-   $(this).scrollTop(0);
-    this.props.loadPodcast(this.props.match.params.podcastId);
+    this.beginPodcastLoad();
     // this.setConstrastColor(this.props.podcast.md_image_url);
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.match.params.podcastId != nextProps.match.params.podcastId){
-      this.props.loadPodcast(nextProps.match.params.podcastId);
-      // this.setConstrastColor(nextProps.podcast.md_image_url);
-    }
+    this.setState({
+      loading: true,
+      pallet: NULL_PALLET
+    });
+    if(this.props.match.params.podcastId != nextProps.match.params.podcastId)
+      this.beginPodcastLoad();
   }
-  //
-  // setConstrastColor(url) {
-  //   let palette;
-  //   var img = new Image();
-  //   img.onLoad = () => {
-  //     Vibrant.from(img)
-  //     .getPalette(function(err, pal){
-  //       console.log(err);
-  //       console.log(palette);;
-  //     });
-  //   };
-  //   img.src = url;
-  //     /*
-  //     * Vibrant #7a4426
-  //    * Muted #7b9eae
-  //    * DarkVibrant #348945
-  //    * DarkMuted #141414
-  //    * LightVibrant #f3ccb4*/
-  //   // this.setState({
-  //   //   Vibrant: vibrant.vi
-  //   // })
-  // }
+
+  beginPodcastLoad() {
+    $(this).scrollTop(0);
+    this.props.loadPodcast(this.props.match.params.podcastId).then(() => {
+      var img = document.getElementById("podImg");
+      Vibrant.from(img).getPalette((err,pal) => {
+        window.pal = [err,pal];
+        if(pal){
+          // Set State
+          let contrast = this.getLightestAndDarketFromPallet(pal);
+          this.setState({pallet: {
+            light: contrast[0],
+            dark: contrast[1]
+          }});
+          window.contrast = contrast;
+        }
+        else if(err)
+          console.log(err);
+      });
+    });
+  }
+
+  getLightestAndDarketFromPallet(pallet) {
+    const keys = Object.keys(pallet);
+    let maxPop = [0,0];
+    let maxHex = ['gray', 'black'];
+    for(let i=0;i<keys.length;i++){
+      const key = keys[i];
+      const val = pallet[key];
+      if(val) {
+        const lightOrDarkIndex = (key.includes("Light") || key === "Vibrant") ? 0 : 1;
+        if(maxPop[lightOrDarkIndex] < val._population)
+        {
+          maxPop[lightOrDarkIndex] = val._population;
+          maxHex[lightOrDarkIndex] = val.getHex();
+        }
+      }
+    }
+    return maxHex;
+  }
 
   onPlay(episode) {
     console.log(episode);
@@ -66,15 +91,15 @@ class PodcastShowComponent extends React.Component {
       );
     return(
       <section className="podcast-show">
-        <div className="episode-viewport">
+        <div className="episode-viewport" style={{backgroundColor: this.state.pallet.light}}>
           <figcaption style={{backgroundImage: `url(${pod.image_url})`}}>
             <img id="podImg" src={this.props.podcast.md_image_url}></img>
           </figcaption>
         </div>
-        <div className="episodes">
+        <div className="episodes container">
           <div id="accordion" role="tablist" aria-multiselectable="true">
             {pod.episodes.map((ep, idx) => (
-              <EpisodeItemComponent parse={this.parser.parse} episode={ep} idx={idx} key={"ep-" + ep.published} onPlay={this.onPlay}/>
+              <EpisodeItemComponent parse={this.parser.parse} episode={ep} idx={idx} key={"ep-" + ep.published + idx} onPlay={this.onPlay}/>
             ))}
           </div>
         </div>

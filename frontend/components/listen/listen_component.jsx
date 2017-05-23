@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import NavbarContainer from '../navbar/navbar_container';
 import DiscoverContainer from './discover/discover_component';
 import PodcastShowContainer from './podcasts/podcast_show_container';
 import { Route, Switch, Link, HashRouter } from 'react-router-dom';
@@ -8,13 +7,10 @@ import { Route, Switch, Link, HashRouter } from 'react-router-dom';
 const Listen = (props) => {
   return (
     <section className="listen">
-      <NavbarContainer />
-      <div className="container">
-        <Switch>
-          <Route path="/podcasts/:podcastId" component={PodcastShowContainer} />
-          <Route path="/podcasts" component={DiscoverContainer} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route path="/podcasts/:podcastId" component={PodcastShowContainer} />
+        <Route path="/podcasts" component={DiscoverContainer} />
+      </Switch>
     </section>
   );
 };
