@@ -4,19 +4,32 @@ export default function(props) {
   return (
     <div className="overlay center">
       <form id="signupForm" onSubmit={props.onSubmit}>
+        <h2>Sign Up</h2>
         <div className="form-group">
-          <label htmlFor="un">Username</label>
-          <input className="form-control" type="text" name="username" id="un"></input>
+          <div className="group">
+            <input type="text" name="username" id="un" required/>
+            <span className="highlight"></span>
+            <span className="bar"></span>
+            <label htmlFor="un">Username</label>
+          </div>
         </div>
         <div className="form-group">
-          <label htmlFor="pw">Password</label>
-          <input className="form-control" type="password" name="password" id="pw"></input>
+          <div className="group">
+            <input type="password" name="password" id="pw" required/>
+            <span className="highlight"></span>
+            <span className="bar"></span>
+            <label htmlFor="pw">Password</label>
+          </div>
         </div>
         <div className="form-group">
-          <label htmlFor="cpw">Confirm Password</label>
-          <input className="form-control" type="password" name="password_confirm" id="cpw"></input>
+          <div className="group">
+            <input type="password" name="password_confirm" id="cpw" required/>
+            <span className="highlight"></span>
+            <span className="bar"></span>
+            <label htmlFor="cpw">Confirm Password</label>
+          </div>
         </div>
-        <button className="btn btn-default">submit</button>
+        <button className="btn btn-danger btn-outline-danger">sign up</button>
         <button type="button" name="login" className="btn btn-link btn-outline-link" onClick={props.onOptionChange}>
           login instead
         </button>

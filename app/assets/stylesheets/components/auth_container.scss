@@ -83,16 +83,22 @@ section.auth {
     background-color: black;
     color: white;
     width: 350px;
-    height: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
   }
-
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
   .group {
-      margin-left: 15px;
-      margin-right: 15px;
+      margin: 0 15px 0 15px;
 
       input {
           width: 100%;
           background-color: transparent;
+          color: white;
       }
       .bar {
           width: 100%;
