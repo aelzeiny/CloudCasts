@@ -1,7 +1,13 @@
 import * as APIUtil from '../util/podcast_api_utils';
 
 export const RECEIVE_PODCAST = "RECEIVE_PODCAST";
+export const RECEIVE_EPISODE = "RECEIVE_EPISODE";
 export const RECEIVE_SUBSCRIPTIONS = "RECEIVE_SUBSCRIPTIONS";
+
+export const receiveEpisode = (episode) => ({
+  type: RECEIVE_EPISODE,
+  episode
+});
 
 export const receivePodcast = (podcast) => ({
   type: RECEIVE_PODCAST,
