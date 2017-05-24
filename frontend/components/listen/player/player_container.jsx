@@ -18,6 +18,8 @@ class PlayerContainer extends React.Component {
 
   componentDidMount() {
     this.player.addEventListener('canplaythrough', () => {
+      if(this.state.playerState === STATE_PAUSE)
+        return;
       this.player.play();
       this.setState({
         playerState: STATE_PLAY
@@ -31,7 +33,12 @@ class PlayerContainer extends React.Component {
 
       // Update the slider value
       this.seekBar.value = value;
+      this.updateCurrTime();
     });
+  }
+
+  updateCurrTime() {
+    this.currTime.innerHTML = this.player.currentTime;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -52,6 +59,7 @@ class PlayerContainer extends React.Component {
 
   playPlayer() {
     this.player.play();
+    this.updateCurrTime();
     this.setState({
       playerState: STATE_PLAY
     });
@@ -59,6 +67,7 @@ class PlayerContainer extends React.Component {
 
   pausePlayer() {
     this.player.pause();
+    this.updateCurrTime();
     this.setState({
       playerState: STATE_PAUSE
     });
@@ -82,12 +91,12 @@ class PlayerContainer extends React.Component {
 
     // Update the audio time
     this.player.currentTime = time;
+    this.updateCurrTime();
   }
 
   volume(e) {
     const slider = e.currentTarget;
     this.player.volume = slider.value;
-    console.log(e.currentTarget.value);
   }
 
   render() {
@@ -102,19 +111,21 @@ class PlayerContainer extends React.Component {
             {/* <!--Warning --> */}
             Your browser does not support our audio player
           </audio>
-        </div>
 
-        {/* <!-- Video Controls --> */}
-        <div id="video-controls">
-          <button type="button" id="play-pause" onClick={this.togglePlay.bind(this)}>
-            {this._renderPlayIcon()}
-          </button>
-          <input type="range" id="seek-bar" ref={(me) => this.seekBar = me}
-            onMouseDown={this.pausePlayer.bind(this)} onMouseUp={this.playPlayer.bind(this)} onChange={this.seekerChange.bind(this)}/>
-          <button type="button" id="mute" onClick={this.toggleMute.bind(this)}>
-            {this._renderVolumeIcon()}
-          </button>
-          <input type="range" id="volume-bar" min="0" max="1" step="0.05" onChange={this.toggleMute.bind(this)}/>
+          {/* <!-- Audio Controls --> */}
+          <div id="player-controls">
+            <button type="button" id="play-pause" onClick={this.togglePlay.bind(this)} disabled={this.state.playerState === STATE_LOADING}>
+              {this._renderPlayIcon()}
+            </button>
+            <label id="curr-time" ref={(me) => this.currTime=me}>--:--</label>
+            <input type="range" id="seek-bar" ref={(me) => this.seekBar = me}
+              onMouseDown={this.pausePlayer.bind(this)} onMouseUp={this.playPlayer.bind(this)} onChange={this.seekerChange.bind(this)}/>
+            <label id="final-time">{this.player && this.player.duration ? this.player.duration : '--:--'}</label>
+            <button type="button" id="mute" onClick={this.toggleMute.bind(this)}>
+              {this._renderVolumeIcon()}
+            </button>
+            <input type="range" id="volume-bar" min="0" max="1" step="0.05" onChange={this.volume.bind(this)}/>
+          </div>
         </div>
       </footer>
     );
