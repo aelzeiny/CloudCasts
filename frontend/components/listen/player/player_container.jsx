@@ -38,7 +38,21 @@ class PlayerContainer extends React.Component {
   }
 
   updateCurrTime() {
-    this.currTime.innerHTML = this.player.currentTime;
+    this.currTime.innerHTML = this.formatTime(this.player.currentTime);
+  }
+
+  formatTime(time) {
+    time = Math.floor(time);
+    const hours = Math.floor(time/3600);
+    const min = Math.floor(time/60) % 60;
+    const sec = time % 60;
+    if(hours)
+      return `${hours}:${this.formatNum(min)}:${fthis.ormatNum(sec)}`;
+    return `${min}:${this.formatNum(sec)}`;
+  }
+
+  formatNum(num) {
+    return ("0" + num).slice(-2);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -99,6 +113,14 @@ class PlayerContainer extends React.Component {
     this.player.volume = slider.value;
   }
 
+  rewind(e) {
+    this.player.currentTime = 0;
+  }
+
+  nextTrack(e) {
+    // TODO: IMPLEMENT NEXT TRACK FEATURE
+  }
+
   render() {
     return (
       <footer className="player">
@@ -113,18 +135,30 @@ class PlayerContainer extends React.Component {
           </audio>
 
           {/* <!-- Audio Controls --> */}
-          <div id="player-controls">
-            <button type="button" id="play-pause" onClick={this.togglePlay.bind(this)} disabled={this.state.playerState === STATE_LOADING}>
-              {this._renderPlayIcon()}
-            </button>
-            <label id="curr-time" ref={(me) => this.currTime=me}>--:--</label>
-            <input type="range" id="seek-bar" ref={(me) => this.seekBar = me}
-              onMouseDown={this.pausePlayer.bind(this)} onMouseUp={this.playPlayer.bind(this)} onChange={this.seekerChange.bind(this)}/>
-            <label id="final-time">{this.player && this.player.duration ? this.player.duration : '--:--'}</label>
-            <button type="button" id="mute" onClick={this.toggleMute.bind(this)}>
-              {this._renderVolumeIcon()}
-            </button>
-            <input type="range" id="volume-bar" min="0" max="1" step="0.05" onChange={this.volume.bind(this)}/>
+          <div id="player-controls row">
+            <div className="col-xs-3">
+              <button id="step-back" onClick={this.rewind.bind(this)} disabled={this.state.playerState === STATE_LOADING}>
+                <i className="fa fa-step-backward"></i>
+              </button>
+              <button id="play-pause" onClick={this.togglePlay.bind(this)} disabled={this.state.playerState === STATE_LOADING}>
+                {this._renderPlayIcon()}
+              </button>
+              <button id="step-forward" onClick={this.nextTrack.bind(this)} disabled={this.state.playerState === STATE_LOADING}>
+                <i className="fa fa-step-forward"></i>
+              </button>
+            </div>
+            <div className="col-xs-4">
+              <label id="curr-time" ref={(me) => this.currTime=me}>--:--</label>
+              <input type="range" id="seek-bar" ref={(me) => this.seekBar = me}
+                onMouseDown={this.pausePlayer.bind(this)} onMouseUp={this.playPlayer.bind(this)} onChange={this.seekerChange.bind(this)}/>
+              <label id="final-time">{this.player && this.player.duration ? this.formatTime(this.player.duration) : '--:--'}</label>
+            </div>
+            <div className="col-xs-4">
+              <button id="mute" onClick={this.toggleMute.bind(this)}>
+                {this._renderVolumeIcon()}
+              </button>
+              <input type="range" id="volume-bar" min="0" max="1" step="0.05" onChange={this.volume.bind(this)}/>
+            </div>
           </div>
         </div>
       </footer>
