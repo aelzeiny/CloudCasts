@@ -1,21 +1,93 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+const STATE_LOADING = 'LOADING';
+const STATE_PLAY = 'PLAY';
+const STATE_PAUSE = 'PAUSE';
+const STATE_LOUD = 'LOUD';
+const STATE_MUTED = 'MUTED';
+
 class PlayerContainer extends React.Component {
   constructor(props) {
     super(props);
+    this.state = ({
+      playerState: STATE_LOADING,
+      volumeState: STATE_LOUD
+    });
   }
 
   componentDidMount() {
     this.player.addEventListener('canplaythrough', () => {
       this.player.play();
+      this.setState({
+        playerState: STATE_PLAY
+      });
+      this.seekBar.value = 0;
+    });
+
+    this.player.addEventListener('timeupdate', () => {
+      // Calculate the slider value
+      var value = (100 / this.player.duration) * this.player.currentTime;
+
+      // Update the slider value
+      this.seekBar.value = value;
     });
   }
 
   componentWillReceiveProps(nextProps) {
     if(this.props.episode && this.props.episode.audio != nextProps.episode.audio) {
       this.player.load();
+      this.setState({
+        playerState: STATE_LOADING
+      });
     }
+  }
+
+  togglePlay(e) {
+    if(this.player.paused)
+      this.playPlayer();
+    else
+      this.pausePlayer();
+  }
+
+  playPlayer() {
+    this.player.play();
+    this.setState({
+      playerState: STATE_PLAY
+    });
+  }
+
+  pausePlayer() {
+    this.player.pause();
+    this.setState({
+      playerState: STATE_PAUSE
+    });
+  }
+
+  toggleMute() {
+    if (this.player.muted == false) {
+      this.player.muted = true;
+    } else {
+      this.player.muted = false;
+    }
+
+    this.setState({
+      volumeState: this.player.muted ? STATE_MUTED : STATE_LOUD
+    });
+  }
+
+  seekerChange(e) {
+    // Calculate the new time
+    var time = this.player.duration * (e.currentTarget.value / 100);
+
+    // Update the audio time
+    this.player.currentTime = time;
+  }
+
+  volume(e) {
+    const slider = e.currentTarget;
+    this.player.volume = slider.value;
+    console.log(e.currentTarget.value);
   }
 
   render() {
@@ -34,17 +106,31 @@ class PlayerContainer extends React.Component {
 
         {/* <!-- Video Controls --> */}
         <div id="video-controls">
-          <button type="button" id="play-pause">
-            <i className="fa fa-play"></i>
+          <button type="button" id="play-pause" onClick={this.togglePlay.bind(this)}>
+            {this._renderPlayIcon()}
           </button>
-          <input type="range" id="seek-bar" value="0"/>
-          <button type="button" id="mute">
-            <i className="fa fa-pause"></i>
+          <input type="range" id="seek-bar" ref={(me) => this.seekBar = me}
+            onMouseDown={this.pausePlayer.bind(this)} onMouseUp={this.playPlayer.bind(this)} onChange={this.seekerChange.bind(this)}/>
+          <button type="button" id="mute" onClick={this.toggleMute.bind(this)}>
+            {this._renderVolumeIcon()}
           </button>
-          <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1"/>
+          <input type="range" id="volume-bar" min="0" max="1" step="0.05" onChange={this.toggleMute.bind(this)}/>
         </div>
       </footer>
     );
+  }
+  _renderPlayIcon() {
+    if(this.state.playerState === STATE_PLAY)
+      return <i className="fa fa-pause"></i>
+    else if(this.state.playerState === STATE_PAUSE)
+      return <i className="fa fa-play"></i>
+    return <i className="fa fa-circle-o-notch fa-spin"></i>
+  }
+
+  _renderVolumeIcon(){
+    if(this.state.volumeState === STATE_LOUD)
+      return <i className="fa fa-volume-up"></i>
+    return <i className="fa fa-volume-off"></i>
   }
 
   _getSrc() {

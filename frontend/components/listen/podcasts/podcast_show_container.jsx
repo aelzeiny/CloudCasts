@@ -92,7 +92,7 @@ class PodcastShowComponent extends React.Component {
     if(this.state.loading || isEmpty(pod)) {
       return (
         <section className="podcast-show">
-          <i className="fa fa-6 fa-spin fa-circle-notch-o" style={{fontSize: '10em'}}></i>
+          <i className="fa fa-6 fa-spin fa-circle-o-notch" style={{fontSize: '10em'}}></i>
           <img id="podImg" src={this.props.podcast.md_image_url}></img>
         </section>
       );
