@@ -82,8 +82,7 @@ class PodcastShowComponent extends React.Component {
   }
 
   onPlay(episode) {
-    console.log(episode);
-    this.props.playEpisode(episode);
+    this.props.playEpisode(episode, this.props.podcast);
   }
 
   render() {
@@ -128,8 +127,8 @@ function mapDispatchToProps(dispatch) {
     loadPodcast: (id) => {
       return dispatch(showPodcast(id));
     },
-    playEpisode: (episode) => {
-      return dispatch(receiveEpisode(episode));
+    playEpisode: (episode, podcast) => {
+      return dispatch(receiveEpisode(episode, podcast));
     }
   };
 }

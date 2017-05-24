@@ -47,7 +47,7 @@ class PlayerContainer extends React.Component {
     const min = Math.floor(time/60) % 60;
     const sec = time % 60;
     if(hours)
-      return `${hours}:${this.formatNum(min)}:${fthis.ormatNum(sec)}`;
+      return `${hours}:${this.formatNum(min)}:${this.formatNum(sec)}`;
     return `${min}:${this.formatNum(sec)}`;
   }
 
@@ -135,8 +135,8 @@ class PlayerContainer extends React.Component {
           </audio>
 
           {/* <!-- Audio Controls --> */}
-          <div id="player-controls row">
-            <div className="col-xs-3">
+          <div id="player-controls">
+            <div id="player-play-pause">
               <button id="step-back" onClick={this.rewind.bind(this)} disabled={this.state.playerState === STATE_LOADING}>
                 <i className="fa fa-step-backward"></i>
               </button>
@@ -147,22 +147,35 @@ class PlayerContainer extends React.Component {
                 <i className="fa fa-step-forward"></i>
               </button>
             </div>
-            <div className="col-xs-4">
+            <div id="player-time">
               <label id="curr-time" ref={(me) => this.currTime=me}>--:--</label>
               <input type="range" id="seek-bar" ref={(me) => this.seekBar = me}
                 onMouseDown={this.pausePlayer.bind(this)} onMouseUp={this.playPlayer.bind(this)} onChange={this.seekerChange.bind(this)}/>
               <label id="final-time">{this.player && this.player.duration ? this.formatTime(this.player.duration) : '--:--'}</label>
             </div>
-            <div className="col-xs-4">
+            <div id="player-click">
               <button id="mute" onClick={this.toggleMute.bind(this)}>
                 {this._renderVolumeIcon()}
               </button>
-              <input type="range" id="volume-bar" min="0" max="1" step="0.05" onChange={this.volume.bind(this)}/>
+              {/* <input type="range" id="volume-bar" min="0" max="1" step="0.05" onChange={this.volume.bind(this)}/> */}
+            </div>
+            <div id="player-cast">
+              {this._renderPodcastImg()}
             </div>
           </div>
         </div>
       </footer>
     );
+  }
+
+  _renderPodcastImg() {
+    if(!this.props.episode)
+      return <div></div>
+    return (
+    <div>
+      <img src={this.props.episode.podcast.md_image_url}></img>
+      <p>{this.props.episode.title}</p>
+    </div>);
   }
   _renderPlayIcon() {
     if(this.state.playerState === STATE_PLAY)

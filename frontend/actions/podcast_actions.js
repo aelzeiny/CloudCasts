@@ -4,9 +4,10 @@ export const RECEIVE_PODCAST = "RECEIVE_PODCAST";
 export const RECEIVE_EPISODE = "RECEIVE_EPISODE";
 export const RECEIVE_SUBSCRIPTIONS = "RECEIVE_SUBSCRIPTIONS";
 
-export const receiveEpisode = (episode) => ({
+export const receiveEpisode = (episode, podcast) => ({
   type: RECEIVE_EPISODE,
-  episode
+  episode,
+  podcast
 });
 
 export const receivePodcast = (podcast) => ({
