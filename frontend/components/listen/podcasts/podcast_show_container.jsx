@@ -46,21 +46,25 @@ class PodcastShowComponent extends React.Component {
   beginPodcastLoad() {
     $(this).scrollTop(0);
     this.props.loadPodcast(this.props.match.params.podcastId).then(() => {
+      console.log(this.podImg);
       this.setState({loading: false});
-      var img = document.getElementById("podImg");
-      Vibrant.from(img).getPalette((err,pal) => {
-        window.pal = [err,pal];
-        if(pal) {
-          // Set State
-          let contrast = getLightestAndDarketFromPallet(pal);
-          this.setState({pallet: {
-            light: contrast[0],
-            dark: contrast[1]
-          }});
-        }
-        else if(err)
-          console.log(err);
-      });
+    });
+  }
+  onImgLoad(e) {
+    const img = e.currentTarget;
+    console.log(img.getAttribute("src"));
+
+    Vibrant.from(img).getPalette((err,pal) => {
+      if(pal) {
+        // Set State
+        let contrast = getLightestAndDarketFromPallet(pal);
+        this.setState({pallet: {
+          light: contrast[0],
+          dark: contrast[1]
+        }});
+      }
+      else if(err)
+        console.log(err);
     });
   }
 
@@ -75,15 +79,14 @@ class PodcastShowComponent extends React.Component {
       return (
         <section className="podcast-show">
           <i className="fa fa-6 fa-spin fa-circle-o-notch" style={{fontSize: '10em'}}></i>
-          <img id="podImg" src={this.props.podcast.md_image_url}></img>
         </section>
       );
     }
     return(
       <section className="podcast-show">
-        <div className="episode-viewport" style={{backgroundColor: this.state.pallet.light}}>
+        <img crossOrigin="anonymous" src={pod.md_image_url} id="podImg" onLoad={this.onImgLoad.bind(this)}></img>
+        <div className="episode-viewport" style={{backgroundColor: this.state.pallet.dark}}>
           <figcaption style={{backgroundImage: `url(${pod.image_url})`}}>
-            <img id="podImg" src={this.props.podcast.md_image_url}></img>
           </figcaption>
         </div>
         <div className="episodes container">

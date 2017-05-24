@@ -182,10 +182,7 @@ class PlayerContainer extends React.Component {
               {/* <input type="range" id="volume-bar" min="0" max="1" step="0.05" onChange={this.volume.bind(this)}/> */}
             </div>
             <div id="player-cast">
-              <div>
-              <img id="podImg" ref={(me) => this.podImg = me} onLoad={this.handleImageLoad.bind(this)}></img>
               {this._renderPodcastInfo()}
-              </div>
             </div>
           </div>
         </div>
@@ -196,10 +193,11 @@ class PlayerContainer extends React.Component {
   _renderPodcastInfo() {
     if(!this.props.episode)
       return <div></div>
-    this.podImg.setAttribute('crossOrigin', 'anonymous');
-    this.podImg.setAttribute('src', this.props.episode.podcast.md_image_url);
     return (
-      <p>{this.props.episode.title}</p>
+      <div>
+        <img crossOrigin="anonymous" src={this.props.episode.podcast.md_image_url} onLoad={this.handleImageLoad.bind(this)}></img>
+        <p>{this.props.episode.title}</p>
+      </div>
     );
   }
   _renderPlayIcon() {

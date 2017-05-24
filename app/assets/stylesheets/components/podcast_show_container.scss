@@ -32,6 +32,10 @@
         margin-left: 15px;
       }
   }
+  .episode-viewport {
+    background-color: lightgray;
+    transition: background-color .5s ease;
+  }
   #podImg{
     visibility: hidden;
     position: absolute;
