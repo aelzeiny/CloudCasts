@@ -138,8 +138,6 @@ class PlayerContainer extends React.Component {
           dark: contrast[1]
         }});
       }
-      else if(err)
-        console.log(err);
     });
   }
 
@@ -159,13 +157,13 @@ class PlayerContainer extends React.Component {
           {/* <!-- Audio Controls --> */}
           <div id="player-controls">
             <div id="player-play-pause">
-              <button id="step-back" onClick={this.rewind.bind(this)} disabled={this.state.playerState === STATE_LOADING}>
+              <button className="reset" id="step-back" onClick={this.rewind.bind(this)} disabled={this.state.playerState === STATE_LOADING}>
                 <i className="fa fa-step-backward"></i>
               </button>
-              <button id="play-pause" onClick={this.togglePlay.bind(this)} disabled={this.state.playerState === STATE_LOADING}>
+              <button className="reset" id="play-pause" onClick={this.togglePlay.bind(this)} disabled={this.state.playerState === STATE_LOADING}>
                 {this._renderPlayIcon()}
               </button>
-              <button id="step-forward" onClick={this.nextTrack.bind(this)} disabled={this.state.playerState === STATE_LOADING}>
+              <button className="reset" id="step-forward" onClick={this.nextTrack.bind(this)} disabled={this.state.playerState === STATE_LOADING}>
                 <i className="fa fa-step-forward"></i>
               </button>
             </div>
@@ -176,7 +174,7 @@ class PlayerContainer extends React.Component {
               <label id="final-time">{this.player && this.player.duration ? this.formatTime(this.player.duration) : '--:--'}</label>
             </div>
             <div id="player-click">
-              <button id="mute" onClick={this.toggleMute.bind(this)}>
+              <button className="reset" id="mute" onClick={this.toggleMute.bind(this)}>
                 {this._renderVolumeIcon()}
               </button>
               {/* <input type="range" id="volume-bar" min="0" max="1" step="0.05" onChange={this.volume.bind(this)}/> */}

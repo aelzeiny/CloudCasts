@@ -46,13 +46,11 @@ class PodcastShowComponent extends React.Component {
   beginPodcastLoad() {
     $(this).scrollTop(0);
     this.props.loadPodcast(this.props.match.params.podcastId).then(() => {
-      console.log(this.podImg);
       this.setState({loading: false});
     });
   }
   onImgLoad(e) {
     const img = e.currentTarget;
-    console.log(img.getAttribute("src"));
 
     Vibrant.from(img).getPalette((err,pal) => {
       if(pal) {
@@ -63,8 +61,6 @@ class PodcastShowComponent extends React.Component {
           dark: contrast[1]
         }});
       }
-      else if(err)
-        console.log(err);
     });
   }
 
@@ -86,8 +82,13 @@ class PodcastShowComponent extends React.Component {
       <section className="podcast-show">
         <img crossOrigin="anonymous" src={pod.md_image_url} id="podImg" onLoad={this.onImgLoad.bind(this)}></img>
         <div className="episode-viewport" style={{backgroundColor: this.state.pallet.dark}}>
-          <figcaption style={{backgroundImage: `url(${pod.image_url})`}}>
-          </figcaption>
+          <figcaption style={{backgroundImage: `url(${pod.image_url})`}}></figcaption>
+          <div className="subscription-viewport">
+            <button className="reset">
+              <i className="fa fa-plus-circle visible"></i>
+              <b className="visible">Subscribe</b>
+            </button>
+          </div>
         </div>
         <div className="episodes container">
           <div id="accordion" role="tablist" aria-multiselectable="true">

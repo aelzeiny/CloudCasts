@@ -16,7 +16,6 @@ export default function(props) {
   const date = formatJavscriptDate(new Date(ep.published));
   const idx = props.idx;
   let reactElement = props.parse(ep.summary);
-  // console.log(ep);
   return(
     <div className="card">
       <div className="card-header" role="tab" id={"heading"+idx}>
