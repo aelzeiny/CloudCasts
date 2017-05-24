@@ -7,6 +7,8 @@ import {
   receiveEpisode
 } from '../../../actions/podcast_actions';
 
+import {getLightestAndDarketFromPallet} from '../../../util/color_util';
+
 import isEmpty from 'lodash/isEmpty';
 import EpisodeItemComponent from './episode_item_component';
 import * as Vibrant from 'node-vibrant';
@@ -50,7 +52,7 @@ class PodcastShowComponent extends React.Component {
         window.pal = [err,pal];
         if(pal) {
           // Set State
-          let contrast = this.getLightestAndDarketFromPallet(pal);
+          let contrast = getLightestAndDarketFromPallet(pal);
           this.setState({pallet: {
             light: contrast[0],
             dark: contrast[1]
@@ -60,25 +62,6 @@ class PodcastShowComponent extends React.Component {
           console.log(err);
       });
     });
-  }
-
-  getLightestAndDarketFromPallet(pallet) {
-    const keys = Object.keys(pallet);
-    let maxPop = [0,0];
-    let maxHex = ['gray', 'black'];
-    for(let i=0;i<keys.length;i++){
-      const key = keys[i];
-      const val = pallet[key];
-      if(val) {
-        const lightOrDarkIndex = (key.includes("Light") || key === "Vibrant") ? 0 : 1;
-        if(maxPop[lightOrDarkIndex] < val._population)
-        {
-          maxPop[lightOrDarkIndex] = val._population;
-          maxHex[lightOrDarkIndex] = val.getHex();
-        }
-      }
-    }
-    return maxHex;
   }
 
   onPlay(episode) {

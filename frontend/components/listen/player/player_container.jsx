@@ -1,5 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import * as Vibrant from 'node-vibrant';
+import {getLightestAndDarketFromPallet} from '../../../util/color_util';
 
 const STATE_LOADING = 'LOADING';
 const STATE_PLAY = 'PLAY';
@@ -12,7 +14,11 @@ class PlayerContainer extends React.Component {
     super(props);
     this.state = ({
       playerState: STATE_LOADING,
-      volumeState: STATE_LOUD
+      volumeState: STATE_LOUD,
+      pallet: {
+        light: "#f2f2f2",
+        dark: "black"
+      }
     });
   }
 
@@ -121,9 +127,25 @@ class PlayerContainer extends React.Component {
     // TODO: IMPLEMENT NEXT TRACK FEATURE
   }
 
+  handleImageLoad(e) {
+    const img = e.currentTarget;
+    Vibrant.from(img).getPalette((err,pal) => {
+      if(pal) {
+        // Set State
+        let contrast = getLightestAndDarketFromPallet(pal);
+        this.setState({pallet: {
+          light: contrast[0],
+          dark: contrast[1]
+        }});
+      }
+      else if(err)
+        console.log(err);
+    });
+  }
+
   render() {
     return (
-      <footer className="player">
+      <footer className="player" style={{backgroundColor: this.state.pallet.light}}>
         <div className="container">
           <audio ref={(me) => this.player = me}>
 
@@ -160,7 +182,10 @@ class PlayerContainer extends React.Component {
               {/* <input type="range" id="volume-bar" min="0" max="1" step="0.05" onChange={this.volume.bind(this)}/> */}
             </div>
             <div id="player-cast">
-              {this._renderPodcastImg()}
+              <div>
+              <img id="podImg" ref={(me) => this.podImg = me} onLoad={this.handleImageLoad.bind(this)}></img>
+              {this._renderPodcastInfo()}
+              </div>
             </div>
           </div>
         </div>
@@ -168,14 +193,14 @@ class PlayerContainer extends React.Component {
     );
   }
 
-  _renderPodcastImg() {
+  _renderPodcastInfo() {
     if(!this.props.episode)
       return <div></div>
+    this.podImg.setAttribute('crossOrigin', 'anonymous');
+    this.podImg.setAttribute('src', this.props.episode.podcast.md_image_url);
     return (
-    <div>
-      <img src={this.props.episode.podcast.md_image_url}></img>
       <p>{this.props.episode.title}</p>
-    </div>);
+    );
   }
   _renderPlayIcon() {
     if(this.state.playerState === STATE_PLAY)
