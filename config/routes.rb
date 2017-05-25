@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:create]
+
+    delete '/subscriptions/', to: 'subscriptions#destroy_at'
     resources :subscriptions, only: [:index, :create, :destroy]
 
     #NB: Podcasts Ids are actually based on Itunes Ids

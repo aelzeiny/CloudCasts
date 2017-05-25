@@ -58,8 +58,7 @@ ActiveRecord::Schema.define(version: 20170521151607) do
     t.integer  "podcast_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["podcast_id"], name: "index_subscriptions_on_podcast_id", unique: true, using: :btree
-    t.index ["user_id"], name: "index_subscriptions_on_user_id", unique: true, using: :btree
+    t.index ["user_id", "podcast_id"], name: "index_subscriptions_on_user_id_and_podcast_id", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade do |t|

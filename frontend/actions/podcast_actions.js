@@ -28,15 +28,21 @@ export const showPodcast = (itunesId) => dispatch => {
   ));
 };
 
-export const subscribeToPodcast = (userId, podcastId) => dispatch => (
+export const subscribeToPodcast = (podcastId) => dispatch => (
   APIUtil.ensurePodcast(podcastId).then( waiter =>
-    APIUtil.subscribe(userId, podcastId).then(
-      data => dispatch(receiveSubscriptions(data))
+    APIUtil.subscribe(podcastId).then(
+      data => dispatch(receiveSubscriptions(data)), err => console.log(err.responseText)
     )
   )
 );
 
-export const unsubscribeFromPodcast = (subId) => dispatch => (
+export const unsubscribeFromPodcast = (podcastId) => dispatch => (
+  APIUtil.unsubscribe(podcastId).then(
+    data => dispatch(receiveSubscriptions(data)), err => console.log(err.responseText)
+  )
+);
+
+export const unsubscribeFromPodcastById = (subId) => dispatch => (
   APIUtil.unsubscribe(subId).then(
     data => dispatch(receiveSubscriptions(data))
   )

@@ -21,28 +21,26 @@ export const createPodcast = function(data) {
   });
 };
 
-export const subscribe = function(user_id, podcast_id) {
+export const subscribe = function(podcast_id) {
   return $.ajax({
     method: 'POST',
     url: 'api/subscriptions',
     type: 'json',
     data: {
       subscription: {
-        user_id: user_id,
         podcast_id: podcast_id
       }
     }
   });
 };
 
-export const unsubscribe = function(subscription_id) {
+export const unsubscribe = function(podcast_id) {
   return $.ajax({
     method: 'DELETE',
-    url: `api/subscriptions/${subscription_id}`,
+    url: `api/subscriptions/`,
     type: 'json',
     data: {
       subscription: {
-        user_id: user_id,
         podcast_id: podcast_id
       }
     }
