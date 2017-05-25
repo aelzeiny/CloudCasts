@@ -13,14 +13,14 @@ class NavbarLoginComponent extends React.Component {
   }
 
   renderNavbarSignedOutComponent() {
-    return(<ul className="navbar-nav">
-      <li className="nav-item">
-        <button className="nav-link btn btn-link" data-toggle="modal" data-target={`#${LOGIN_ID}`}>
+    return(<ul className="sidebar-end">
+      <li className="sidebar-item">
+        <button className="sidebar-link btn btn-link" data-toggle="modal" data-target={`#${LOGIN_ID}`}>
           <i className="fa fa-user"></i> LOG IN
         </button>
       </li>
       <li>
-        <button className="nav-link btn btn-link" data-toggle="modal" data-target={`#${SIGNUP_ID}`}>
+        <button className="sidebar-link btn btn-link" data-toggle="modal" data-target={`#${SIGNUP_ID}`}>
           <i className="fa fa-user-plus"></i> SIGN UP
         </button>
       </li>
@@ -28,13 +28,13 @@ class NavbarLoginComponent extends React.Component {
   }
 
   renderNavbarSignedInComponent() {
-    return(<ul className="navbar-nav">
-      <li className="nav-item">
+    return(<ul className="sidebar-end">
+      <li className="side-item">
         <a className="nav-link">
           <i className="fa fa-user"></i> Welcome {this.props.currentUser.username}!
         </a>
       </li>
-      <li className="nav-item">
+      <li className="side-item">
         <button className="btn btn-outline-danger" onClick={this.logoutClick.bind(this)}>LOG OUT</button>
       </li>
     </ul>);

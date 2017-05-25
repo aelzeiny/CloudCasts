@@ -15,31 +15,30 @@ class NavbarComponent extends React.Component {
 
   render() {
     return (
-      <nav className="navbar navbar-toggleable-md navbar-inverse bg-inverse">
-        <div className="container">
-        <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <a className="navbar-brand" href="#">
-          CommuteCasts <i className="fa fa-headphones"></i>
+      <nav className="sidebar sidebar-expanded">
+        <a className="sidebar-brand" href="#">
+          {/* <i className="fa fa-headphones"></i> <br/> */}
+          <img id="nav-logo" src="headphones.png"></img>
+          CloudCast
         </a>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
-              <a className="nav-link" href="#">
+        <div className="sidebar">
+          <ul className="sidebar-nav">
+            <li className="side-item active">
+              <a className="side-link" href="#">
                 Discover
+                <i className="fa fa-magic"></i>
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Listen
+            <li className="side-item">
+              <a className="side-link" href="#">
+                Subscriptions
+                <i className="fa fa-th-large"></i>
               </a>
             </li>
           </ul>
           <NavbarLoginComponent currentUser={this.props.currentUser} logout={this.props.logout}/>
         </div>
-      </div>
       </nav>
     );
   }

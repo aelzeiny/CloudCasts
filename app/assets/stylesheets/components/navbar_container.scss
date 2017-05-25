@@ -1,4 +1,71 @@
 @import '../base/colors';
-nav.bg-inverse {
-  background-color: $hero-background!important;
+@import '../base/fonts';
+nav {
+  #nav-logo {
+    width: 100%;
+  }
+}
+
+nav.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  background-color: $navbar;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 200px;
+  z-index: 13;
+  color: $subtle;
+  box-shadow: inset -2px 0 6px 0 rgba(0,0,0,.4);
+  div.sidebar {
+    width: 100%;
+  }
+  .sidebar-brand {
+    text-align: center;
+    font-weight: 700;
+    color: #ff6000;
+    padding: 20px;
+
+    font-family: "Archer Book", serif;
+    font-size: 1.4em;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+    &:hover {
+      color: $subtle;
+    }
+  }
+
+  .side-item {
+    margin-bottom: 50px;
+    margin-left: 16px;
+    i {
+      float: right;
+      position: relative;
+      text-align: right;
+      right: 11px;
+      top: 5px;
+    }
+  }
+
+  .sidebar-nav {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .sidebar-end {
+    position: absolute;
+    bottom: 50px;
+    left: -20px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .side-item {
+      margin: 0px;
+    }
+  }
 }

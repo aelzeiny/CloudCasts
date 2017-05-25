@@ -6,3 +6,4 @@
 ## Peer Review:
 * Podcast Item click plays episode. Info button expands information. Or put play button in infosection also works
 * Demo loggin
+* hover-play on episode view

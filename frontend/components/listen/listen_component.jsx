@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import DiscoverContainer from './discover/discover_component';
 import PodcastShowContainer from './podcasts/podcast_show_container';
+import NavbarContainer from '../navbar/navbar_container';
 import PlayerContainer from './player/player_container';
 import { Route, Switch, Link, HashRouter } from 'react-router-dom';
 
