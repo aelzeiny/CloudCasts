@@ -1,12 +1,13 @@
 import React from 'react';
-import connect from 'react-redux';
+import {connect} from 'react-redux';
 import {receivePodcasts} from '../../../actions/search_actions';
 import PodcastGridContainer from '../podcasts/podcast_grid_container';
 
-class DiscoverComponent extends React.Component {
+class SubscriptionsContainer extends React.Component {
   constructor(props) {
     super(props);
   }
+
   componentDidMount() {
     this.props.setGrid(this.props.subscriptions);
   }
@@ -31,4 +32,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DiscoverComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(SubscriptionsContainer);
