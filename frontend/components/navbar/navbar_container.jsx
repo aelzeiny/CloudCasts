@@ -1,11 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { login, logout, signup } from '../../actions/session_actions';
+import {fetchSubscriptions} from '../../actions/subscription_actions';
 import NavbarLoginComponent from './navbar_login_component';
 
 class NavbarComponent extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    this.props.requestSubscriptions();
   }
 
   render() {
@@ -49,7 +54,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    requestSubscriptions: () => dispatch(fetchSubscriptions())
   };
 };
 

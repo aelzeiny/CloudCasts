@@ -8,6 +8,7 @@ import { Route, Switch, Link, HashRouter } from 'react-router-dom';
 const Listen = (props) => {
   return (
     <section className="listen">
+      <NavbarContainer />
       <Switch>
         <Route path="/podcasts/:podcastId" component={PodcastShowContainer} />
         <Route path="/podcasts" component={DiscoverContainer} />
