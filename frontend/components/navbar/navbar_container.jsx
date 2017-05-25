@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { login, logout, signup } from '../../actions/session_actions';
 import {fetchSubscriptions} from '../../actions/subscription_actions';
 import NavbarLoginComponent from './navbar_login_component';
+import {Link} from 'react-router-dom';
 
 class NavbarComponent extends React.Component {
   constructor(props) {
@@ -25,16 +26,28 @@ class NavbarComponent extends React.Component {
         <div className="sidebar">
           <ul className="sidebar-nav">
             <li className="side-item active">
-              <a className="side-link" href="#">
+              <Link className="side-link" to={`/podcasts`}>
                 Discover
                 <i className="fa fa-magic"></i>
-              </a>
+              </Link>
             </li>
             <li className="side-item">
-              <a className="side-link" href="#">
+              <Link className="side-link" to={`/subscriptions`}>
                 Subscriptions
                 <i className="fa fa-th-large"></i>
-              </a>
+              </Link>
+            </li>
+            <li className="side-item">
+              <Link className="side-link" to={`/timeline`}>
+                Timeline
+                <i className="fa fa-clock-o"></i>
+              </Link>
+            </li>
+            <li className="side-item">
+              <Link className="side-link" to={`/playlists`}>
+                Playlists
+                <i className="fa fa-list"></i>
+              </Link>
             </li>
           </ul>
           <NavbarLoginComponent currentUser={this.props.currentUser} logout={this.props.logout}/>
