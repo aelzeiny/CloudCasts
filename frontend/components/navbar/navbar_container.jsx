@@ -11,6 +11,7 @@ class NavbarComponent extends React.Component {
   }
 
   componentDidMount() {
+    console.log("re-requesting subs");
     this.props.requestSubscriptions();
   }
 

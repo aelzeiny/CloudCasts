@@ -39,3 +39,9 @@
     right: 0;
   }
 }
+.pod-grid {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

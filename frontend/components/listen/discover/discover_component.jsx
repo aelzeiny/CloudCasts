@@ -1,14 +1,33 @@
 import React from 'react';
 import SearchFilterContainer from './search_filter_container';
 import PodcastGridContainer from '../podcasts/podcast_grid_container';
+import {requestTopPodcasts} from '../../../actions/search_actions';
+import {connect} from 'react-redux';
 
-const DiscoverComponent = (props) => {
+class DiscoverComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.requestTopPodcasts();
+  }
+
+  render() {
     return (
       <article className="discover container">
         <SearchFilterContainer />
         <PodcastGridContainer />
       </article>
     );
-};
+  }
+}
 
-export default DiscoverComponent;
+
+function mapDispatchToProps(dispatch) {
+  return {
+    requestTopPodcasts: () => dispatch(requestTopPodcasts())
+  };
+}
+
+export default connect(null, mapDispatchToProps)(DiscoverComponent);

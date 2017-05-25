@@ -9,6 +9,7 @@ class SubscriptionsContainer extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.subscriptions);
     this.props.setGrid(this.props.subscriptions);
   }
   render() {
@@ -28,7 +29,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setGrid: (podcasts) => dispatch(receivePodcasts(podcasts))
+    setGrid: (podcasts) => {
+      dispatch(receivePodcasts(podcasts));
+    }
   };
 }
 

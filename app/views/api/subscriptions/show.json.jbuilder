@@ -1,1 +1,1 @@
-json.extract! @sub, :id, :user_id, :podcast_id
+json.partial! 'sub', sub: @sub
