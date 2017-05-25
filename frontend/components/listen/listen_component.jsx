@@ -10,11 +10,13 @@ const Listen = (props) => {
   return (
     <section className="listen">
       <NavbarContainer />
-      <Switch>
-        <Route path="/podcasts/:podcastId" component={PodcastShowContainer} />
-        <Route path="/podcasts" component={DiscoverContainer} />
-      </Switch>
-      <PlayerContainer />
+      <article className="content">
+        <Switch>
+          <Route path="/podcasts/:podcastId" component={PodcastShowContainer} />
+          <Route path="/podcasts" component={DiscoverContainer} />
+        </Switch>
+        <PlayerContainer />
+      </article>
     </section>
   );
 };

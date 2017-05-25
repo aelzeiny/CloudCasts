@@ -7,6 +7,7 @@
     background-position: top center;
     background-attachment: fixed;
   }
+
   .card {
     border-radius: 0;
     border-color: transparent;
@@ -32,6 +33,7 @@
       margin-left: 15px;
     }
   }
+
   .episode-viewport {
     background-color: lightgray;
     transition: background-color .5s ease;
@@ -52,6 +54,7 @@
       transition: color .2s ease;
     }
   }
+
   #podImg{
     visibility: hidden;
     position: absolute;
@@ -60,4 +63,10 @@
     top: 0;
     left: 0;
   }
+}
+
+article.content {
+  position: relative;
+  left: 200px;
+  width: calc(100% - 200px);
 }
