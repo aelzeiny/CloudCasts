@@ -11,16 +11,16 @@ class SubscriptionsContainer extends React.Component {
   }
 
   componentDidMount() {
-    this._setGrid();
+    this._setGrid(this.props.subscriptions);
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.subscriptions.length !== nextProps.props.subscriptions.length)
-      this._setGrid();
+    if(this.props.subscriptions.length !== nextProps.subscriptions.length)
+      this._setGrid(nextProps.subscriptions);
   }
 
-  _setGrid() {
-    this.props.setGrid(this.props.subscriptions.map((sub) => sub.podcast));
+  _setGrid(subs) {
+    this.props.setGrid(subs.map((sub) => sub.podcast));
   }
 
   render() {
