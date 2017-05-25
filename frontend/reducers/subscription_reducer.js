@@ -12,16 +12,16 @@ export default function(state = {}, action) {
       const answer = {};
       for(let i=0;i<action.subscriptions.length;i++) {
         var curr = action.subscriptions[i];
-        answer[curr.itunes_id] = curr;
+        answer[curr.podcast_id] = curr;
       }
       return answer;
     case RECEIVE_SUBSCRIPTION:
-      const sub = {};
-      sub[action.subscription.itunes_id] = sub;
-      return merge({}, state, sub);
+      const mdup = merge({}, state);
+      mdup[action.subscription.podcast_id] = action.subscription;
+      return mdup;
     case REMOVE_SUBSCRIPTION:
       const dup = merge({}, state);
-      delete dup[action.subscription.itunes_id]
+      delete dup[action.subscription.podcast_id]
       return dup;
     default:
       return state;

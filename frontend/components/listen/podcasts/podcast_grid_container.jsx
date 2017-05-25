@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {requestTopPodcasts} from '../../../actions/search_actions';
+import {fetchSubscriptions} from '../../../actions/subscription_actions';
 import {podcastsSelector}from '../../../reducers/selectors';
 import PodcastItemComponent from './podcast_item_component';
 
@@ -11,6 +12,7 @@ class PodcastGrid extends React.Component {
 
   componentDidMount() {
     this.props.requestTopPodcasts();
+    this.props.requestSubscriptions();
   }
 
   render() {
@@ -34,6 +36,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    requestSubscriptions: () => dispatch(fetchSubscriptions()),
     requestTopPodcasts: () => dispatch(requestTopPodcasts())
   }
 }

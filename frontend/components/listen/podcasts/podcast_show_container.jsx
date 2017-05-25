@@ -1,11 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {
-  subscribeToPodcast,
-  unsubscribeFromPodcast,
   showPodcast,
   receiveEpisode
 } from '../../../actions/podcast_actions';
+import {
+  subscribeToPodcast,
+  unsubscribeFromPodcast
+} from '../../../actions/subscription_actions';
 
 import {getLightestAndDarketFromPallet} from '../../../util/color_util';
 
@@ -24,7 +26,6 @@ class PodcastShowComponent extends React.Component {
     super(props);
     this.state = {
       loading: true,
-      isSubscribed: this.props.isSubscribed,
       pallet: NULL_PALLET
     };
     this.parser = new HtmlToReactParser();
@@ -70,9 +71,12 @@ class PodcastShowComponent extends React.Component {
   }
 
   onSubscibeClick() {
-    this.props.toggleSubscription(this.props.podcast.itunes_id, this.state.isSubscribed).then(() => this.setState({
-      isSubscribed: !this.state.isSubscribed
-    }));
+    const podId = this.props.podcast.itunes_id;
+    if(this.props.subscriptions[podId]) {
+      this.props.unsubscribeFrom(this.props.subscriptions[podId].id);
+    } else {
+      this.props.subscribeTo(podId);
+    }
   }
 
   render() {
@@ -106,7 +110,7 @@ class PodcastShowComponent extends React.Component {
   }
 
   _renderSubscriptionIcon() {
-    if(!this.state.isSubscribed){
+    if(!this.props.subscriptions[this.props.podcast.itunes_id]){
       return (<button className="reset" onClick={this.onSubscibeClick.bind(this)}>
         <i className="fa fa-plus-circle visible"></i>
         <b className="visible">Subscribe</b>
@@ -123,7 +127,7 @@ class PodcastShowComponent extends React.Component {
 function mapStateToProps(state, {match}) {
   return {
     podcast: state.podcast,
-    isSubscribed: match.params.podcastId in state.subscriptions
+    subscriptions: state.subscriptions
   };
 }
 
@@ -135,10 +139,11 @@ function mapDispatchToProps(dispatch) {
     playEpisode: (episode, podcast) => {
       return dispatch(receiveEpisode(episode, podcast));
     },
-    toggleSubscription: (podId, isSubscribed) => {
-      if(isSubscribed)
-        return dispatch(unsubscribeFromPodcast(podId));
+    subscribeTo: (podId) => {
       return dispatch(subscribeToPodcast(podId));
+    },
+    unsubscribeFrom: (subId) => {
+      return dispatch(unsubscribeFromPodcast(subId));
     }
   };
 }

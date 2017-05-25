@@ -47,17 +47,3 @@ export const unsubscribe = function(sub_id) {
     url: `api/subscriptions/${sub_id}`
   });
 };
-
-// export const unsubscribe = function(user_id, podcast_id) {
-//   return $.ajax({
-//     method: 'DELETE',
-//     url: 'api/subscriptions',
-//     type: 'json',
-//     data: {
-//       subscription: {
-//         user_id: user_id,
-//         podcast_id: podcast_id
-//       }
-//     }
-//   });
-// };
