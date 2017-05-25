@@ -52,7 +52,7 @@ export const timeline = function(podcastIds) {
   return $.ajax({
     method: 'POST',
     url: 'api/podcasts/timeline',
-    type: 'json',
+    dataType: 'json',
     data: {
       podcast_ids: podcastIds
     }
