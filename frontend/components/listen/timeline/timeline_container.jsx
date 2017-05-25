@@ -1,6 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
+
+import TimelineItemComponent from './timeline_item';
+
 import {timeline} from '../../../util/podcast_api_utils';
+import { receiveEpisode } from '../../../actions/podcast_actions';
 import {subscriptionsSelector} from '../../../reducers/selectors';
 
 class TimelineContainer extends React.Component {
@@ -23,6 +27,11 @@ class TimelineContainer extends React.Component {
     }
   }
 
+  onPlay(episode) {
+    console.log(episode);
+    this.props.playEpisode(episode, episode.podcast);
+  }
+
   queryTimeline(subs) {
     if(subs.length === 0)
       return;
@@ -39,9 +48,15 @@ class TimelineContainer extends React.Component {
       return (
         <i className="fa fa-spin fa-spinner fa-6"></i>
       );
-    return (
-      <p>{JSON.stringify(timeline)}</p>
-    );
+      return (
+        <div>
+        {
+          this.state.timeline.map((episode, idx) => (
+            <TimelineItemComponent episode={episode} idx={idx} onPlay={this.onPlay.bind(this)} key={"item-"+idx} />
+          ))
+        }
+        </div>
+      );
   }
 }
 
@@ -51,4 +66,12 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(TimelineContainer);
+function mapDispatchToProps(dispatch) {
+  return {
+    playEpisode: (episode, podcast) => {
+      return dispatch(receiveEpisode(episode, podcast));
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TimelineContainer);
