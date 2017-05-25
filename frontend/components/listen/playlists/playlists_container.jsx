@@ -11,4 +11,4 @@ class PlaylistsContainer extends React.Component {
   }
 }
 
-export default connect(null, null)(PlaylistsContainer);
+export default PlaylistsContainer;

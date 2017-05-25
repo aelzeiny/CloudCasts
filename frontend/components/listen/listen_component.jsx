@@ -5,7 +5,7 @@ import { Route, Switch, Link, HashRouter } from 'react-router-dom';
 import NavbarContainer from '../navbar/navbar_container';
 import PlayerContainer from './player/player_container';
 
-import DiscoverContainer from './discover/discover_component';
+import DiscoverComponent from './discover/discover_component';
 import PodcastShowContainer from './podcasts/podcast_show_container';
 import SubscriptionsContainer from './subscriptions/subscriptions_container';
 import TimelineContainer from './timeline/timeline_container';
@@ -17,11 +17,11 @@ const Listen = (props) => {
       <NavbarContainer />
       <article className="content">
         <Switch>
+          <Route path="/podcasts/subscriptions" component={SubscriptionsContainer} />
+          <Route path="/podcasts/timeline" component={TimelineContainer} />
+          <Route path="/podcasts/playlists" component={PlaylistsContainer} />
           <Route path="/podcasts/:podcastId" component={PodcastShowContainer} />
-          <Route path="/podcasts" component={DiscoverContainer} />
-          <Route path="/subscriptions" component={SubscriptionsContainer} />
-          <Route path="/timeline" component={TimelineContainer} />
-          <Route path="/playlists" component={PlaylistsContainer} />
+          <Route path="/podcasts" component={DiscoverComponent} />
         </Switch>
         <PlayerContainer />
       </article>

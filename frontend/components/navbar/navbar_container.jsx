@@ -26,25 +26,25 @@ class NavbarComponent extends React.Component {
         <div className="sidebar">
           <ul className="sidebar-nav">
             <li className="side-item active">
-              <Link className="side-link" to={`/podcasts`}>
+              <Link className="side-link" to={'/podcasts'}>
                 Discover
                 <i className="fa fa-magic"></i>
               </Link>
             </li>
             <li className="side-item">
-              <Link className="side-link" to={`/subscriptions`}>
+              <Link className="side-link" to={'/podcasts/subscriptions'}>
                 Subscriptions
                 <i className="fa fa-th-large"></i>
               </Link>
             </li>
             <li className="side-item">
-              <Link className="side-link" to={`/timeline`}>
+              <Link className="side-link" to={'/podcasts/timeline'}>
                 Timeline
                 <i className="fa fa-clock-o"></i>
               </Link>
             </li>
             <li className="side-item">
-              <Link className="side-link" to={`/playlists`}>
+              <Link className="side-link" to={'/podcasts/playlists'}>
                 Playlists
                 <i className="fa fa-list"></i>
               </Link>

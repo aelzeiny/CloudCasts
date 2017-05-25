@@ -7,8 +7,10 @@ class TimelineContainer extends React.Component {
   }
 
   render() {
-    return <h2>Timeline Container</h2>;
+    return (
+      <h2>Timeline Container</h2>
+    );
   }
 }
 
-export default connect(null, null)(TimelineContainer);
+export default TimelineContainer;
