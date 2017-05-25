@@ -46,11 +46,39 @@ class Api::PodcastsController < ApplicationController
   #NB: Podcast Ids are based on itunes ids
   def show
     @podcast = Podcast.find_by(itunes_id: params[:id])
-    p "LOOK @ ME"
-    p @podcast
     @feed = ITunesRssAPI.parse_feed(@podcast.feed_url)
-    @episodes = []
-    @feed.entries.each do |ep|
+    @episodes = get_episodes(@feed)
+    render :show
+  end
+
+  def timeline
+    unless params[:podcast_ids]
+      render json: ["Invalid podcast ids"]
+      return
+    end
+    podcasts = params[:podcast_ids].map do |_, id|
+      Podcast.find_by(itunes_id: id)
+    end
+    episodes = []
+    podcasts.each do |cast|
+      feed = ITunesRssAPI.parse_feed(cast.feed_url)
+      eps = get_episodes(feed)
+      eps.each do |ep|
+        ep[:podcast] = cast
+      end
+      episodes.concat(eps)
+    end
+    sorted_episodes = episodes.sort do |a, b|
+      (a[:published]) <=> (b[:published])
+    end
+    render json: sorted_episodes
+  end
+
+  private
+
+  def get_episodes(feed)
+    episodes = []
+    feed.entries.each do |ep|
       episode = {
         title: ep.title,
         summary: ep.summary,
@@ -62,12 +90,10 @@ class Api::PodcastsController < ApplicationController
         audio_length: ep.itunes_duration,
         audio_length: ep.itunes_duration
       }
-      @episodes << episode
+      episodes << episode
     end
-    render :show
+    episodes
   end
-
-  private
 
   def create_podcast(cast_params)
     genres = cast_params[:itunes_genres]
