@@ -9,6 +9,11 @@ class Api::SubscriptionsController < ApplicationController
     end
   end
 
+  def index
+    @subs = current_user.subscriptions
+    render :index
+  end
+
   def destroy
     @sub = Subscription.find(params[:id])
     if @sub

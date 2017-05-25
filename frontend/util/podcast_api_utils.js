@@ -21,6 +21,13 @@ export const createPodcast = function(data) {
   });
 };
 
+export const fetchSubscriptions = function() {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/subscriptions'
+  });
+}
+
 export const subscribe = function(podcast_id) {
   return $.ajax({
     method: 'POST',
@@ -34,16 +41,10 @@ export const subscribe = function(podcast_id) {
   });
 };
 
-export const unsubscribe = function(podcast_id) {
+export const unsubscribe = function(sub_id) {
   return $.ajax({
     method: 'DELETE',
-    url: `api/subscriptions/`,
-    type: 'json',
-    data: {
-      subscription: {
-        podcast_id: podcast_id
-      }
-    }
+    url: `api/subscriptions/${sub_id}`
   });
 };
 
