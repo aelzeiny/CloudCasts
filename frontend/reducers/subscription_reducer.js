@@ -6,9 +6,9 @@ export default function(state = {}, action) {
       const answer = {};
       for(let i=0;i<action.subscriptions.length;i++) {
         var curr = action.subscriptions[i];
-        answer[curr.podcast_id] = curr;
+        answer[curr.itunes_id] = curr;
       }
-      return action.subscriptions
+      return answer;
     default:
       return state;
   }

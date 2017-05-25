@@ -38,7 +38,7 @@ export const subscribeToPodcast = (podcastId) => dispatch => (
 
 export const unsubscribeFromPodcast = (podcastId) => dispatch => (
   APIUtil.unsubscribe(podcastId).then(
-    data => dispatch(receiveSubscriptions(data)), err => console.log(err.responseText)
+    data => {console.log(data); return dispatch(receiveSubscriptions(data));}, err => console.log(err.responseText)
   )
 );
 
