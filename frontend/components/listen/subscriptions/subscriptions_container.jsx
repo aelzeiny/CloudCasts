@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {receivePodcasts} from '../../../actions/search_actions';
+import {fetchSubscriptions} from '../../../actions/podcast_actions';
+import {subscriptionsSelector} from '../../../reducers/selectors';
 import PodcastGridContainer from '../podcasts/podcast_grid_container';
 
 class SubscriptionsContainer extends React.Component {
@@ -9,9 +11,18 @@ class SubscriptionsContainer extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.subscriptions);
-    this.props.setGrid(this.props.subscriptions);
+    this._setGrid();
   }
+
+  componentWillReceiveProps(nextProps) {
+    if(this.props.subscriptions.length !== nextProps.props.subscriptions.length)
+      this._setGrid();
+  }
+
+  _setGrid() {
+    this.props.setGrid(this.props.subscriptions.map((sub) => sub.podcast));
+  }
+
   render() {
     return (
       <article className="subscriptions container">
@@ -23,16 +34,15 @@ class SubscriptionsContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    subscriptions: state.subscriptions
+    subscriptions: subscriptionsSelector(state.subscriptions)
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    setGrid: (podcasts) => {
-      dispatch(receivePodcasts(podcasts));
-    }
+    setGrid: (podcasts) => dispatch(receivePodcasts(podcasts))
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SubscriptionsContainer);
+export default
+  connect(mapStateToProps, mapDispatchToProps)(SubscriptionsContainer);
