@@ -53,10 +53,10 @@ class Api::PodcastsController < ApplicationController
 
   def timeline
     unless params[:podcast_ids]
-      render json: ["Invalid podcast ids"]
+      render json: ["Invalid podcast ids"], status: 422
       return
     end
-    podcasts = params[:podcast_ids].map do |_, id|
+    podcasts = params[:podcast_ids].map do |id|
       Podcast.find_by(itunes_id: id)
     end
     episodes = []
