@@ -24,6 +24,25 @@ export const MOOD_ASSETS = {
   "Film": 'film.jpg'
 };
 
+export const MOOD_ICONS = {
+  "Arts": 'fa-paint-brush',
+  "Business": 'fa-briefcase',
+  "Comedy": 'fa-microphone',
+  "Education": 'fa-book',
+  "Games & Hobbies": 'fa-gamepad',
+  "Government & Organizations": 'fa-gavel',
+  "Health": 'fa-user-md',
+  "Kids & Family": 'fa-child',
+  "Music": 'fa-music',
+  "News & Politics": 'fa-newspaper-o',
+  "Religion & Spirituality": 'fa-sun-o',
+  "Science & Medicine": 'fa-flask',
+  "Society & Culture": 'fa-globe',
+  "Sports & Recreation": 'fa-futbol-o',
+  "Technology": 'fa-television',
+  "Film": 'fa-film'
+};
+
 class MoodModal extends ModalForm {
   constructor(props) {
     super(props, MOOD_MODAL_ID);
@@ -42,9 +61,18 @@ class MoodModal extends ModalForm {
     let id;
     return (genreNames.map((name, i) => {
       id = genreIds[i];
+      const asset = MOOD_ICONS[name];
+      if(asset.startsWith('fa-')) {
+        return (
+          <div className="mood-grid-box" key={i} data-val={id} onClick={() => this.handleClick.call(this, name)}>
+            <i className={`fa ${asset}`}></i><br/>
+            <b>{name}</b>
+          </div>
+        );
+      }
       return (
         <div className="mood-grid-box" key={i} data-val={id} onClick={() => this.handleClick.call(this, name)}>
-          <img src={MOOD_ASSETS[name]}></img>
+          <img src={MOOD_ICONS[name]}></img>
         </div>
       );
     }));

@@ -4,8 +4,10 @@ import * as Vibrant from 'node-vibrant';
 import {getLightestAndDarketFromPallet} from '../../../util/color_util';
 
 const STATE_LOADING = 'LOADING';
+
 const STATE_PLAY = 'PLAY';
 const STATE_PAUSE = 'PAUSE';
+
 const STATE_LOUD = 'LOUD';
 const STATE_MUTED = 'MUTED';
 

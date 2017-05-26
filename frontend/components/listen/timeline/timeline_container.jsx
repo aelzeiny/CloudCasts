@@ -12,7 +12,7 @@ class TimelineContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      timeline: [],
+      timeline: null,
       loading: true
     };
   }
@@ -33,8 +33,10 @@ class TimelineContainer extends React.Component {
   }
 
   queryTimeline(subs) {
-    if(subs.length === 0)
+    if(!subs || subs.length === 0){
+      this.setState({loading: false, timeline: []});
       return;
+    }
     timeline(subs.map(el => el.podcast_id)).then(
       data => {
         this.setState({loading: false, timeline: this.formatData(data)});
@@ -67,23 +69,31 @@ class TimelineContainer extends React.Component {
   }
 
   render() {
+    return (<article className="timeline">
+      {this._render()}
+    </article>);
+  }
+
+  _render() {
     if(this.state.loading)
       return (
         <i className="fa fa-spin fa-spinner fa-6"></i>
       );
-      return (
-        <div className="container">
-        {
-          this.state.timeline.map((dateGroup, idx) => (
-            this._renderDateGroup(dateGroup, idx)
-          ))
-        }
-        </div>
-      );
+    if(this.state.timeline.length === 0)
+      return <h4>Subscribe to more podcasts to see your timeline</h4>;
+    return (
+      <div className="container">
+      {
+        this.state.timeline.map((dateGroup, idx) => (
+          this._renderDateGroup(dateGroup, idx)
+        ))
+      }
+      </div>
+    );
   }
 
   _renderDateGroup(dateGroup, i) {
-      return (
+    return (
       <div className="date-group" key={"dgroup-"+i}>
         <div className="date-item">
           {formatMMMDDYYYYDate(new Date(dateGroup[0].published))}
