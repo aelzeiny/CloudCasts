@@ -13,6 +13,8 @@ class LoginOverlay extends React.Component {
     const $form = $(this.form);
     const $un = $form.find('#un');
     const $pw = $form.find('#pw');
+    $un.val("");
+    $pw.val("");
     let currentControl = $un;
     let string = 'Guest#password';
     let interval = setInterval(() => {
@@ -26,7 +28,7 @@ class LoginOverlay extends React.Component {
         clearInterval(interval);
         this.props.onSubmit({currentTarget: this.form, preventDefault: () => {}});
       }
-    }, 150);
+    }, 70);
   }
 
   render() {

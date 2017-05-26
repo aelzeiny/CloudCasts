@@ -1,19 +1,9 @@
 import React from 'react';
-
-const monthNames = [
-  "Jan", "Feb", "Mar",
-  "Apr", "May", "Jun", "Jul",
-  "Aug", "Sep", "Oct",
-  "Nov", "Dec"
-];
-
-function formatJavscriptDate(date) {
-  return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
-}
+import {monthNames, formatMMMDDYYYYDate} from '../../../util/date_util';
 
 export default function(props) {
   const ep = props.episode;
-  const date = formatJavscriptDate(new Date(ep.published));
+  const date = formatMMMDDYYYYDate(new Date(ep.published));
   const idx = props.idx;
   let reactElement = props.parse(ep.summary);
   return(
