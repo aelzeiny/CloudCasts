@@ -26,7 +26,7 @@
     .bar {
       width: 100%;
     }
-    button {
+    button.btn-outline-info {
       position: absolute;
       right: 0;
       top: 0;
@@ -37,6 +37,23 @@
         background-color: $light-color;
         color: $dark-color;
       }
+    }
+  }
+}
+
+.modal-content {
+  background-color: $medium-color;
+  .mood-grid-row {
+    display: inline-block;
+    font-size: 10px;
+    width: 100%;
+  }
+  .mood-grid-box {
+    width: 25%;
+    display: inline-block;
+    padding: 15px;
+    img {
+      width: 100%;
     }
   }
 }
