@@ -1,6 +1,6 @@
 
 
-export const getLightestAndDarketFromPallet = (pallet) => {
+export const getLightestAndDarketFromPallet = (pallet, alpha = 1) => {
   const keys = Object.keys(pallet);
   let maxPop = [0,0];
   let maxHex = ['gray', 'black'];
@@ -12,7 +12,8 @@ export const getLightestAndDarketFromPallet = (pallet) => {
       if(maxPop[lightOrDarkIndex] < val._population)
       {
         maxPop[lightOrDarkIndex] = val._population;
-        maxHex[lightOrDarkIndex] = val.getHex();
+        let rgb = val.getRgb();
+        maxHex[lightOrDarkIndex] = `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${alpha})`;
       }
     }
   }

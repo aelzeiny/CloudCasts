@@ -11,7 +11,7 @@ import SubscriptionsContainer from './subscriptions/subscriptions_container';
 import TimelineContainer from './timeline/timeline_container';
 import PlaylistsContainer from './playlists/playlists_container';
 
-const Listen = (props) => {
+const ListenContainer = (props) => {
   return (
     <section className="listen">
       <NavbarContainer />
@@ -36,4 +36,4 @@ function mapStateToProps({ session }) {
   };
 }
 
-export default connect(mapStateToProps)(Listen);
+export default connect(mapStateToProps)(ListenContainer);

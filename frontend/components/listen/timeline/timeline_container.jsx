@@ -52,7 +52,8 @@ class TimelineContainer extends React.Component {
         <div>
         {
           this.state.timeline.map((episode, idx) => (
-            <TimelineItemComponent episode={episode} idx={idx} onPlay={this.onPlay.bind(this)} key={"item-"+idx} />
+            <TimelineItemComponent episode={episode} idx={idx}
+              onPlay={this.onPlay.bind(this)} key={"item-"+idx} />
           ))
         }
         </div>
