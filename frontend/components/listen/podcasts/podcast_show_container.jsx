@@ -115,7 +115,7 @@ class PodcastShowComponent extends React.Component {
       <section className="podcast-show">
         <img crossOrigin="anonymous" src={pod.md_image_url} id="podImg" onLoad={this.onImgLoad.bind(this)}></img>
         <div className="episode-viewport" style={{backgroundColor: this.state.pallet.dark}}>
-          <figcaption style={{backgroundImage: `url(${pod.image_url})`}}></figcaption>
+          <img src={pod.image_url}></img>
           <div className="subscription-viewport">
             {this._renderSubscriptionIcon()}
           </div>
@@ -142,7 +142,7 @@ class PodcastShowComponent extends React.Component {
     if(!this.props.subscriptions[this.props.podcast.itunes_id]){
       return (<button className="reset" onClick={this.onSubscibeClick.bind(this)}>
         <i className="fa fa-plus-circle visible"></i>
-        <b className="visible">Subscribe</b>
+         <b className="visible">Subscribe</b>
       </button>);
     }
     return (
