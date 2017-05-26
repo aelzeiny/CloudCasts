@@ -132,7 +132,7 @@ class PlayerContainer extends React.Component {
     Vibrant.from(img).getPalette((err,pal) => {
       if(pal) {
         // Set State
-        let contrast = getLightestAndDarketFromPallet(pal);
+        let contrast = getLightestAndDarketFromPallet(pal, .95);
         this.setState({pallet: {
           light: contrast[0],
           dark: contrast[1]

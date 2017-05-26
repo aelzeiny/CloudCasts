@@ -21,18 +21,28 @@ const NULL_PALLET = {
   dark: 'black'
 };
 
+const SCROLL_SHOW = 12;
+
 class PodcastShowComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
-      pallet: NULL_PALLET
+      pallet: NULL_PALLET,
+      scrollCount: 1,
+      scrollLoading: false
     };
     this.parser = new HtmlToReactParser();
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
     this.beginPodcastLoad();
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -51,6 +61,18 @@ class PodcastShowComponent extends React.Component {
       this.setState({loading: false});
     });
   }
+
+  handleScroll() {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight
+      && SCROLL_SHOW * this.state.scrollCount < this.props.podcast.episodes.length) {
+      this.setState({scrollLoading: true});
+      setTimeout(() => this.setState({
+        scrollLoading: false,
+        scrollCount: this.state.scrollCount+1
+      }), 1000);
+    }
+  }
+
   onImgLoad(e) {
     const img = e.currentTarget;
 
@@ -100,13 +122,20 @@ class PodcastShowComponent extends React.Component {
         </div>
         <div className="episodes container">
           <div id="accordion" role="tablist" aria-multiselectable="true">
-            {pod.episodes.map((ep, idx) => (
+            {pod.episodes.slice(0, SCROLL_SHOW*this.state.scrollCount).map((ep, idx) => (
               <EpisodeItemComponent parse={this.parser.parse} episode={ep} idx={idx} key={"ep-" + ep.published + idx} onPlay={this.onPlay.bind(this)}/>
             ))}
           </div>
         </div>
+        {this._renderScrollLoadingIcon()}
       </section>
     );
+  }
+
+  _renderScrollLoadingIcon() {
+    if(this.state.scrollLoading)
+      return <i className="scroll-loading fa fa-spin fa-6 fa-spinner"></i>;
+    return null;
   }
 
   _renderSubscriptionIcon() {
