@@ -9,6 +9,13 @@ section.auth {
   font-size: 1em;
   position: relative;
 
+  ul.validation-errors.overlay {
+    position: absolute;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 10px;
+  }
+
   .hero {
     &.neutral {
       background-color: $yellow;

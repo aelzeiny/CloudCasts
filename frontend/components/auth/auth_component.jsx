@@ -83,7 +83,7 @@ class AuthComponent extends React.Component {
         <div>
           <LogoOverlay />
         </div>
-          <ul className="validation-errors overlay">
+          <ul className="validation-errors visible overlay">
             {this.props.errors.map((err, idx) => (
               <li key={typeof(this)+idx} className="validation-items">
                 <i className="fa fa-exclamation"></i> {err}
