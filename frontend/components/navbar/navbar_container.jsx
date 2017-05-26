@@ -17,7 +17,7 @@ class NavbarComponent extends React.Component {
   render() {
     return (
       <nav className="sidebar sidebar-expanded">
-        <a className="sidebar-brand" href="#">
+        <a className="sidebar-brand">
           {/* <i className="fa fa-headphones"></i> <br/> */}
           <img id="nav-logo" src="headphones.png"></img>
           CloudCast
