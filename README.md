@@ -1,80 +1,92 @@
-# CommuteCasts ReadMe
+# CloudCasts ReadMe
 
-CommuteCasts is a podcast sreaming app that is inspired by Bandcamp. It utilizes
-Ruby on Rails handle the data and business layers,
-and React/Redux for the presentation-layer.
+**CloudCasts** is a podcast streaming app featuring original UI and mobile-responsive design. The backend leverages **Ruby on Rails v5** and
+**PostgreSQL** for API querying and storage. The front-end utilizes **React/Redux**, the new **Bootstrap v4 - alpha 6**, and **ES6**.
 
-Check it out live at: [SITE URL GOES HERE]
+Explore some great podcasts live at: **http://commutecasts.herokuapp.com**
 
-## Features
+## Backend Features and Implementation
 
-#### Core Feature Integration
-- [ ] Users should be allowed to Browse through podcast
-- [ ] Order podcasts by genre & filter by type
-- [ ] Search for specific Podcasts
-- [ ] Play / Stream podcasts from RSS feeds
-- [ ] Subscribe to Podcasts. View Subscribed Podcasts
+### ITunes Search API
+Unfortunately, there is no complete, reputable directory for all functioning
+podcasts, and submitting a *'GET'* request with a search term to ITunes
+is as close as we can manage. This is how we can get very basic Podcast
+information given a search term.
 
-#### Bonus Features
-- [ ] React-Motion to interpolate between page states
-- [ ] Clip Podcasts into sharable URL
+```Ruby
+def self.search_podcasts(term)
+  search_params = {
+    country: 'US',
+    media: 'podcast',
+    entry: 'podcast',
+    term: term
+  }
 
-## Wireframes
-* Index Page
-* Podcast Subscriptions Page
-* Player & Minimized Player Component
-* Podcast Show Page before and after scrolling
+  getReq = HTTParty.get("https://itunes.apple.com/search", query: search_params)
+  return JSON.parse(getReq.parsed_response)["results"]
+end
+```
 
-## API Endpoints
+#### iTunes RSS Feed Standard (provided by host)
+The ITunes search API returns the host's RSS feed location, which can be
+used to fetch more information about the podcast (episode, description, sub-categories, etc).
 
-| Method | End-Point                             | Description |
-|:------:|---------------------------------------|------------:|
-| GET    | api/podcasts/:id                      | get cast    |
-| GET    | api/podcasts?search="Podcast Title"   | search casts|
-| GET    | api/podcasts/:id/episodes/:episode_id | get episode |
-| POST   | api/users/                            | create user |
-| GET    | api/users/:id                         | get user    |
-| POST   | api/subscriptions                     | create sub  |
-| POST   | api/session                           | sign-in     |
-| DELETE | api/session                           | sign-out    |
+The Feedjira gem comes with a parser that makes parsing ITunes RSS-formatted XML rather quite trivial. Behold:
+```Ruby
+  def self.parse_feed(url)
+    xml = HTTParty.get(url).body
+    Feedjira::Feed.parse_with(Feedjira::Parser::ITunesRSS, xml)
+  end
+```
 
-## DB Schema UML
-![alt text](./readme/readme_assets/CommuteCasts_uml.png)
+### Dynamically Cacheing Podcast Searches
+With no way to directly obtain all podcast information from itunes, this
+app must make do with lazy-storage. Each time a new podcast is 'discovered'
+by a user, relevant ITunes info is received and stored into the backend.
+This allows for quicker, and more optimized queries
+in the future.
 
-## Component Hierarchy
-* Navbar Container
- * Auth Component
-* Player Bar Container
-* Discover Component
-  * Navbar Container
-  * HeroImage Component
-  * Search Container
-  * ResultsGrid Container
-* User Profile Component
-  * Genre Component
-    * ResultsGrid Container
-* Podcast Show Component
-  * Episode Container
+**Javascript**
+```Javascript
+export const showPodcast = (itunesId) => dispatch => {
+  return (APIUtil.ensureAndShowPodcast(itunesId)
+    .then(data => dispatch(receivePodcast(data)))
+  );
+};
+```
+**Ruby**
+```Ruby
+def ensure_create
+  @pod = Podcast.find_by(itunes_id: params[:id])
+  unless @pod
+    lookup_values = ITunesRssAPI.lookup_podcast(params[:id])
+    @pod = create_podcast(parse_lookup(lookup_values))
+  end
+  render :create
+end
+```
 
-## Sample state
-~~~~
-{
-  resultGrid: ____,
-  player: ____,
-  podcast:____
-}
-~~~~
+#### Lazy Syncing with ITunes
+When a user revisits a podcast page that has has not been refreshed in
+12-hours, the backend will make another query to ensure the information
+is up-to-date
+```Ruby
+  def self.lookup_podcast(itunes_id)
+    url = "https://itunes.apple.com/lookup?id=#{itunes_id}"
+    getReq = HTTParty.get(url)
+    return JSON.parse(getReq.parsed_response)["results"].first
+  end
+```
 
-## Timeline
-* Backend, Auth, & API Endpoints, 1 day
-* Itunes API, 1 day
-* Navbar Container w/ auth, 1 day
-* Search Container & ResultsGrid, 2 days
-* Genre Component, 1 day
-* Player Bar, 2 days
-* Episode container, 1 day
+## Frontend Features and Implementation
 
-## Links
-[Trello](https://trello.com/b/12y48Tj8/ahmed-s-podcast-full-stack)
+#### Custom HTML 5 Player & Vibrant.js for image sampling
+Vibrant is a library that is used for finding prominant colors in images
+based on category. The desired effect was acheived after some tinkering
+and experimentation.
 
-[Live Site](https://commutecasts.herokuapp.com/)
+#### Responsive Design
+Looking great on mobile isn't optional anymore. Especially with audio-based
+mediums. This project was created with Bootstrap v4 Alpha, and even makes
+some custom components to ensure user experience. I am especially happy
+with this NavBar
