@@ -86,11 +86,11 @@ class TimelineContainer extends React.Component {
       return (
       <div className="date-group" key={"dgroup-"+i}>
         <div className="date-item">
-          {this.formatMMMDDYYYYDate(new Date(dateGroup[0].published))}
+          {formatMMMDDYYYYDate(new Date(dateGroup[0].published))}
         </div>
         {
           dateGroup.map((episode, idx) => (
-            <TimelineItemComponent episode={episode} idx={idx}
+            <TimelineItemComponent episode={episode} idx={`${i}-${idx}`}
               onPlay={this.onPlay.bind(this)} key={"item-"+idx} />
           ))
         }
