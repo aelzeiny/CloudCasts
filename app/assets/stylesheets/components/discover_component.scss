@@ -1,5 +1,6 @@
 @import '../base/fonts';
 @import '../base/colors';
+@import '../base/media';
 
 .discover {
   background-color: $dark-color;
@@ -54,6 +55,23 @@
     padding: 15px;
     img {
       width: 100%;
+    }
+  }
+}
+
+@media(max-width: $break-md){
+  .searchDiv .input {
+    ::-webkit-input-placeholder { /* WebKit browsers */
+        color: transparent;
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+       color: transparent;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+       color: transparent;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+       color: transparent;
     }
   }
 }
