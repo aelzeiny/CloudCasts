@@ -6,6 +6,7 @@ import TimelineItemComponent from './timeline_item';
 import {timeline} from '../../../util/podcast_api_utils';
 import { receiveEpisode } from '../../../actions/podcast_actions';
 import {subscriptionsSelector} from '../../../reducers/selectors';
+import {monthNames, formatMMMDDYYYYDate} from '../../../util/date_util';
 
 class TimelineContainer extends React.Component {
   constructor(props) {
@@ -28,7 +29,6 @@ class TimelineContainer extends React.Component {
   }
 
   onPlay(episode) {
-    console.log(episode);
     this.props.playEpisode(episode, episode.podcast);
   }
 
@@ -37,10 +37,33 @@ class TimelineContainer extends React.Component {
       return;
     timeline(subs.map(el => el.podcast_id)).then(
       data => {
-        console.log(data);
-        this.setState({loading: false, timeline: data});
+        this.setState({loading: false, timeline: this.formatData(data)});
       }, err => console.log(err.responseText)
     );
+  }
+
+  formatData(data) {
+    if(data.length === 0)
+      return [];
+    const answer = [];
+    let currArr = [data[0]];
+    for(let i=1;i<data.length;i++) {
+      let curr = data[i];
+      if(!this.dateEquals(data[i-1], curr)) {
+        answer.push(currArr);
+        currArr = [curr];
+      } else {
+        currArr.push(curr);
+      }
+    }
+    return answer;
+  }
+
+  dateEquals(a, b) {
+    const da = new Date(a.published);
+    const db = new Date(b.published);
+    return da.getFullYear() === db.getFullYear()
+      && da.getMonth() === db.getMonth() && da.getDate() === db.getDate();
   }
 
   render() {
@@ -51,13 +74,28 @@ class TimelineContainer extends React.Component {
       return (
         <div>
         {
-          this.state.timeline.map((episode, idx) => (
-            <TimelineItemComponent episode={episode} idx={idx}
-              onPlay={this.onPlay.bind(this)} key={"item-"+idx} />
+          this.state.timeline.map((dateGroup, idx) => (
+            this._renderDateGroup(dateGroup, idx)
           ))
         }
         </div>
       );
+  }
+
+  _renderDateGroup(dateGroup, i) {
+      return (
+      <div className="date-group" key={"dgroup-"+i}>
+        <div className="date-item">
+          {this.formatMMMDDYYYYDate(new Date(dateGroup[0].published))}
+        </div>
+        {
+          dateGroup.map((episode, idx) => (
+            <TimelineItemComponent episode={episode} idx={idx}
+              onPlay={this.onPlay.bind(this)} key={"item-"+idx} />
+          ))
+        }
+      </div>
+    );
   }
 }
 
