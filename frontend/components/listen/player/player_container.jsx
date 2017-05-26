@@ -144,7 +144,7 @@ class PlayerContainer extends React.Component {
   render() {
     return (
       <footer className="player" style={{backgroundColor: this.state.pallet.light}}>
-        <div className="container">
+        <div>
           <audio ref={(me) => this.player = me}>
 
             {/* <!-- Optional Source --> */}
@@ -190,33 +190,33 @@ class PlayerContainer extends React.Component {
 
   _renderPodcastInfo() {
     if(!this.props.episode)
-      return <div></div>
+      return <div></div>;
     return (
       <div>
         <img crossOrigin="anonymous" src={this.props.episode.podcast.md_image_url} onLoad={this.handleImageLoad.bind(this)}></img>
-        <p>{this.props.episode.title}</p>
+        <p className="marquee">{this.props.episode.title}</p>
       </div>
     );
   }
   _renderPlayIcon() {
     if(this.state.playerState === STATE_PLAY)
-      return <i className="fa fa-pause"></i>
+      return <i className="fa fa-pause"></i>;
     else if(this.state.playerState === STATE_PAUSE)
-      return <i className="fa fa-play"></i>
-    return <i className="fa fa-circle-o-notch fa-spin"></i>
+      return <i className="fa fa-play"></i>;
+    return <i className="fa fa-circle-o-notch fa-spin"></i>;
   }
 
   _renderVolumeIcon(){
     if(this.state.volumeState === STATE_LOUD)
-      return <i className="fa fa-volume-up"></i>
-    return <i className="fa fa-volume-off"></i>
+      return <i className="fa fa-volume-up"></i>;
+    return <i className="fa fa-volume-off"></i>;
   }
 
   _getSrc() {
     const ep = this.props.episode;
     if(!ep)
       return (<b></b>);
-    return <source src={ep.audio} type={ep.audio_type}/>
+    return <source src={ep.audio} type={ep.audio_type}/>;
   }
 }
 

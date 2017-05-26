@@ -40,19 +40,20 @@ nav.sidebar {
   a {
     text-decoration: none;
     color: inherit;
-    &:hover {
-      color: $subtle;
+    li:hover {
+      color: white;
+      background-color: #2f3d44;
+      box-shadow: inset -5px 0 6px -3px rgba(0,0,0,.4);
     }
   }
 
   .side-item {
-    margin-bottom: 50px;
-    margin-left: 16px;
+    margin-bottom: 5px;
+    padding: 10px;
     i {
       float: right;
       position: relative;
       text-align: right;
-      right: 11px;
       top: 5px;
     }
   }
@@ -72,14 +73,17 @@ nav.sidebar {
     align-items: center;
     .side-item {
       margin: 0px;
+      i {
+        left: 40px;
+      }
     }
   }
 }
 
 article.content {
-  width: 100%;
   margin-left: 200px;
   margin-bottom: 65px;
+  position: relative;
   -webkit-transition: margin-left .5s ease-in-out;
   -moz-transition: margin-left .5s ease-in-out;
   -o-transition: margin-left .5s ease-in-out;
