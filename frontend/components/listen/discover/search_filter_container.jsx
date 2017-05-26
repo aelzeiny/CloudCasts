@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { topGenres } from '../../../util/search_api_utils';
 import { searchPodcasts, requestTopPodcasts  } from '../../../actions/search_actions';
+import MoodModal from '../../modals/mood_modal';
 
 const ALL_KEY = "all";
 class SearchFilterContainer extends React.Component{
@@ -37,7 +38,10 @@ class SearchFilterContainer extends React.Component{
           <span className="bar"></span>
         </div>
       </div>
-      <button className="btn btn-outline-info btn-lg">Mood</button>
+      <button className="btn btn-outline-info btn-lg" data-toggle="modal" data-target='#moodModalId'>
+        Mood
+      </button>
+      <MoodModal />
     </div>);
   }
 

@@ -40,7 +40,7 @@ class ModalForm extends React.Component {
   render() {
     return (
       <div className="modal fade" id={this.id} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div className="modal-dialog" role="document">
+        <div className="modal-dialog modal-lg" role="document">
           <div className="modal-content">
             <div className="modal-header">
               {this.renderHeader()}
