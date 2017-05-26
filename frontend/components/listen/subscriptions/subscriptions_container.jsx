@@ -24,6 +24,9 @@ class SubscriptionsContainer extends React.Component {
   }
 
   render() {
+    if(this.props.subscriptions.length === 0) {
+      return <h4>You aren't subscribed to any podcasts yet</h4>;
+    }
     return (
       <article className="subscriptions container">
         <PodcastGridContainer />

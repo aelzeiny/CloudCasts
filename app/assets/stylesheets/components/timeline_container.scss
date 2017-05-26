@@ -1,4 +1,13 @@
-.timeline-item {
+@import '../base/colors';
+.timeline {
+  i.fa.fa-spin {
+    font-size: 6em;
+    color: $light-color;
+    position: absolute;
+    text-align: center;
+    left: 50%;
+  }
+  .timeline-item {
     display: inline-flex;
     width: 100%;
     // margin-left: 47px;
@@ -10,16 +19,18 @@
       margin-right: 25px;
     }
     .card {
-        width: 100%;
-        margin-bottom: 5px;
+      width: 100%;
+      margin-bottom: 5px;
     }
-}
-.date-item {
-  color: #c0c5c5;
-  font-size: 1.2em;
-  font-family: "Archer Book", serif;
-  font-style: italic;
-}
-.date-item-group {
+  }
+  .date-item {
+    color: #c0c5c5;
+    font-size: 1.2em;
+    font-family: "Archer Book", serif;
+    font-style: italic;
+  }
+  .date-item-group {
     padding-left: 47px;
+  }
+
 }

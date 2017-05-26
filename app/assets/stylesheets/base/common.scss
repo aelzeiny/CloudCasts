@@ -19,6 +19,13 @@ html {
   background-color: $dark-color;
 }
 
+/*** For classes that tell you to subscribe to podcasts ***/
+.content h4 {
+  color: $warm-color;
+  text-align: center;
+  margin-top: 100px;
+}
+
 /* Make it a marquee */
 .marquee {
     width: 450px;

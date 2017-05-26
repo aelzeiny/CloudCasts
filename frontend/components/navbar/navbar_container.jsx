@@ -43,12 +43,12 @@ class NavbarComponent extends React.Component {
                   <i className="fa fa-clock-o"></i>
               </li>
             </Link>
-            <Link className="side-link" to={'/podcasts/playlists'}>
+            {/*<Link className="side-link" to={'/podcasts/playlists'}>
               <li className="side-item">
                   Playlists
                   <i className="fa fa-list"></i>
               </li>
-            </Link>
+            </Link>*/}
           </ul>
           <NavbarLoginComponent currentUser={this.props.currentUser} logout={this.props.logout}/>
         </div>
