@@ -30,9 +30,7 @@ class NavbarLoginComponent extends React.Component {
   renderNavbarSignedInComponent() {
     return(<ul className="sidebar-end">
       <li className="side-item">
-        <a className="nav-link">
           <i className="fa fa-user"></i> Welcome {this.props.currentUser.username}!
-        </a>
       </li>
       <li className="side-item">
         <button className="btn btn-outline-danger" onClick={this.logoutClick.bind(this)}>LOG OUT</button>

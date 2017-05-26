@@ -25,30 +25,30 @@ class NavbarComponent extends React.Component {
 
         <div className="sidebar">
           <ul className="sidebar-nav">
-            <li className="side-item active">
-              <Link className="side-link" to={'/podcasts'}>
-                Discover
-                <i className="fa fa-magic"></i>
-              </Link>
-            </li>
-            <li className="side-item">
-              <Link className="side-link" to={'/podcasts/subscriptions'}>
-                Subscriptions
-                <i className="fa fa-th-large"></i>
-              </Link>
-            </li>
-            <li className="side-item">
-              <Link className="side-link" to={'/podcasts/timeline'}>
-                Timeline
-                <i className="fa fa-clock-o"></i>
-              </Link>
-            </li>
-            <li className="side-item">
-              <Link className="side-link" to={'/podcasts/playlists'}>
-                Playlists
-                <i className="fa fa-list"></i>
-              </Link>
-            </li>
+            <Link className="side-link" to={'/podcasts'}>
+              <li className="side-item active">
+                  Discover
+                  <i className="fa fa-magic"></i>
+              </li>
+            </Link>
+            <Link className="side-link" to={'/podcasts/subscriptions'}>
+              <li className="side-item">
+                  Subscriptions
+                  <i className="fa fa-th-large"></i>
+              </li>
+            </Link>
+            <Link className="side-link" to={'/podcasts/timeline'}>
+              <li className="side-item">
+                  Timeline
+                  <i className="fa fa-clock-o"></i>
+              </li>
+            </Link>
+            <Link className="side-link" to={'/podcasts/playlists'}>
+              <li className="side-item">
+                  Playlists
+                  <i className="fa fa-list"></i>
+              </li>
+            </Link>
           </ul>
           <NavbarLoginComponent currentUser={this.props.currentUser} logout={this.props.logout}/>
         </div>

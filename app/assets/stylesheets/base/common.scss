@@ -12,3 +12,23 @@ button.reset {
   color: white;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
+
+/* Make it a marquee */
+.marquee {
+    width: 450px;
+    margin: 0 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    animation-play-state: paused
+}
+
+.marquee:hover {
+    animation: marquee 10s linear infinite;
+}
+
+/* Make it move */
+@keyframes marquee {
+    0%   { text-indent: 0em }
+    100% { text-indent: -55em }
+}
