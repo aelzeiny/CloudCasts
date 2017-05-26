@@ -1,3 +1,5 @@
+@import './colors';
+
 button.reset {
   border: 0;
   text-shadow: none;
@@ -11,6 +13,10 @@ button.reset {
 .visible {
   color: white;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+html {
+  background-color: $dark-color;
 }
 
 /* Make it a marquee */
