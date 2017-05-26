@@ -26,8 +26,6 @@ Design specifications, and even makes some custom components to ensure user expe
 - [ ] User curated content and playlist shares
 - [ ] Snippable audio segment shares
 
-Explore some great podcasts live at: **http://commutecasts.herokuapp.com**
-
 ## Backend Features and Implementation
 
 ### ITunes Search API
@@ -61,6 +59,9 @@ The Feedjira gem comes with a parser that makes parsing ITunes RSS-formatted XML
     Feedjira::Feed.parse_with(Feedjira::Parser::ITunesRSS, xml)
   end
 ```
+
+[insert gif of podcast searching here]
+
 ### Dynamically Cacheing Podcast Searches
 With no way to directly obtain all podcast information from itunes, this
 app must make do with lazy-storage. Each time a new podcast is 'discovered'
@@ -99,16 +100,3 @@ is up-to-date
     return JSON.parse(getReq.parsed_response)["results"].first
   end
 ```
-
-## Frontend Features and Implementation
-
-#### Custom HTML 5 Player & Vibrant.js for image sampling
-Vibrant is a library that is used for finding prominant colors in images
-based on category. The desired effect was acheived after some tinkering
-and experimentation.
-
-#### Responsive Design
-Looking great on mobile isn't optional anymore. Especially with audio-based
-mediums. This project was created with Bootstrap v4 Alpha, and even makes
-some custom components to ensure user experience. I am especially happy
-with this NavBar
