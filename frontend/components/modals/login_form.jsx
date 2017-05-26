@@ -20,6 +20,7 @@ class LoginFormComponent extends ModalForm {
   renderHeader() {
     return <h3>Login</h3>;
   }
+
   renderBody() {
     return (
       <div>
@@ -34,6 +35,7 @@ class LoginFormComponent extends ModalForm {
       </div>
     );
   }
+  
   renderFooter() {
     return (
       <button className="btn btn-outline-primary" onClick={this.submit.bind(this)}>Login</button>
