@@ -3,29 +3,6 @@
 **CloudCasts** is a podcast streaming app featuring original UI and mobile-responsive design. The backend leverages **Ruby on Rails v5** and
 **PostgreSQL** for API querying and storage. The front-end utilizes **React/Redux**, the new **Bootstrap v4 - alpha 6**, and **ES6**.
 
-Enjoy easy navigation of your favorite podcasts at: **http://commutecasts.herokuapp.com**
-
-## Frontend Features and Implementation
-
-#### Custom HTML 5 Player & Vibrant.js for image sampling
-Vibrant is a library that is used for finding prominent colors in images
-based on category. The desired effect was achieved after some tinkering
-and experimentation.
-
-[insert git of Vibrant js animation & HTML 5 player (podcast-show-contianer)]
-
-#### Responsive Design
-Looking great on mobile isn't optional anymore; especially with audio-based
-mediums. This project was created with Bootstrap v4 Alpha, abides by Material
-Design specifications, and even makes some custom components to ensure user experience. I am especially happy with this NavBar implemented from scratch.
-
-[insert gif of navbar here]
-
-## Future Direction and Implementation
-- [ ] Lazy episode cacheing
-- [ ] User curated content and playlist shares
-- [ ] Snippable audio segment shares
-
 Explore some great podcasts live at: **http://commutecasts.herokuapp.com**
 
 ## Backend Features and Implementation
@@ -61,6 +38,7 @@ The Feedjira gem comes with a parser that makes parsing ITunes RSS-formatted XML
     Feedjira::Feed.parse_with(Feedjira::Parser::ITunesRSS, xml)
   end
 ```
+
 ### Dynamically Cacheing Podcast Searches
 With no way to directly obtain all podcast information from itunes, this
 app must make do with lazy-storage. Each time a new podcast is 'discovered'
