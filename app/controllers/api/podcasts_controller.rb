@@ -69,7 +69,7 @@ class Api::PodcastsController < ApplicationController
       episodes.concat(eps)
     end
     sorted_episodes = episodes.sort do |a, b|
-      (a[:published]) <=> (b[:published])
+      (b[:published]) <=> (a[:published])
     end
     render json: sorted_episodes
   end

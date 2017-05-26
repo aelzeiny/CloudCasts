@@ -1,12 +1,9 @@
 .podcast-show {
-  // figcaption {
-  //   width: 100%;
-  //   height: 75vh;
-  //   background-size: auto 75vh;
-  //   background-repeat: no-repeat;
-  //   background-position: top center;
-  //   background-attachment: fixed;
-  // }
+  background-color: white;
+  .loading-icon {
+    left: 50%;
+    position: absolute;
+  }
 
   .episode-viewport img {
     position: fixed;

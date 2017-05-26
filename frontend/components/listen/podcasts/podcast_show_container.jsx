@@ -107,7 +107,7 @@ class PodcastShowComponent extends React.Component {
     if(this.state.loading || isEmpty(pod)) {
       return (
         <section className="podcast-show">
-          <i className="fa fa-6 fa-spin fa-circle-o-notch" style={{fontSize: '10em'}}></i>
+          <i className="loading-icon fa fa-6 fa-spin fa-circle-o-notch" style={{fontSize: '10em'}}></i>
         </section>
       );
     }
@@ -141,8 +141,7 @@ class PodcastShowComponent extends React.Component {
   _renderSubscriptionIcon() {
     if(!this.props.subscriptions[this.props.podcast.itunes_id]){
       return (<button className="reset" onClick={this.onSubscibeClick.bind(this)}>
-        <i className="fa fa-plus-circle visible"></i>
-         <b className="visible">Subscribe</b>
+        <i className="fa fa-plus-circle visible"></i> <b className="visible">Subscribe</b>
       </button>);
     }
     return (
