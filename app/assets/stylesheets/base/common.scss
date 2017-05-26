@@ -24,11 +24,15 @@ button.reset {
 }
 
 .marquee:hover {
-    animation: marquee 10s linear infinite;
+    animation: marquee 8s linear infinite;
 }
 
 /* Make it move */
 @keyframes marquee {
     0%   { text-indent: 0em }
-    100% { text-indent: -55em }
+    50%   { text-indent: -25em; opacity: 1}
+    51% {opacity: 0}
+    52% { text-indent: 25em; opacity: 0}
+    53% { opacity: 1}
+    100% { text-indent: 0em }
 }
