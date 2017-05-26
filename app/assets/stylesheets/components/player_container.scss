@@ -1,4 +1,6 @@
 footer.player {
+  transition: bottom .5s ease-in-out;
+  -webkit-transition: bottom .5s ease-in-out; /* Safari */
   z-index: 3;
   position: fixed;
   bottom: 0;
@@ -82,4 +84,7 @@ footer.player {
     line-height: 46px;
     margin: 0 10px 0 10px;
   }
+}
+.player.player-collapse {
+  bottom: -70px;
 }

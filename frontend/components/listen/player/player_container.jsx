@@ -143,7 +143,7 @@ class PlayerContainer extends React.Component {
 
   render() {
     return (
-      <footer className="player" style={{backgroundColor: this.state.pallet.light}}>
+      <footer className={(this.props.episode) ? "player" : "player player-collapse"} style={{backgroundColor: this.state.pallet.light}}>
         <div>
           <audio ref={(me) => this.player = me}>
 

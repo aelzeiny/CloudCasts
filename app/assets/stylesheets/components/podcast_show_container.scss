@@ -1,11 +1,16 @@
 .podcast-show {
-  figcaption {
-    width: 100%;
+  // figcaption {
+  //   width: 100%;
+  //   height: 75vh;
+  //   background-size: auto 75vh;
+  //   background-repeat: no-repeat;
+  //   background-position: top center;
+  //   background-attachment: fixed;
+  // }
+
+  .episode-viewport img {
+    position: fixed;
     height: 75vh;
-    background-size: auto 75vh;
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-attachment: fixed;
   }
 
   .card {
@@ -39,19 +44,22 @@
     transition: background-color .5s ease;
     position: relative;
     display: flex;
+    height: 75vh;
     justify-content: center;
     .subscription-viewport {
       background-color: transparent;
-      text-align: center;
-      width: 75px;
       position: absolute;
       color: black;
+      margin: 20px;
+      height: 47px;
+      bottom: 0;
+      right: 0;
     }
 
     .visible-green{
-      color: hsl(122, 100%, 87%);
+      color: #c2f3ef;
       text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-      transition: color .2s ease;
+      transition: color .3s ease;
     }
   }
 
