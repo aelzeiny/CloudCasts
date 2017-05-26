@@ -72,7 +72,7 @@ class TimelineContainer extends React.Component {
         <i className="fa fa-spin fa-spinner fa-6"></i>
       );
       return (
-        <div>
+        <div className="container">
         {
           this.state.timeline.map((dateGroup, idx) => (
             this._renderDateGroup(dateGroup, idx)
