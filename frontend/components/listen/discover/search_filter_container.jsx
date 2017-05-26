@@ -28,6 +28,14 @@ class SearchFilterContainer extends React.Component{
       this.props.filter(this.genre);
   }
 
+  genreSelect(id) {
+    this.genre = id;
+    if(this.term)
+      this.props.search(this.term, this.genre);
+    else
+      this.props.filter(this.genre);
+  }
+
   render() {
     return(
     <div className="searchDiv">
@@ -41,7 +49,7 @@ class SearchFilterContainer extends React.Component{
       <button className="btn btn-outline-info btn-lg" data-toggle="modal" data-target='#moodModalId'>
         Mood
       </button>
-      <MoodModal />
+      <MoodModal onGenreSelect={this.genreSelect.bind(this)}/>
     </div>);
   }
 
