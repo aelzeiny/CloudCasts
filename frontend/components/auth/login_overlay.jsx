@@ -10,7 +10,6 @@ class LoginOverlay extends React.Component {
   }
 
   fillInForm(){
-    console.log("AY");
     const $form = $(this.form);
     const $un = $form.find('#un');
     const $pw = $form.find('#pw');
@@ -27,7 +26,7 @@ class LoginOverlay extends React.Component {
         clearInterval(interval);
         this.props.onSubmit({currentTarget: this.form, preventDefault: () => {}});
       }
-    }, 300);
+    }, 150);
   }
 
   render() {
