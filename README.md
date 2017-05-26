@@ -3,7 +3,28 @@
 **CloudCasts** is a podcast streaming app featuring original UI and mobile-responsive design. The backend leverages **Ruby on Rails v5** and
 **PostgreSQL** for API querying and storage. The front-end utilizes **React/Redux**, the new **Bootstrap v4 - alpha 6**, and **ES6**.
 
-Explore some great podcasts live at: **http://commutecasts.herokuapp.com**
+Enjoy easy navigation of your favorite podcasts at: **http://commutecasts.herokuapp.com**
+
+## Frontend Features and Implementation
+
+#### Custom HTML 5 Player & Vibrant.js for image sampling
+Vibrant is a library that is used for finding prominent colors in images
+based on category. The desired effect was achieved after some tinkering
+and experimentation.
+
+[insert git of Vibrant js animation & HTML 5 player (podcast-show-contianer)]
+
+#### Responsive Design
+Looking great on mobile isn't optional anymore; especially with audio-based
+mediums. This project was created with Bootstrap v4 Alpha, abides by Material
+Design specifications, and even makes some custom components to ensure user experience. I am especially happy with this NavBar implemented from scratch.
+
+[insert gif of navbar here]
+
+## Future Direction and Implementation
+- [ ] Lazy episode cacheing
+- [ ] User curated content and playlist shares
+- [ ] Snippable audio segment shares
 
 ## Backend Features and Implementation
 
@@ -38,6 +59,8 @@ The Feedjira gem comes with a parser that makes parsing ITunes RSS-formatted XML
     Feedjira::Feed.parse_with(Feedjira::Parser::ITunesRSS, xml)
   end
 ```
+
+[insert gif of podcast searching here]
 
 ### Dynamically Cacheing Podcast Searches
 With no way to directly obtain all podcast information from itunes, this
@@ -77,16 +100,3 @@ is up-to-date
     return JSON.parse(getReq.parsed_response)["results"].first
   end
 ```
-
-## Frontend Features and Implementation
-
-#### Custom HTML 5 Player & Vibrant.js for image sampling
-Vibrant is a library that is used for finding prominant colors in images
-based on category. The desired effect was acheived after some tinkering
-and experimentation.
-
-#### Responsive Design
-Looking great on mobile isn't optional anymore. Especially with audio-based
-mediums. This project was created with Bootstrap v4 Alpha, and even makes
-some custom components to ensure user experience. I am especially happy
-with this NavBar
