@@ -14,7 +14,7 @@ class SearchFilterContainer extends React.Component{
   handleChange(e) {
     // Get values of form inputs
     const $select = $(e.currentTarget);
-    const attr = $select.attr("name")
+    const attr = $select.attr("name");
     const val = $select.val();
     if(attr === "genre")
       this.genre = val === ALL_KEY ? undefined : val;
@@ -28,15 +28,26 @@ class SearchFilterContainer extends React.Component{
   }
 
   render() {
-    return(<div>
-      <input type="text" name="term" onChange={this.handleChange.bind(this)}/>
-      <select className="form-control" name="genre" onChange={this.handleChange.bind(this)}>
-        <option value={ALL_KEY} key="all">All</option>
-        {Object.keys(topGenres).map((key) => (
-          <option value={topGenres[key]} key={key}>{key}</option>
-        ))}
-      </select>
+    return(
+    <div className="searchDiv">
+      <i className="fa fa-search fa-6"></i>
+      <div className="container">
+        <div className="group">
+          <input type="text" placeholder="Search for whatever you like" name="term" onChange={this.handleChange.bind(this)} />
+          <span className="bar"></span>
+        </div>
+      </div>
+      <button className="btn btn-outline-info btn-lg">Mood</button>
     </div>);
+  }
+
+  _renderMood() {
+    return <select className="form-control" name="genre" onChange={this.handleChange.bind(this)}>
+      <option value={ALL_KEY} key="all">All</option>
+      {Object.keys(topGenres).map((key) => (
+        <option value={topGenres[key]} key={key}>{key}</option>
+      ))}
+    </select>;
   }
 }
 

@@ -15,9 +15,11 @@ class DiscoverComponent extends React.Component {
 
   render() {
     return (
-      <article className="discover container">
+      <article className="discover">
         <SearchFilterContainer />
-        <PodcastGridContainer />
+        <div className="container">
+          <PodcastGridContainer />
+        </div>
       </article>
     );
   }
