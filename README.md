@@ -61,7 +61,6 @@ The Feedjira gem comes with a parser that makes parsing ITunes RSS-formatted XML
     Feedjira::Feed.parse_with(Feedjira::Parser::ITunesRSS, xml)
   end
 ```
-
 ### Dynamically Cacheing Podcast Searches
 With no way to directly obtain all podcast information from itunes, this
 app must make do with lazy-storage. Each time a new podcast is 'discovered'
