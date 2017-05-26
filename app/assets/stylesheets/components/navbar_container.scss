@@ -1,5 +1,7 @@
 @import '../base/colors';
 @import '../base/fonts';
+@import '../base/media';
+
 nav {
   #nav-logo {
     width: 100%;
@@ -19,6 +21,10 @@ nav.sidebar {
   z-index: 13;
   color: $subtle;
   box-shadow: inset -2px 0 6px 0 rgba(0,0,0,.4);
+  -webkit-transition: left .5s ease-in-out;
+  -moz-transition: left .5s ease-in-out;
+  -o-transition: left .5s ease-in-out;
+  transition: left .5s ease-in-out;
   div.sidebar {
     width: 100%;
   }
@@ -67,5 +73,28 @@ nav.sidebar {
     .side-item {
       margin: 0px;
     }
+  }
+}
+
+article.content {
+  width: 100%;
+  margin-left: 200px;
+  margin-bottom: 65px;
+  -webkit-transition: margin-left .5s ease-in-out;
+  -moz-transition: margin-left .5s ease-in-out;
+  -o-transition: margin-left .5s ease-in-out;
+  transition: margin-left .5s ease-in-out;
+}
+
+@media (max-width:$break-md) {
+  nav.sidebar {
+    left: -167px
+  }
+  .sidebar:hover {
+    left: 0px;
+  }
+
+  article.content {
+    margin-left: 33px;
   }
 }
