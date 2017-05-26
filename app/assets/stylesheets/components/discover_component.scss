@@ -1,2 +1,42 @@
+@import '../base/fonts';
+@import '../base/colors';
+
 .discover {
+  background-color: $dark-color;
+  .searchDiv{
+    height: 70px;
+    font-weight: bold;
+    font-size: xx-large;
+    display: inline-block;
+    width: 100%;
+    color: $light-color;
+    i.fa {
+      position: absolute;
+      left: 0;
+      font-size: 1.5em;
+      margin: 10px;
+    }
+    input {
+      font-weight: inherit;
+      font-size: xx-large;
+      text-align: center;
+      width: 100%;
+      color: inherit;
+    }
+    .bar {
+      width: 100%;
+    }
+    button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin: 10px;
+      color: $light-color;
+      border-color: $light-color;
+      &:hover {
+        background-color: $light-color;
+        color: $dark-color;
+      }
+    }
+  }
 }
