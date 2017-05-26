@@ -78,6 +78,8 @@ class PlayerContainer extends React.Component {
   }
 
   playPlayer() {
+    if(!this.player)
+      return;
     this.player.play();
     this.updateCurrTime();
     this.setState({
@@ -86,6 +88,8 @@ class PlayerContainer extends React.Component {
   }
 
   pausePlayer() {
+    if(!this.player)
+      return;
     this.player.pause();
     this.updateCurrTime();
     this.setState({
@@ -94,6 +98,8 @@ class PlayerContainer extends React.Component {
   }
 
   toggleMute() {
+    if(!this.player)
+      return;
     if (this.player.muted == false) {
       this.player.muted = true;
     } else {
@@ -106,6 +112,8 @@ class PlayerContainer extends React.Component {
   }
 
   seekerChange(e) {
+    if(!this.player)
+      return;
     // Calculate the new time
     var time = this.player.duration * (e.currentTarget.value / 100);
 
@@ -115,11 +123,15 @@ class PlayerContainer extends React.Component {
   }
 
   volume(e) {
+    if(!this.player)
+      return;
     const slider = e.currentTarget;
     this.player.volume = slider.value;
   }
 
   rewind(e) {
+    if(!this.player)
+      return;
     this.player.currentTime = 0;
   }
 
@@ -146,7 +158,6 @@ class PlayerContainer extends React.Component {
       <footer className={(this.props.episode) ? "player" : "player player-collapse"} style={{backgroundColor: this.state.pallet.light}}>
         <div>
           <audio ref={(me) => this.player = me}>
-
             {/* <!-- Optional Source --> */}
             {this._getSrc()}
 
