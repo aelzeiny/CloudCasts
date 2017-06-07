@@ -42,7 +42,7 @@ class SearchFilterContainer extends React.Component{
       <i className="fa fa-search fa-6"></i>
       <div className="container">
         <div className="group">
-          <input type="text" placeholder="Search for whatever you like" name="term" onChange={this.handleChange.bind(this)} />
+          <input type="text" placeholder="Search for podcasts you like" name="term" onChange={this.handleChange.bind(this)} />
           <span className="bar"></span>
         </div>
       </div>
