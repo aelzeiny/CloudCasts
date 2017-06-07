@@ -55,6 +55,15 @@ section.auth {
     img {
       width: 100px;
     }
+    b {
+      font-weight: 100;
+      font-size: 2em;
+      color: black;
+      font-family: 'Open Sans', serif;
+      span {
+        font-weight: bold;
+      }
+    }
   }
 
   div#oButtons {
