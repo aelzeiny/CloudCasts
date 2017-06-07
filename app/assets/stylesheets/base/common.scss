@@ -40,6 +40,10 @@ html {
     animation: marquee 8s linear infinite;
 }
 
+article {
+  padding: 10px;
+}
+
 /* Make it move */
 @keyframes marquee {
     0%   { text-indent: 0em }
